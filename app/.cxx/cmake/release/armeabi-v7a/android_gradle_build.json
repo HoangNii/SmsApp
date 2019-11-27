@@ -1,0 +1,93 @@
+
+{
+	"buildFiles" : [ "C:/EzProject/MessagingFix/app/src/main/cpp/CMakeLists.txt" ],
+	"cFileExtensions" : [ "c" ],
+	"cleanCommands" : 
+	[
+		"C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"gif-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "gif",
+			"buildCommand" : "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a --target gif",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DHAVE_CONFIG_H -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -Werror -Wno-format -Wno-sign-compare -Wno-unused-parameter    -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/gif/dgif_lib.c",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DHAVE_CONFIG_H -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -Werror -Wno-format -Wno-sign-compare -Wno-unused-parameter    -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/gif/egif_lib.c",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DHAVE_CONFIG_H -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -Werror -Wno-format -Wno-sign-compare -Wno-unused-parameter    -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/gif/gifalloc.c",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DHAVE_CONFIG_H -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -Werror -Wno-format -Wno-sign-compare -Wno-unused-parameter    -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/gif/gif_err.c",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DHAVE_CONFIG_H -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -Werror -Wno-format -Wno-sign-compare -Wno-unused-parameter    -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/gif/gif_hash.c",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DHAVE_CONFIG_H -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -Werror -Wno-format -Wno-sign-compare -Wno-unused-parameter    -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/gif/openbsd-reallocarray.c",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DHAVE_CONFIG_H -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -Oz -DNDEBUG  -fPIC   -Werror -Wno-format -Wno-sign-compare -Wno-unused-parameter    -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/gif/quantize.c",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				}
+			],
+			"output" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a/libgif.a",
+			"toolchain" : "45444497"
+		},
+		"giftranscode-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "giftranscode",
+			"buildCommand" : "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a --target giftranscode",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dgiftranscode_EXPORTS -IC:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\gif  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -Wall -Werror -Wno-unused-parameter -Wno-switch  -c ",
+					"src" : "C:/EzProject/MessagingFix/app/src/main/cpp/GifTranscoder.cpp",
+					"workingDirectory" : "C:/EzProject/MessagingFix/app/.cxx/cmake/release/armeabi-v7a"
+				}
+			],
+			"output" : "C:/EzProject/MessagingFix/app/build/intermediates/cmake/release/obj/armeabi-v7a/libgiftranscode.so",
+			"toolchain" : "45444497"
+		}
+	},
+	"toolchains" : 
+	{
+		"45444497" : 
+		{
+			"cCompilerExecutable" : "C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "C:/Users/Admin/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

@@ -1,0 +1,70 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "C:\\EzProject\\MessagingFix",
+      "sdkFolder": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "C:\\EzProject\\MessagingFix\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "C:\\EzProject\\MessagingFix\\app",
+      "makeFile": "C:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "C:\\EzProject\\MessagingFix\\.cxx",
+      "cxxFolder": "C:\\EzProject\\MessagingFix\\app\\.cxx",
+      "ndkFolder": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\ndk-bundle",
+      "ndkVersion": "20.0.5594570",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "release",
+    "soFolder": "C:\\EzProject\\MessagingFix\\app\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "C:\\EzProject\\MessagingFix\\app\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 19,
+  "cxxBuildFolder": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a",
+  "jsonFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a",
+  "objFolder": "C:\\EzProject\\MessagingFix\\app\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a",
+  "buildCommandFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_command.txt",
+  "buildOutputFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_output.txt",
+  "modelOutputFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a\\CMakeLists.txt",
+    "toolchainWrapperFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a\\build_generation_state.json",
+    "cacheKeyFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cxx\\release\\armeabi-v7a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a\\json_generation_record.json",
+  "compileCommandsJsonFile": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\release\\armeabi-v7a\\compile_commands.json"
+}

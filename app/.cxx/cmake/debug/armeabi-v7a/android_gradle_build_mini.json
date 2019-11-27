@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "C:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "giftranscode-Debug-armeabi-v7a": {
+      "artifactName": "giftranscode",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\armeabi-v7a --target giftranscode",
+      "abi": "armeabi-v7a",
+      "output": "C:\\EzProject\\MessagingFix\\app\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libgiftranscode.so"
+    },
+    "gif-Debug-armeabi-v7a": {
+      "artifactName": "gif",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\armeabi-v7a --target gif",
+      "abi": "armeabi-v7a",
+      "output": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\armeabi-v7a\\libgif.a"
+    }
+  }
+}

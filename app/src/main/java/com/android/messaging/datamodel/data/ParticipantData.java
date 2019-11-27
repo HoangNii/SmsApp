@@ -22,7 +22,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.appcompat.mms.MmsManager;
+import androidx.support.v7.mms.MmsManager;
 import android.telephony.SubscriptionInfo;
 import android.text.TextUtils;
 

@@ -1,0 +1,4 @@
+C:/EzProject/MessagingFix/app/.cxx/cmake/release/x86/CMakeFiles/giftranscode.dir
+C:/EzProject/MessagingFix/app/.cxx/cmake/release/x86/CMakeFiles/gif.dir
+C:/EzProject/MessagingFix/app/.cxx/cmake/release/x86/CMakeFiles/edit_cache.dir
+C:/EzProject/MessagingFix/app/.cxx/cmake/release/x86/CMakeFiles/rebuild_cache.dir

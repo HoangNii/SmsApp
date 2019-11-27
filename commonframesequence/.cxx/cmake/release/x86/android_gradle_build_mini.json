@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "C:\\EzProject\\MessagingFix\\commonframesequence\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\x86 --target clean"
+  ],
+  "libraries": {
+    "gif-Release-x86": {
+      "artifactName": "gif",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\x86 --target gif",
+      "abi": "x86",
+      "output": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\x86\\libgif.a"
+    },
+    "framesequence-Release-x86": {
+      "artifactName": "framesequence",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\x86 --target framesequence",
+      "abi": "x86",
+      "output": "C:\\EzProject\\MessagingFix\\commonframesequence\\build\\intermediates\\cmake\\release\\obj\\x86\\libframesequence.so"
+    }
+  }
+}

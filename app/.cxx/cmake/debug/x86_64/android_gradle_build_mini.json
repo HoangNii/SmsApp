@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "C:\\EzProject\\MessagingFix\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\x86_64 --target clean"
+  ],
+  "libraries": {
+    "giftranscode-Debug-x86_64": {
+      "artifactName": "giftranscode",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\x86_64 --target giftranscode",
+      "abi": "x86_64",
+      "output": "C:\\EzProject\\MessagingFix\\app\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libgiftranscode.so"
+    },
+    "gif-Debug-x86_64": {
+      "artifactName": "gif",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\x86_64 --target gif",
+      "abi": "x86_64",
+      "output": "C:\\EzProject\\MessagingFix\\app\\.cxx\\cmake\\debug\\x86_64\\libgif.a"
+    }
+  }
+}

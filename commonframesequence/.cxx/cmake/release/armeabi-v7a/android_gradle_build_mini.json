@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "C:\\EzProject\\MessagingFix\\commonframesequence\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "gif-Release-armeabi-v7a": {
+      "artifactName": "gif",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\armeabi-v7a --target gif",
+      "abi": "armeabi-v7a",
+      "output": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\armeabi-v7a\\libgif.a"
+    },
+    "framesequence-Release-armeabi-v7a": {
+      "artifactName": "framesequence",
+      "buildCommand": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\release\\armeabi-v7a --target framesequence",
+      "abi": "armeabi-v7a",
+      "output": "C:\\EzProject\\MessagingFix\\commonframesequence\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libframesequence.so"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "C:\\EzProject\\MessagingFix",
+      "sdkFolder": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\build\\intermediates",
+      "gradleModulePathName": ":commonframesequence",
+      "moduleRootFolder": "C:\\EzProject\\MessagingFix\\commonframesequence",
+      "makeFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\src\\main\\cpp\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "C:\\EzProject\\MessagingFix\\.cxx",
+      "cxxFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx",
+      "ndkFolder": "C:\\Users\\Admin\\AppData\\Local\\Android\\Sdk\\ndk-bundle",
+      "ndkVersion": "20.0.5594570",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "debug",
+    "soFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\build\\intermediates\\cmake\\debug\\lib",
+    "objFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\build\\intermediates\\cmake\\debug\\obj",
+    "jsonFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug",
+    "gradleBuildOutputFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "X86",
+  "abiPlatformVersion": 19,
+  "cxxBuildFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug\\x86",
+  "jsonFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug\\x86\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86",
+  "objFolder": "C:\\EzProject\\MessagingFix\\commonframesequence\\build\\intermediates\\cmake\\debug\\obj\\x86",
+  "buildCommandFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug\\x86\\build_command.txt",
+  "buildOutputFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug\\x86\\build_output.txt",
+  "modelOutputFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug\\x86\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86\\CMakeLists.txt",
+    "toolchainWrapperFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86\\build_generation_state.json",
+    "cacheKeyFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86\\compiler_cache_key.json",
+    "compilerCacheUseFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cxx\\debug\\x86\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug\\x86\\json_generation_record.json",
+  "compileCommandsJsonFile": "C:\\EzProject\\MessagingFix\\commonframesequence\\.cxx\\cmake\\debug\\x86\\compile_commands.json"
+}

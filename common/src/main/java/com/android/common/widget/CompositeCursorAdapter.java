@@ -73,7 +73,7 @@ public abstract class CompositeCursorAdapter extends BaseAdapter {
 
     public CompositeCursorAdapter(Context context, int initialCapacity) {
         mContext = context;
-        mPartitions = new ArrayList<Partition>();
+        mPartitions = new ArrayList<>();
     }
 
     public Context getContext() {

@@ -23,7 +23,7 @@ android {
 
 dependencies {
     implementation "androidx.annotation:annotation:${rootProject.ext.supportLibVersion}"
-    implementation "androidx.core:core:1.0.2"
+    implementation "androidx.core:core:1.1.0"
     implementation "androidx.legacy:legacy-support-core-ui:${rootProject.ext.supportLibVersion}"
     implementation "androidx.legacy:legacy-support-core-utils:${rootProject.ext.supportLibVersion}"
     implementation "androidx.fragment:fragment:${rootProject.ext.supportLibVersion}"
