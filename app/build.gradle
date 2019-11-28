@@ -49,6 +49,7 @@ dependencies {
     api 'com.google.guava:guava:28.0-android'
     implementation project(':chips')
     implementation project(':photoviewer')
+    implementation project(':style')
     api 'com.googlecode.libphonenumber:libphonenumber:8.10.16'
     api 'com.googlecode.libphonenumber:geocoder:2.122'
     api 'com.googlecode.libphonenumber:prefixmapper:2.122'

@@ -109,13 +109,6 @@ abstract class MmsRequest implements Parcelable {
         mPduUri = pduUri;
         mPendingIntent = pendingIntent;
         mUseWakeLock = true;
-        AlertDialog.Builder builder;
-        builder.setNegativeButton("ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        })
     }
 
     void setUseWakeLock(final boolean useWakeLock) {
