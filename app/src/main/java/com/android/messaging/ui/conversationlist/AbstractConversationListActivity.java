@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.messaging.R;
 import com.android.messaging.datamodel.action.DeleteConversationAction;
@@ -77,6 +78,11 @@ public abstract class AbstractConversationListActivity  extends BugleActionBarAc
     }
 
     @Override
+    public void onActionBarHome() {
+        Toast.makeText(this, "Home Click", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onBackPressed() {
         // If action mode is active dismiss it
         if (getActionMode() != null) {
@@ -124,6 +130,7 @@ public abstract class AbstractConversationListActivity  extends BugleActionBarAc
                                 final Intent intent =
                                         UIIntents.get().getChangeDefaultSmsAppIntent(activity);
                                 startActivityForResult(intent, REQUEST_SET_DEFAULT_SMS_APP);
+                                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                             }
                         },
                         getString(R.string.requires_default_sms_change_button)),

@@ -16,7 +16,6 @@
 
 package com.android.messaging;
 
-import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +26,6 @@ import android.os.Looper;
 import androidx.support.v7.mms.CarrierConfigValuesLoader;
 import androidx.support.v7.mms.MmsManager;
 import android.telephony.CarrierConfigManager;
-
 import com.android.messaging.datamodel.DataModel;
 import com.android.messaging.receiver.SmsReceiver;
 import com.android.messaging.sms.ApnDatabase;
@@ -44,6 +42,7 @@ import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.Trace;
+import com.colorsms.style.App;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.io.File;
@@ -52,7 +51,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 /**
  * The application object
  */
-public class BugleApplication extends Application implements UncaughtExceptionHandler {
+public class BugleApplication extends App implements UncaughtExceptionHandler {
     private static final String TAG = LogUtil.BUGLE_TAG;
 
     private UncaughtExceptionHandler sSystemUncaughtExceptionHandler;
@@ -70,10 +69,21 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
         return sRunningTests;
     }
 
+    private static BugleApplication application;
+
+
+    public static BugleApplication get() {
+        return application;
+    }
+
     @Override
     public void onCreate() {
         Trace.beginSection("app.onCreate");
         super.onCreate();
+
+        setApp(this);
+
+        application = this;
 
         // Note onCreate is called in both test and real application environments
         if (!sRunningTests) {
@@ -259,4 +269,5 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
                     "oldVersion = " + existingVersion + ", newVersion = " + targetVersion);
         }
     }
+
 }

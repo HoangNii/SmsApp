@@ -94,6 +94,7 @@ public class VCardDetailFragment extends Fragment implements PersonItemDataListe
                 if (intent != null) {
                     try {
                         startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                     } catch (ActivityNotFoundException e) {
                         return false;
                     }

@@ -79,6 +79,7 @@ public class ApplicationSettingsActivity extends BugleActionBarActivity {
         case R.id.action_license:
             final Intent intent = new Intent(this, LicenseActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
             return true;
         }
         return super.onOptionsItemSelected(item);

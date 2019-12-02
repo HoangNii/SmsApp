@@ -54,11 +54,13 @@
     <style name="BugleTheme.DialogActivity" parent="@style/Theme.AppCompat.Light.Dialog">
     </style>
 
-    <style name="BugleTheme.ConversationListActivity" parent="BugleTheme">
+    <style name="BugleTheme.ConversationListActivity" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/background_light</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="BugleTheme.ArchivedConversationListActivity" parent="BugleTheme.ConversationListActivity">
+    <style name="BugleTheme.ArchivedConversationListActivity" parent="BugleTheme">
         <item name="colorPrimary">@color/archived_conversation_action_bar_background_color</item>
         <item name="colorPrimaryDark">@color/archived_conversation_action_bar_background_color_dark</item>
     </style>

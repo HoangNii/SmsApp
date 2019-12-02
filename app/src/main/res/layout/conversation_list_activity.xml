@@ -14,10 +14,49 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<fragment
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.android.messaging.ui.conversationlist.ConversationListFragment"
-    android:id="@+id/conversation_list_fragment"
-    android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:id="@+id/root"
+    android:background="@drawable/t1_background"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:fitsSystemWindows="true"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.colorsms.style.views.DrawerLayout
+            android:fitsSystemWindows="true"
+            android:id="@+id/drawer_layout"
+            tools:openDrawer="start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <fragment
+                    class="com.android.messaging.ui.conversationlist.ConversationListFragment"
+                    android:id="@+id/conversation_list_fragment"
+                    android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <FrameLayout
+                android:fitsSystemWindows="true"
+                android:layout_gravity="start"
+                android:background="@color/compose_message_send_color"
+                android:layout_width="280dp"
+                android:layout_height="match_parent">
+                <include layout="@layout/view_navigation"/>
+            </FrameLayout>
+        </com.colorsms.style.views.DrawerLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

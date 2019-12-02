@@ -47,4 +47,10 @@ public class BlockedParticipantsActivity extends BugleActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+    }
 }

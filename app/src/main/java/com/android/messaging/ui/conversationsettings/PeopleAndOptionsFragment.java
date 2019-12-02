@@ -144,6 +144,7 @@ public class PeopleAndOptionsFragment extends Fragment
                         item.getRingtoneUri(), Settings.System.DEFAULT_NOTIFICATION_URI,
                         RingtoneManager.TYPE_NOTIFICATION);
                 startActivityForResult(ringtonePickerIntent, REQUEST_CODE_RINGTONE_PICKER);
+                getActivity().overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
 
             case PeopleOptionsItemData.SETTING_NOTIFICATION_VIBRATION:

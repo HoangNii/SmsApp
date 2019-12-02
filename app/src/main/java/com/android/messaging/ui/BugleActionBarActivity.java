@@ -16,7 +16,10 @@
 
 package com.android.messaging.ui;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.messaging.R;
 import com.android.messaging.util.BugleActivityUtil;
@@ -195,20 +199,26 @@ public class BugleActionBarActivity extends AppCompatActivity implements ImeUtil
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem menuItem) {
+
+
+
         if (mActionMode != null &&
                 mActionMode.getCallback().onActionItemClicked(mActionMode, menuItem)) {
             return true;
         }
 
-        switch (menuItem.getItemId()) {
-            case android.R.id.home:
-                if (mActionMode != null) {
-                    dismissActionMode();
-                    return true;
-                }
+        if (menuItem.getItemId() == android.R.id.home) {
+            if (mActionMode != null) {
+                dismissActionMode();
+                return true;
+            } else {
+                onHomeButtonClick();
+            }
         }
         return super.onOptionsItemSelected(menuItem);
     }
+
+    public void onHomeButtonClick(){}
 
     @Override
     public ActionMode startActionMode(final ActionMode.Callback callback) {
@@ -353,4 +363,6 @@ public class BugleActionBarActivity extends AppCompatActivity implements ImeUtil
             actionBar.show();
         }
     }
+
+
 }

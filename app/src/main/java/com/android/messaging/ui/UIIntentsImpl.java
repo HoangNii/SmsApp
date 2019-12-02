@@ -88,8 +88,8 @@ public class UIIntentsImpl extends UIIntents {
      * Get an intent which takes you to a conversation
      */
     private Intent getConversationActivityIntent(final Context context,
-            final String conversationId, final MessageData draft,
-            final boolean withCustomTransition) {
+                                                 final String conversationId, final MessageData draft,
+                                                 final boolean withCustomTransition) {
         final Intent intent = new Intent(context, ConversationActivity.class);
 
         // Always try to reuse the same ConversationActivity in the current task so that we don't
@@ -138,6 +138,9 @@ public class UIIntentsImpl extends UIIntents {
     public void launchPermissionCheckActivity(final Context context) {
         final Intent intent = new Intent(context, PermissionCheckActivity.class);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     /**
@@ -151,6 +154,9 @@ public class UIIntentsImpl extends UIIntents {
     public void launchConversationListActivity(final Context context) {
         final Intent intent = getConversationListActivityIntent(context);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     /**
@@ -162,12 +168,15 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public void launchConversationActivity(final Context context,
-            final String conversationId, final MessageData draft, final Bundle activityOptions,
-            final boolean withCustomTransition) {
+                                           final String conversationId, final MessageData draft, final Bundle activityOptions,
+                                           final boolean withCustomTransition) {
         Assert.isTrue(!withCustomTransition || activityOptions != null);
         final Intent intent = getConversationActivityIntent(context, conversationId, draft,
                 withCustomTransition);
         context.startActivity(intent, activityOptions);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -177,11 +186,14 @@ public class UIIntentsImpl extends UIIntents {
                 false /* withCustomTransition */);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchConversationActivityWithParentStack(final Context context,
-                final String conversationId, final String smsBody) {
+                                                          final String conversationId, final String smsBody) {
         final MessageData messageData = TextUtils.isEmpty(smsBody)
                 ? null
                 : MessageData.createDraftSmsMessage(conversationId, null, smsBody);
@@ -194,15 +206,21 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public void launchCreateNewConversationActivity(final Context context,
-            final MessageData draft) {
+                                                    final MessageData draft) {
         final Intent intent = getConversationActivityIntent(context, null, draft,
                 false /* withCustomTransition */);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchDebugMmsConfigActivity(final Context context) {
         context.startActivity(new Intent(context, DebugMmsConfigActivity.class));
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -213,24 +231,36 @@ public class UIIntentsImpl extends UIIntents {
         intent.setType(Contacts.CONTENT_ITEM_TYPE);
         intent.putExtra(destinationType, destination);
         startExternalActivity(context, intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchSettingsActivity(final Context context) {
         final Intent intent = new Intent(context, SettingsActivity.class);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchArchivedConversationsActivity(final Context context) {
         final Intent intent = new Intent(context, ArchivedConversationListActivity.class);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchBlockedParticipantsActivity(final Context context) {
         final Intent intent = new Intent(context, BlockedParticipantsActivity.class);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -245,10 +275,11 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public void launchPeopleAndOptionsActivity(final Activity activity,
-            final String conversationId) {
+                                               final String conversationId) {
         final Intent intent = new Intent(activity, PeopleAndOptionsActivity.class);
         intent.putExtra(UI_INTENT_EXTRA_CONVERSATION_ID, conversationId);
         activity.startActivityForResult(intent, 0);
+        activity.overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
     }
 
     @Override
@@ -260,6 +291,9 @@ public class UIIntentsImpl extends UIIntents {
         extras.putParcelable(CALL_TARGET_CLICK_KEY, clickPosition);
         intent.putExtra(CALL_TARGET_CLICK_EXTRA_KEY, extras);
         startExternalActivity(context, intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -268,6 +302,9 @@ public class UIIntentsImpl extends UIIntents {
                 .putExtra(UI_INTENT_EXTRA_MESSAGE_VALUES, messageValues)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         context.startActivity(classZeroIntent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -275,6 +312,9 @@ public class UIIntentsImpl extends UIIntents {
         final Intent forwardMessageIntent = new Intent(context, ForwardMessageActivity.class)
                 .putExtra(UI_INTENT_EXTRA_DRAFT_DATA, message);
         context.startActivity(forwardMessageIntent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -282,6 +322,9 @@ public class UIIntentsImpl extends UIIntents {
         final Intent vcardDetailIntent = new Intent(context, VCardDetailActivity.class)
                 .putExtra(UI_INTENT_EXTRA_VCARD_URI, vcardUri);
         context.startActivity(vcardDetailIntent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -292,14 +335,19 @@ public class UIIntentsImpl extends UIIntents {
         intent.setDataAndType(vcardUri, ContentType.TEXT_VCARD.toLowerCase());
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startExternalActivity(context, intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchAttachmentChooserActivity(final Activity activity,
-            final String conversationId, final int requestCode) {
+                                                final String conversationId, final int requestCode) {
         final Intent intent = new Intent(activity, AttachmentChooserActivity.class);
         intent.putExtra(UI_INTENT_EXTRA_CONVERSATION_ID, conversationId);
         activity.startActivityForResult(intent, requestCode);
+        activity.overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+
     }
 
     @Override
@@ -311,11 +359,14 @@ public class UIIntentsImpl extends UIIntents {
         intent.putExtra("SingleItemOnly", true);
         intent.setDataAndType(videoUri, ContentType.VIDEO_UNSPECIFIED);
         startExternalActivity(context, intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchFullScreenPhotoViewer(final Activity activity, final Uri initialPhoto,
-            final Rect initialPhotoBounds, final Uri photosUri) {
+                                            final Rect initialPhotoBounds, final Uri photosUri) {
         final PhotoViewIntentBuilder builder =
                 com.android.ex.photo.Intents.newPhotoViewIntentBuilder(
                         activity, BuglePhotoViewActivity.class);
@@ -332,6 +383,9 @@ public class UIIntentsImpl extends UIIntents {
         builder.setMaxInitialScale(8);
         activity.startActivity(builder.build());
         activity.overridePendingTransition(0, 0);
+
+        activity.overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+
     }
 
     @Override
@@ -339,13 +393,19 @@ public class UIIntentsImpl extends UIIntents {
         final Intent intent = new Intent(context, ApplicationSettingsActivity.class);
         intent.putExtra(UI_INTENT_EXTRA_TOP_LEVEL_SETTINGS, topLevel);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
     public void launchPerSubscriptionSettingsActivity(final Context context, final int subId,
-            final String settingTitle) {
+                                                      final String settingTitle) {
         final Intent intent = getPerSubscriptionSettingsIntent(context, subId, settingTitle);
         context.startActivity(intent);
+        if(context instanceof Activity){
+            ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
     }
 
     @Override
@@ -356,7 +416,7 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public void broadcastConversationSelfIdChange(final Context context,
-            final String conversationId, final String conversationSelfId) {
+                                                  final String conversationId, final String conversationSelfId) {
         final Intent intent = new Intent(CONVERSATION_SELF_ID_CHANGE_BROADCAST_ACTION);
         intent.putExtra(UI_INTENT_EXTRA_CONVERSATION_ID, conversationId);
         intent.putExtra(UI_INTENT_EXTRA_CONVERSATION_SELF_ID, conversationSelfId);
@@ -371,7 +431,7 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public PendingIntent getPendingIntentForConversationActivity(final Context context,
-            final String conversationId, final MessageData draft) {
+                                                                 final String conversationId, final MessageData draft) {
         final Intent intent = getConversationActivityIntent(context, conversationId, draft,
                 false /* withCustomTransition */);
         // Ensure that the platform doesn't reuse PendingIntents across conversations
@@ -381,7 +441,7 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public Intent getIntentForConversationActivity(final Context context,
-            final String conversationId, final MessageData draft) {
+                                                   final String conversationId, final MessageData draft) {
         final Intent intent = getConversationActivityIntent(context, conversationId, draft,
                 false /* withCustomTransition */);
         return intent;
@@ -389,8 +449,8 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public PendingIntent getPendingIntentForSendingMessageToConversation(final Context context,
-            final String conversationId, final String selfId, final boolean requiresMms,
-            final int requestCode) {
+                                                                         final String conversationId, final String selfId, final boolean requiresMms,
+                                                                         final int requestCode) {
         final Intent intent = new Intent(context, RemoteInputEntrypointActivity.class);
         intent.setAction(Intent.ACTION_SENDTO);
         // Ensure that the platform doesn't reuse PendingIntents across conversations
@@ -404,8 +464,8 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public PendingIntent getPendingIntentForClearingNotifications(final Context context,
-            final int updateTargets, final ConversationIdSet conversationIdSet,
-            final int requestCode) {
+                                                                  final int updateTargets, final ConversationIdSet conversationIdSet,
+                                                                  final int requestCode) {
         final Intent intent = new Intent(context, NotificationReceiver.class);
         intent.setAction(ACTION_RESET_NOTIFICATIONS);
         intent.putExtra(UI_INTENT_EXTRA_NOTIFICATIONS_UPDATE, updateTargets);
@@ -428,18 +488,18 @@ public class UIIntentsImpl extends UIIntents {
      *    back navigation will work correctly.
      */
     private static PendingIntent getPendingIntentWithParentStack(final Context context,
-            final Intent intent, final int requestCode) {
+                                                                 final Intent intent, final int requestCode) {
         final TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         // Adds the back stack for the Intent (plus the Intent itself)
         stackBuilder.addNextIntentWithParentStack(intent);
         final PendingIntent resultPendingIntent =
-            stackBuilder.getPendingIntent(requestCode, PendingIntent.FLAG_UPDATE_CURRENT);
+                stackBuilder.getPendingIntent(requestCode, PendingIntent.FLAG_UPDATE_CURRENT);
         return resultPendingIntent;
     }
 
     @Override
     public Intent getRingtonePickerIntent(final String title, final Uri existingUri,
-            final Uri defaultUri, final int toneType) {
+                                          final Uri defaultUri, final int toneType) {
         return new Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
                 .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, toneType)
                 .putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, title)
@@ -519,10 +579,10 @@ public class UIIntentsImpl extends UIIntents {
     }
 
     private Intent getPerSubscriptionSettingsIntent(final Context context, final int subId,
-            @Nullable final String settingTitle) {
+                                                    @Nullable final String settingTitle) {
         return new Intent(context, PerSubscriptionSettingsActivity.class)
-            .putExtra(UI_INTENT_EXTRA_SUB_ID, subId)
-            .putExtra(UI_INTENT_EXTRA_PER_SUBSCRIPTION_SETTING_TITLE, settingTitle);
+                .putExtra(UI_INTENT_EXTRA_SUB_ID, subId)
+                .putExtra(UI_INTENT_EXTRA_PER_SUBSCRIPTION_SETTING_TITLE, settingTitle);
     }
 
     @Override
@@ -535,14 +595,14 @@ public class UIIntentsImpl extends UIIntents {
     @Override
     public void kickMediaScanner(final Context context, final String volume) {
         final Intent intent = new Intent(MEDIA_SCANNER_SCAN_ACTION)
-            .putExtra(MediaStore.MEDIA_SCANNER_VOLUME, volume)
-            .setClassName(MEDIA_SCANNER_PACKAGE, MEDIA_SCANNER_CLASS);
+                .putExtra(MediaStore.MEDIA_SCANNER_VOLUME, volume)
+                .setClassName(MEDIA_SCANNER_PACKAGE, MEDIA_SCANNER_CLASS);
         context.startService(intent);
     }
 
     @Override
     public PendingIntent getWidgetPendingIntentForConversationActivity(final Context context,
-            final String conversationId, final int requestCode) {
+                                                                       final String conversationId, final int requestCode) {
         final Intent intent = getConversationActivityIntent(context, null, null,
                 false /* withCustomTransition */);
         if (conversationId != null) {
@@ -566,7 +626,7 @@ public class UIIntentsImpl extends UIIntents {
 
     @Override
     public PendingIntent getWidgetPendingIntentForConfigurationActivity(final Context context,
-            final int appWidgetId) {
+                                                                        final int appWidgetId) {
         final Intent configureIntent = new Intent(context, WidgetPickConversationActivity.class);
         configureIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         configureIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);

@@ -300,6 +300,8 @@ public class ApnSettingsActivity extends BugleActionBarActivity {
 
         private void addNewApn() {
             startActivity(UIIntents.get().getApnEditorIntent(getActivity(), null, mSubId));
+            getActivity().overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+
         }
 
         @Override
