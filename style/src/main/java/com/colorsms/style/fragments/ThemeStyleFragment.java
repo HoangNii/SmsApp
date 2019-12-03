@@ -6,10 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.colorsms.style.R;
+import com.colorsms.style.activities.ThemeStylePreviewActivity;
+import com.colorsms.style.adapters.ThemeStyleAdapter;
+import com.colorsms.style.helper.Style;
 
 public class ThemeStyleFragment extends BaseFragment {
+
+    private ThemeStyleAdapter adapter;
 
     public static ThemeStyleFragment newInstance() {
         Bundle args = new Bundle();
@@ -22,25 +26,27 @@ public class ThemeStyleFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        update();
+        init();
 
     }
 
-    private void update() {
+    private void init() {
         RecyclerView rcvTheme = view.findViewById(R.id.rcv_theme_style);
         rcvTheme.setLayoutManager(new GridLayoutManager(activity,2));
-//        rcvTheme.setAdapter(new ThemeStyleAdapter(activity, Style.ColorStyle.getStyleModels()) {
-//            @Override
-//            public void OnItemStyleClick(int position) {
-//                ThemeStylePreviewActivity.startPreview(activity,position);
-//            }
-//        });
+        rcvTheme.setAdapter(adapter = new ThemeStyleAdapter(activity, Style.ColorStyle.getStyleModels()) {
+            @Override
+            public void OnItemStyleClick(int position) {
+                ThemeStylePreviewActivity.startPreview(activity,position);
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        update();
+        if(adapter!=null){
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override

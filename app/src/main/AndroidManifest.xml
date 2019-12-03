@@ -511,6 +511,15 @@
         </activity>
 
         <service android:name="androidx.support.v7.mms.MmsService"/>
+
+
+
+
+
+
+        <activity
+            android:theme="@style/PreviewTheme"
+            android:name="com.colorsms.style.activities.ThemeStylePreviewActivity"/>
     </application>
 
 </manifest>

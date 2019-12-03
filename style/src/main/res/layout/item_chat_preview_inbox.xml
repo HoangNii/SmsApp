@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false">
+    <FrameLayout
+        android:id="@+id/view_avatar"
+        android:layout_gravity="center_vertical"
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_avatar_frame"
+            android:src="@drawable/t1_avatar"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_avatar_content"
+            android:tint="#FAFAFA"
+            android:src="@drawable/ic_user"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name" />
+    </FrameLayout>
+    <FrameLayout
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/view_bb"
+            android:background="@drawable/t1_bb_inbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
+            <TextView
+                android:id="@+id/tv_bb"
+                android:layout_gravity="center_vertical"
+                android:textColor="#333"
+                android:textSize="15sp"
+                android:text="Hey! Have you watched the lastest Arsenal game?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+        </FrameLayout>
+    </FrameLayout>
+</LinearLayout>

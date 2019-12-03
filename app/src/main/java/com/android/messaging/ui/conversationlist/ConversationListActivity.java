@@ -22,14 +22,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.messaging.R;
 import com.android.messaging.ui.UIIntents;
@@ -37,6 +36,7 @@ import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.Trace;
 import com.colorsms.style.fragments.ThemeStyleFragment;
 import com.colorsms.style.helper.Style;
+import com.colorsms.style.helper.StyleHelper;
 import com.colorsms.style.views.DrawerLayout;
 
 public class ConversationListActivity extends AbstractConversationListActivity {
@@ -59,8 +59,16 @@ public class ConversationListActivity extends AbstractConversationListActivity {
 
         updateActionBar(getSupportActionBar());
 
+        setStyleBackground();
+
+        setStyleNavigation();
+
     }
 
+    private void setStyleNavigation() {
+        ViewGroup viewGroup = findViewById(R.id.nav_view);
+        StyleHelper.Loader.loadStyleNavigationView(viewGroup);
+    }
 
     @Override
     protected void updateActionBar(final ActionBar actionBar) {
@@ -68,16 +76,36 @@ public class ConversationListActivity extends AbstractConversationListActivity {
             actionBar.setTitle(getString(R.string.app_name));
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            actionBar.setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
-            toolbar.setTitleTextColor(Style.Home.getHomeTitleColor());
+//            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             actionBar.show();
-            final Drawable upArrow = getResources().getDrawable(R.drawable.ic_menu);
-            upArrow.setColorFilter(Style.Home.getHomeTitleColor(), PorterDuff.Mode.SRC_ATOP);
-            actionBar.setHomeAsUpIndicator(upArrow);
-            setOverflowButtonColor(toolbar,Style.Home.getHomeTitleColor());
+
+            setStyleToolbar(actionBar);
+
         }
     }
+
+    private void setStyleBackground() {
+        final View root = findViewById(R.id.root);
+        View main = findViewById(R.id.main);
+        StyleHelper.Loader.loadBackgroundHome(root,main);
+
+    }
+    private void setStyleToolbar(ActionBar actionBar) {
+        //set style
+        int styleColor = Style.Home.getStyleColor();
+        int themePosition = Style.ColorStyle.getStyleId();
+        int homeTittleColor = Style.Home.getHomeTitleColor();
+
+        actionBar.setBackgroundDrawable(new ColorDrawable(themePosition==0?styleColor: Color.TRANSPARENT));
+        toolbar.setTitleTextColor(homeTittleColor);
+
+        final Drawable upArrow = getResources().getDrawable(R.drawable.ic_menu);
+        upArrow.setColorFilter(homeTittleColor, PorterDuff.Mode.SRC_ATOP);
+        actionBar.setHomeAsUpIndicator(upArrow);
+
+        setOverflowButtonColor(toolbar,homeTittleColor);
+    }
+
 
     private void setOverflowButtonColor(final Toolbar toolbar, final int color) {
         Drawable drawable = toolbar.getOverflowIcon();
@@ -119,7 +147,13 @@ public class ConversationListActivity extends AbstractConversationListActivity {
             case R.id.nav_home:
                 break;
             case R.id.nav_themes:
-                ThemeStyleFragment.startAddToBackStack(this,ThemeStyleFragment.newInstance());
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ThemeStyleFragment.startAddToBackStack(ConversationListActivity.this,ThemeStyleFragment.newInstance());
+                    }
+                },300);
+
                 break;
             case R.id.nav_theme_color:
                 break;

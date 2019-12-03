@@ -33,6 +33,7 @@ import com.android.messaging.sms.BugleApnSettingsLoader;
 import com.android.messaging.sms.BugleUserAgentInfoLoader;
 import com.android.messaging.sms.MmsConfig;
 import com.android.messaging.ui.ConversationDrawables;
+import com.android.messaging.ui.conversationlist.ConversationListActivity;
 import com.android.messaging.util.BugleGservices;
 import com.android.messaging.util.BugleGservicesKeys;
 import com.android.messaging.util.BuglePrefs;
@@ -74,6 +75,13 @@ public class BugleApplication extends App implements UncaughtExceptionHandler {
 
     public static BugleApplication get() {
         return application;
+    }
+
+    @Override
+    public void restart() {
+        Intent intent = new Intent(this, ConversationListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override

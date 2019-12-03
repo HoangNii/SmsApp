@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -57,6 +58,7 @@ import com.android.messaging.util.Assert;
 import com.android.messaging.util.ImeUtil;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.helper.Style;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
@@ -238,6 +240,10 @@ public class ConversationListFragment extends Fragment implements ConversationLi
         // activity transition. However, we want each individual items in the recycler view to
         // show explode animation themselves, so we explicitly tag the root view to be a non-group.
         ViewGroupCompat.setTransitionGroup(rootView, false);
+
+
+        //set color
+        mStartNewConversationButton.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
 
         setHasOptionsMenu(true);
         return rootView;

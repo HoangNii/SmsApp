@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -36,6 +37,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.ex.photo.util.Util;
 import com.android.messaging.Factory;
 import com.android.messaging.R;
 import com.android.messaging.annotation.VisibleForAnimation;
@@ -58,6 +60,9 @@ import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.Typefaces;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.UriUtil;
+import com.colorsms.style.helper.Style;
+import com.colorsms.style.models.StyleModel;
+import com.colorsms.style.utils.Utils;
 
 import java.util.List;
 
@@ -74,6 +79,8 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     private Typeface mListItemUnreadTypeface;
     private static String sPlusOneString;
     private static String sPlusNString;
+
+    private StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
 
     public interface HostInterface {
         boolean isConversationSelected(final String conversationId);
@@ -131,34 +138,46 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     private AsyncImageView mImagePreviewView;
     private AudioAttachmentView mAudioAttachmentView;
     private HostInterface mHostInterface;
+    private ImageView mFrameIcon;
 
     public ConversationListItemView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
         mData = new ConversationListItemData();
-        final Resources res = context.getResources();
     }
 
     @Override
     protected void onFinishInflate() {
-        mSwipeableContainer = (ViewGroup) findViewById(R.id.swipeableContainer);
-        mCrossSwipeBackground = (ViewGroup) findViewById(R.id.crossSwipeBackground);
-        mSwipeableContent = (ViewGroup) findViewById(R.id.swipeableContent);
-        mConversationNameView = (TextView) findViewById(R.id.conversation_name);
-        mSnippetTextView = (TextView) findViewById(R.id.conversation_snippet);
-        mSubjectTextView = (TextView) findViewById(R.id.conversation_subject);
-        mWorkProfileIconView = (ImageView) findViewById(R.id.work_profile_icon);
-        mTimestampTextView = (TextView) findViewById(R.id.conversation_timestamp);
-        mContactIconView = (ContactIconView) findViewById(R.id.conversation_icon);
-        mContactCheckmarkView = (ImageView) findViewById(R.id.conversation_checkmark);
-        mNotificationBellView = (ImageView) findViewById(R.id.conversation_notification_bell);
-        mFailedStatusIconView = (ImageView) findViewById(R.id.conversation_failed_status_icon);
-        mCrossSwipeArchiveLeftImageView = (ImageView) findViewById(R.id.crossSwipeArchiveIconLeft);
+        mSwipeableContainer = findViewById(R.id.swipeableContainer);
+        mCrossSwipeBackground = findViewById(R.id.crossSwipeBackground);
+        mSwipeableContent = findViewById(R.id.swipeableContent);
+        mConversationNameView = findViewById(R.id.conversation_name);
+        mSnippetTextView = findViewById(R.id.conversation_snippet);
+        mSubjectTextView = findViewById(R.id.conversation_subject);
+        mWorkProfileIconView = findViewById(R.id.work_profile_icon);
+        mTimestampTextView = findViewById(R.id.conversation_timestamp);
+        mContactIconView = findViewById(R.id.conversation_icon);
+        mFrameIcon = findViewById(R.id.frame_icon);
+        mContactCheckmarkView = findViewById(R.id.conversation_checkmark);
+        mNotificationBellView = findViewById(R.id.conversation_notification_bell);
+        mFailedStatusIconView = findViewById(R.id.conversation_failed_status_icon);
+        mCrossSwipeArchiveLeftImageView = findViewById(R.id.crossSwipeArchiveIconLeft);
         mCrossSwipeArchiveRightImageView =
-                (ImageView) findViewById(R.id.crossSwipeArchiveIconRight);
-        mImagePreviewView = (AsyncImageView) findViewById(R.id.conversation_image_preview);
-        mAudioAttachmentView = (AudioAttachmentView) findViewById(R.id.audio_attachment_view);
+                findViewById(R.id.crossSwipeArchiveIconRight);
+        mImagePreviewView = findViewById(R.id.conversation_image_preview);
+        mAudioAttachmentView = findViewById(R.id.audio_attachment_view);
         mConversationNameView.addOnLayoutChangeListener(this);
         mSnippetTextView.addOnLayoutChangeListener(this);
+
+        mContactCheckmarkView.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+
+        if(model.getId()==0){
+            mFrameIcon.setImageResource(0);
+            mContactIconView.setPadding(0,0,0,0);
+        }else {
+            mFrameIcon.setImageResource(model.getAvatarFrameResource());
+            int px = Utils.dpToPixel(10,getContext());
+            mContactIconView.setPadding(px,px,px,px);
+        }
 
         final Resources resources = getContext().getResources();
         mListItemReadColor = resources.getColor(R.color.conversation_list_item_read);
@@ -170,6 +189,10 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         if (OsUtil.isAtLeastL()) {
             setTransitionGroup(true);
         }
+
+        int colorSms = Style.Background.getHomeTextColor();
+        mListItemReadColor = colorSms;
+        mListItemUnreadColor = colorSms;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class Style {
                     R.drawable.t0chat,Color.WHITE
             ));
             styleModels.add(new StyleModel(
-                    1,"Theme 1",R.drawable.t1_background,Color.parseColor("#E22348"),R.drawable.t1_avatar,
+                    1,"Theme 1",R.drawable.t1_background,Color.parseColor("#F08B9F"),R.drawable.t1_avatar,
                     Gravity.BOTTOM,new int[]{18,17,17,17},new int[]{17,15,15,15},Color.WHITE,
                     Color.parseColor("#E22348"),Color.parseColor("#222222"),
                     R.drawable.t1_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -316,17 +316,6 @@ public class Style {
         public static int getFontSize(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             return preferences.getInt("font_size",14);
-        }
-
-        public static void setAllTextView(ViewGroup parent) {
-            for (int i = parent.getChildCount() - 1; i >= 0; i--) {
-                final View child = parent.getChildAt(i);
-                if (child instanceof ViewGroup) {
-                    setAllTextView((ViewGroup) child);
-                } else if (child instanceof TextView) {
-                    ((TextView) child).setTypeface(getFontTypeFace(getFontFamilyPosition()));
-                }
-            }
         }
     }
 

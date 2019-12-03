@@ -1,6 +1,5 @@
 package com.colorsms.style.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.colorsms.style.R;
+import com.colorsms.style.helper.Style;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -37,6 +37,11 @@ public abstract class BaseFragment extends Fragment {
                     activity.getSupportFragmentManager().popBackStack();
                 }
             });
+        }
+
+        View toolbar = view.findViewById(R.id.view_toolbar);
+        if(toolbar!=null){
+            toolbar.setBackgroundColor(Style.Home.getStyleColor());
         }
 
         return view;

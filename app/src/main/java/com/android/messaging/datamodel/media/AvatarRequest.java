@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -33,6 +34,7 @@ import com.android.messaging.util.Assert;
 import com.android.messaging.util.AvatarUriUtil;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.UriUtil;
+import com.colorsms.style.helper.Style;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -179,7 +181,7 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
     }
 
     private int getBackgroundColor() {
-        return mContext.getResources().getColor(R.color.primary_color);
+        return Style.ColorStyle.getStyleId()==0?Style.Home.getStyleColor(): Color.TRANSPARENT;
     }
 
     @Override

@@ -13,4 +13,6 @@ public abstract class App extends Application {
     public static void setApp(App app) {
         App.app = app;
     }
+
+    public abstract void restart();
 }

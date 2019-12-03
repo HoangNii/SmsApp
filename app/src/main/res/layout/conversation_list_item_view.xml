@@ -75,23 +75,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent">
-                <com.android.messaging.ui.ContactIconView
-                    android:id="@+id/conversation_icon"
-                    android:layout_width="@dimen/conversation_list_contact_icon_size"
-                    android:layout_height="@dimen/conversation_list_contact_icon_size"
-                    android:importantForAccessibility="no"
-                    android:contentDescription="@null"
-                    app:iconSize="large"
-                    android:clickable="true"
-                    android:background="@android:color/transparent" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/frame_icon"
+                        android:paddingTop="1dp"
+                        android:paddingEnd="2.5dp"
+                        android:importantForAccessibility="no"
+                        android:contentDescription="@null"
+                        android:layout_width="@dimen/conversation_list_contact_icon_size"
+                        android:layout_height="@dimen/conversation_list_contact_icon_size"/>
+                    <com.android.messaging.ui.ContactIconView
+                        android:padding="10dp"
+                        android:id="@+id/conversation_icon"
+                        android:layout_width="@dimen/conversation_list_contact_icon_size"
+                        android:layout_height="@dimen/conversation_list_contact_icon_size"
+                        android:importantForAccessibility="no"
+                        android:contentDescription="@null"
+                        app:iconSize="large"
+                        android:clickable="true"
+                        android:background="@android:color/transparent" />
+                </FrameLayout>
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/conversation_checkmark"
                     android:layout_width="@dimen/conversation_list_contact_icon_size"
                     android:layout_height="@dimen/conversation_list_contact_icon_size"
-                    android:src="@drawable/ic_checkmark_circle_blue"
-                    android:visibility="gone"
+                    android:src="@drawable/ic_check"
+                    android:padding="10dp"
                     android:importantForAccessibility="no"
-                    android:background="@android:color/transparent" />
+                    android:background="@drawable/bg_oval" />
                 <ImageView
                     android:id="@+id/conversation_failed_status_icon"
                     android:layout_width="wrap_content"
