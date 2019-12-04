@@ -16,12 +16,14 @@
 package com.android.messaging.ui;
 
 import android.app.Fragment;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.android.messaging.R;
 import com.android.messaging.util.Assert;
+import com.colorsms.style.helper.Style;
 
 /**
  * An activity that hosts VCardDetailFragment that shows the content of a VCard that contains one
@@ -33,6 +35,7 @@ public class VCardDetailActivity extends BugleActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vcard_detail_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
     }
 
     @Override

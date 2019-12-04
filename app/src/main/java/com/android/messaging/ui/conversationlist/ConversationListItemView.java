@@ -81,6 +81,12 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     private static String sPlusOneString;
     private static String sPlusNString;
 
+    public void setArchiveMode(boolean mArchiveMode) {
+        int colorSms = mArchiveMode?Color.GRAY:Style.Background.getHomeTextColor();
+        mListItemReadColor = colorSms;
+        mListItemUnreadColor = colorSms;
+    }
+
     private StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
 
     public interface HostInterface {
@@ -182,9 +188,6 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
             setTransitionGroup(true);
         }
 
-        int colorSms = Style.Background.getHomeTextColor();
-        mListItemReadColor = colorSms;
-        mListItemUnreadColor = colorSms;
     }
 
     @Override

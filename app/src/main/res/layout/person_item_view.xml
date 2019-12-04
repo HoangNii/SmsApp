@@ -21,14 +21,23 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <com.android.messaging.ui.ContactIconView
-        android:id="@+id/contact_icon"
-        android:layout_width="@dimen/contact_list_icon_size"
-        android:layout_height="@dimen/contact_list_icon_size"
-        android:importantForAccessibility="no"
-        app:iconSize="normal"
-        android:layout_gravity="center_vertical" />
-
+    <FrameLayout
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/frame_contact_icon"
+            android:importantForAccessibility="no"
+            android:contentDescription="@null"
+            android:layout_width="@dimen/conversation_list_contact_icon_size"
+            android:layout_height="@dimen/conversation_list_contact_icon_size"/>
+        <com.android.messaging.ui.ContactIconView
+            android:id="@+id/contact_icon"
+            android:layout_width="@dimen/conversation_list_contact_icon_size"
+            android:layout_height="@dimen/conversation_list_contact_icon_size"
+            android:importantForAccessibility="no"
+            app:iconSize="large" />
+    </FrameLayout>
     <LinearLayout
         android:id="@+id/details_container"
         android:orientation="vertical"

@@ -18,6 +18,7 @@ package com.android.messaging.ui.appsettings;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import androidx.core.app.NavUtils;
 import android.text.TextUtils;
@@ -41,6 +42,7 @@ import com.android.messaging.ui.BugleActionBarActivity;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.Assert;
 import com.android.messaging.util.PhoneUtils;
+import com.colorsms.style.helper.Style;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,7 @@ public class SettingsActivity extends BugleActionBarActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
 
         // Directly open the detailed settings page as the top-level settings activity if this is
         // not a multi-SIM device.

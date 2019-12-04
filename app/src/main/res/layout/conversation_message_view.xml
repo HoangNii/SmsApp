@@ -23,9 +23,9 @@
 
     <com.android.messaging.ui.ContactIconView
         android:id="@+id/conversation_icon"
-        android:layout_width="@dimen/conversation_message_contact_icon_size"
-        android:layout_height="@dimen/conversation_message_contact_icon_size"
-        app:iconSize="normal"
+        android:layout_width="@dimen/conversation_list_contact_icon_size"
+        android:layout_height="@dimen/conversation_list_contact_icon_size"
+        app:iconSize="large"
         android:clickable="true"
         android:layout_gravity="center_vertical"
         android:importantForAccessibility="no" />

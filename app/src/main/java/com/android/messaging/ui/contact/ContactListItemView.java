@@ -17,6 +17,7 @@ package com.android.messaging.ui.contact;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.AttributeSet;
@@ -34,6 +35,10 @@ import com.android.messaging.datamodel.data.ParticipantData;
 import com.android.messaging.ui.ContactIconView;
 import com.android.messaging.util.Assert;
 import com.android.messaging.util.AvatarUriUtil;
+import com.bumptech.glide.Glide;
+import com.colorsms.style.helper.Style;
+import com.colorsms.style.models.StyleModel;
+import com.colorsms.style.utils.Utils;
 import com.google.common.annotations.VisibleForTesting;
 
 /**
@@ -55,7 +60,10 @@ public class ContactListItemView extends LinearLayout implements OnClickListener
     private ImageView mContactCheckmarkView;
     private ImageView mWorkProfileIcon;
     private HostInterface mHostInterface;
+    private ImageView mFrameIcon;
     private boolean mShouldShowAlphabetHeader;
+
+    private StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
 
     public ContactListItemView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -69,6 +77,7 @@ public class ContactListItemView extends LinearLayout implements OnClickListener
         mContactDetailTypeTextView = findViewById(R.id.contact_detail_type);
         mAlphabetHeaderTextView = findViewById(R.id.alphabet_header);
         mContactIconView = findViewById(R.id.contact_icon);
+        mFrameIcon = findViewById(R.id.frame_contact_icon);
         mContactCheckmarkView = findViewById(R.id.contact_checkmark);
         mWorkProfileIcon = findViewById(R.id.work_profile_icon);
     }
@@ -139,6 +148,7 @@ public class ContactListItemView extends LinearLayout implements OnClickListener
             mContactIconView.setImageResourceUri(avatarUri, mData.getContactId(),
                     mData.getLookupKey(), destinationString);
             mContactIconView.setVisibility(VISIBLE);
+            mFrameIcon.setVisibility(VISIBLE);
             mContactNameTextView.setVisibility(VISIBLE);
             final boolean isSelected = mHostInterface.isContactSelected(mData);
             setSelected(isSelected);
@@ -148,6 +158,7 @@ public class ContactListItemView extends LinearLayout implements OnClickListener
         } else {
             mContactIconView.setImageResourceUri(null);
             mContactIconView.setVisibility(INVISIBLE);
+            mFrameIcon.setVisibility(INVISIBLE);
             mContactNameTextView.setVisibility(GONE);
             final boolean isSelected = mHostInterface.isContactSelected(mData);
             setSelected(isSelected);
@@ -166,6 +177,20 @@ public class ContactListItemView extends LinearLayout implements OnClickListener
         } else {
             mAlphabetHeaderTextView.setVisibility(GONE);
         }
+
+        mContactCheckmarkView.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+        mAlphabetHeaderTextView.setTextColor(Style.Home.getStyleColor());
+
+        if(model.getId()==0){
+            mFrameIcon.setImageResource(0);
+        }else {
+            Glide.with(mFrameIcon).load(model.getAvatarFrameResource()).into(mFrameIcon);
+        }
+        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0],getContext());
+        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1],getContext());
+        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2],getContext());
+        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3],getContext());
+        mContactIconView.setPadding(left,top,right,bottom);
     }
 
     /**

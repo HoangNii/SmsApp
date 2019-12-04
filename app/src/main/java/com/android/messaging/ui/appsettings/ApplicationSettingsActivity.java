@@ -20,6 +20,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -43,6 +44,7 @@ import com.android.messaging.util.BuglePrefs;
 import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.PhoneUtils;
+import com.colorsms.style.helper.Style;
 
 public class ApplicationSettingsActivity extends BugleActionBarActivity {
     @Override
@@ -50,6 +52,7 @@ public class ApplicationSettingsActivity extends BugleActionBarActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
         final boolean topLevel = getIntent().getBooleanExtra(
                 UIIntents.UI_INTENT_EXTRA_TOP_LEVEL_SETTINGS, false);
         if (topLevel) {

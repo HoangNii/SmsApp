@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -45,6 +46,7 @@ import com.android.messaging.util.Assert;
 import com.android.messaging.util.BuglePrefs;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.PhoneUtils;
+import com.colorsms.style.helper.Style;
 
 public class PerSubscriptionSettingsActivity extends BugleActionBarActivity {
     @Override
@@ -52,6 +54,7 @@ public class PerSubscriptionSettingsActivity extends BugleActionBarActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
         final String title = getIntent().getStringExtra(
                 UIIntents.UI_INTENT_EXTRA_PER_SUBSCRIPTION_SETTING_TITLE);
         if (!TextUtils.isEmpty(title)) {

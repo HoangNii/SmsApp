@@ -16,8 +16,15 @@
 package com.android.messaging.ui.conversationsettings;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import androidx.appcompat.widget.SwitchCompat;
+
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -29,6 +36,7 @@ import com.android.messaging.datamodel.DataModel;
 import com.android.messaging.datamodel.data.ParticipantData;
 import com.android.messaging.datamodel.data.PeopleOptionsItemData;
 import com.android.messaging.util.Assert;
+import com.colorsms.style.helper.Style;
 
 /**
  * The view for a single entry in the options section of people & options activity.
@@ -54,16 +62,18 @@ public class PeopleOptionsItemView extends LinearLayout {
 
     @Override
     protected void onFinishInflate () {
-        mTitle = (TextView) findViewById(R.id.title);
-        mSubtitle = (TextView) findViewById(R.id.subtitle);
-        mSwitch = (SwitchCompat) findViewById(R.id.switch_button);
+        mTitle = findViewById(R.id.title);
+        mSubtitle = findViewById(R.id.subtitle);
+        mSwitch = findViewById(R.id.switch_button);
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View v) {
                 mHostInterface.onOptionsItemViewClicked(mData, !mData.getChecked());
             }
         });
+
     }
+
 
     public void bind(final Cursor cursor, final int columnIndex, ParticipantData otherParticipant,
             final HostInterface hostInterface) {

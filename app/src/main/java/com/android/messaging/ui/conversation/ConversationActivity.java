@@ -19,13 +19,19 @@ package com.android.messaging.ui.conversation;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.view.MenuItem;
-
+import android.view.View;
 import com.android.messaging.R;
 import com.android.messaging.datamodel.MessagingContentProvider;
 import com.android.messaging.datamodel.data.MessageData;
@@ -41,6 +47,8 @@ import com.android.messaging.util.ContentType;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.helper.Style;
+import com.colorsms.style.helper.StyleHelper;
 
 public class ConversationActivity extends BugleActionBarActivity
         implements ContactPickerFragmentHost, ConversationFragmentHost,
@@ -59,11 +67,21 @@ public class ConversationActivity extends BugleActionBarActivity
     // Tracks whether onPause is called.
     private boolean mIsPaused;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.conversation_activity);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        updateActionBar(getSupportActionBar());
+
+        setStyleBackground();
 
         final Intent intent = getIntent();
 
@@ -178,12 +196,47 @@ public class ConversationActivity extends BugleActionBarActivity
     @Override
     public void updateActionBar(final ActionBar actionBar) {
         super.updateActionBar(actionBar);
-        final ConversationFragment conversation = getConversationFragment();
-        final ContactPickerFragment contactPicker = getContactPicker();
-        if (contactPicker != null && mUiState.shouldShowContactPickerFragment()) {
-            contactPicker.updateActionBar(actionBar);
-        } else if (conversation != null && mUiState.shouldShowConversationFragment()) {
-            conversation.updateActionBar(actionBar);
+        if(toolbar!=null){
+            final ConversationFragment conversation = getConversationFragment();
+            final ContactPickerFragment contactPicker = getContactPicker();
+            if (contactPicker != null && mUiState.shouldShowContactPickerFragment()) {
+                contactPicker.updateActionBar(actionBar);
+            } else if (conversation != null && mUiState.shouldShowConversationFragment()) {
+                conversation.updateActionBar(actionBar);
+            }
+            setStyleToolbar(actionBar);
+        }
+
+    }
+
+    private void setStyleBackground() {
+        final View root = findViewById(R.id.root);
+        View main = findViewById(R.id.main);
+        StyleHelper.Loader.loadBackgroundHome(root,main);
+
+    }
+
+    private void setStyleToolbar(ActionBar actionBar) {
+        //set style
+        int styleColor = Style.Home.getStyleColor();
+        int themePosition = Style.ColorStyle.getStyleId();
+        int homeTittleColor = Style.Home.getHomeTitleColor();
+
+        actionBar.setBackgroundDrawable(new ColorDrawable(themePosition==0?styleColor: Color.TRANSPARENT));
+        toolbar.setTitleTextColor(homeTittleColor);
+
+        final Drawable upArrow = getResources().getDrawable(R.drawable.ic_back);
+        upArrow.setColorFilter(homeTittleColor, PorterDuff.Mode.SRC_ATOP);
+        actionBar.setHomeAsUpIndicator(upArrow);
+        setOverflowButtonColor(toolbar,homeTittleColor);
+    }
+
+    private void setOverflowButtonColor(final Toolbar toolbar, final int color) {
+        Drawable drawable = toolbar.getOverflowIcon();
+        if(drawable != null) {
+            drawable = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTint(drawable.mutate(), color);
+            toolbar.setOverflowIcon(drawable);
         }
     }
 
@@ -222,6 +275,7 @@ public class ConversationActivity extends BugleActionBarActivity
             return;
         }
         super.onBackPressed();
+        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
     }
 
     private ContactPickerFragment getContactPicker() {
@@ -376,4 +430,6 @@ public class ConversationActivity extends BugleActionBarActivity
             finish();
         }
     }
+
+
 }

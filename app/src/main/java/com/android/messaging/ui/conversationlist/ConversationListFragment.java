@@ -40,6 +40,7 @@ import android.view.ViewPropertyAnimator;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.messaging.R;
 import com.android.messaging.annotation.VisibleForAnimation;
@@ -59,6 +60,7 @@ import com.android.messaging.util.ImeUtil;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.UiUtils;
 import com.colorsms.style.helper.Style;
+import com.colorsms.style.helper.StyleHelper;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
@@ -128,7 +130,8 @@ public class ConversationListFragment extends Fragment implements ConversationLi
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
         mListBinding.getData().init(getLoaderManager(), mListBinding);
-        mAdapter = new ConversationListAdapter(getActivity(), null, this);
+        mAdapter = new ConversationListAdapter(getActivity(), null, this,mArchiveMode);
+
     }
 
     @Override
@@ -246,8 +249,10 @@ public class ConversationListFragment extends Fragment implements ConversationLi
         mStartNewConversationButton.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
 
         setHasOptionsMenu(true);
+
         return rootView;
     }
+
 
     @Override
     public void onAttach(final Activity activity) {
@@ -261,6 +266,8 @@ public class ConversationListFragment extends Fragment implements ConversationLi
             mForwardMessageMode = arguments.getBoolean(BUNDLE_FORWARD_MESSAGE_MODE, false);
         }
         mListBinding.bind(DataModel.get().createConversationListData(activity, this, mArchiveMode));
+
+
     }
 
 

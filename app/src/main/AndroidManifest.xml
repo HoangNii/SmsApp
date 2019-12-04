@@ -113,7 +113,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="user"
             android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/BugleTheme.ConversationActivity"
+            android:theme="@style/BugleTheme.ConversationListActivity"
             android:parentActivityName="com.android.messaging.ui.conversationlist.ConversationListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

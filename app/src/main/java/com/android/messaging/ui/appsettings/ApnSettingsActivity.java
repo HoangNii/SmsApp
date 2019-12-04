@@ -23,6 +23,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,6 +52,7 @@ import com.android.messaging.ui.BugleActionBarActivity;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.PhoneUtils;
+import com.colorsms.style.helper.Style;
 
 public class ApnSettingsActivity extends BugleActionBarActivity {
     private static final int DIALOG_RESTORE_DEFAULTAPN = 1001;
@@ -60,6 +62,8 @@ public class ApnSettingsActivity extends BugleActionBarActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
+
 
         // Display the fragment as the main content.
         final ApnSettingsFragment fragment = new ApnSettingsFragment();

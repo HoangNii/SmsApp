@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -42,6 +43,7 @@ import com.android.messaging.sms.BugleApnSettingsLoader;
 import com.android.messaging.ui.BugleActionBarActivity;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.PhoneUtils;
+import com.colorsms.style.helper.Style;
 
 public class ApnEditorActivity extends BugleActionBarActivity {
     private static final int ERROR_DIALOG_ID = 0;
@@ -53,6 +55,7 @@ public class ApnEditorActivity extends BugleActionBarActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
 
         // Display the fragment as the main content.
         mApnEditorFragment = new ApnEditorFragment();

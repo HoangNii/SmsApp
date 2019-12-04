@@ -24,6 +24,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLayoutChangeListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +35,10 @@ import com.android.messaging.datamodel.data.PersonItemData;
 import com.android.messaging.datamodel.data.PersonItemData.PersonItemDataListener;
 import com.android.messaging.util.AccessibilityUtil;
 import com.android.messaging.util.UiUtils;
+import com.bumptech.glide.Glide;
+import com.colorsms.style.helper.Style;
+import com.colorsms.style.models.StyleModel;
+import com.colorsms.style.utils.Utils;
 
 /**
  * Shows a view for a "person" - could be a contact or a participant. This always shows a
@@ -56,7 +61,10 @@ public class PersonItemView extends LinearLayout implements PersonItemDataListen
     private ContactIconView mContactIconView;
     private View mDetailsContainer;
     private PersonItemViewListener mListener;
+    private ImageView mFrameIcon;
     private boolean mAvatarOnly;
+
+    private StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
 
     public PersonItemView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -66,9 +74,10 @@ public class PersonItemView extends LinearLayout implements PersonItemDataListen
 
     @Override
     protected void onFinishInflate() {
-        mNameTextView = (TextView) findViewById(R.id.name);
-        mDetailsTextView = (TextView) findViewById(R.id.details);
-        mContactIconView = (ContactIconView) findViewById(R.id.contact_icon);
+        mNameTextView = findViewById(R.id.name);
+        mDetailsTextView = findViewById(R.id.details);
+        mContactIconView = findViewById(R.id.contact_icon);
+        mFrameIcon = findViewById(R.id.frame_contact_icon);
         mDetailsContainer = findViewById(R.id.details_container);
         mNameTextView.addOnLayoutChangeListener(this);
     }
@@ -111,6 +120,18 @@ public class PersonItemView extends LinearLayout implements PersonItemDataListen
             mNameTextView.setContentDescription(vocalizedDisplayName);
         }
         updateViewAppearance();
+
+
+        if(model.getId()==0){
+            mFrameIcon.setImageResource(0);
+        }else {
+            Glide.with(mFrameIcon).load(model.getAvatarFrameResource()).into(mFrameIcon);
+        }
+        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0],getContext());
+        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1],getContext());
+        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2],getContext());
+        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3],getContext());
+        mContactIconView.setPadding(left,top,right,bottom);
     }
 
     /**

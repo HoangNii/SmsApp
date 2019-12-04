@@ -105,6 +105,8 @@ public class StyleHelper {
             }
         }
 
+
+
         public static void loadStyleNavigationView(ViewGroup parent){
             int color =  Style.Home.getStyleColor();
             for (int i = parent.getChildCount() - 1; i >= 0; i--) {

@@ -33,12 +33,14 @@ public class ConversationListAdapter
         extends CursorRecyclerAdapter<ConversationListAdapter.ConversationListViewHolder> {
 
     private final ConversationListItemView.HostInterface mClivHostInterface;
+    private boolean mArchiveMode;
 
     public ConversationListAdapter(final Context context, final Cursor cursor,
-            final ConversationListItemView.HostInterface clivHostInterface) {
+            final ConversationListItemView.HostInterface clivHostInterface,boolean archiveMode) {
         super(context, cursor, 0);
         mClivHostInterface = clivHostInterface;
         setHasStableIds(true);
+        mArchiveMode = archiveMode;
     }
 
     /**
@@ -60,6 +62,7 @@ public class ConversationListAdapter
         final ConversationListItemView itemView =
                 (ConversationListItemView) layoutInflater.inflate(
                         R.layout.conversation_list_item_view, null);
+        itemView.setArchiveMode(mArchiveMode);
         return new ConversationListViewHolder(itemView);
     }
 

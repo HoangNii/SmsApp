@@ -36,8 +36,10 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -104,6 +106,7 @@ import com.android.messaging.util.SafeAsyncTask;
 import com.android.messaging.util.TextUtil;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.UriUtil;
+import com.colorsms.style.helper.Style;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.io.File;
@@ -759,6 +762,11 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
         final boolean supportCallAction = (PhoneUtils.getDefault().isVoiceCapable() &&
                 data.getParticipantPhoneNumber() != null);
         menu.findItem(R.id.action_call).setVisible(supportCallAction);
+        Drawable drawable = menu.findItem(R.id.action_call).getIcon();
+        if(drawable != null) {
+            drawable.mutate();
+            drawable.setColorFilter(Style.Home.getHomeTitleColor(), PorterDuff.Mode.SRC_ATOP);
+        }
     }
 
     @Override
@@ -1596,6 +1604,8 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
             } else {
                 actionBar.show();
             }
+
+            conversationNameView.setTextColor(Style.Home.getHomeTitleColor());
         }
     }
 

@@ -122,7 +122,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
 
     @Override
     protected void onFinishInflate() {
-        mContactIconView = (ContactIconView) findViewById(R.id.conversation_icon);
+        mContactIconView = findViewById(R.id.conversation_icon);
         mContactIconView.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(final View view) {
@@ -131,38 +131,38 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
             }
         });
 
-        mMessageAttachmentsView = (LinearLayout) findViewById(R.id.message_attachments);
-        mMultiAttachmentView = (MultiAttachmentLayout) findViewById(R.id.multiple_attachments);
+        mMessageAttachmentsView = findViewById(R.id.message_attachments);
+        mMultiAttachmentView = findViewById(R.id.multiple_attachments);
         mMultiAttachmentView.setOnAttachmentClickListener(this);
 
-        mMessageImageView = (AsyncImageView) findViewById(R.id.message_image);
+        mMessageImageView = findViewById(R.id.message_image);
         mMessageImageView.setOnClickListener(this);
         mMessageImageView.setOnLongClickListener(this);
 
-        mMessageTextView = (TextView) findViewById(R.id.message_text);
+        mMessageTextView = findViewById(R.id.message_text);
         mMessageTextView.setOnClickListener(this);
         IgnoreLinkLongClickHelper.ignoreLinkLongClick(mMessageTextView, this);
 
-        mStatusTextView = (TextView) findViewById(R.id.message_status);
-        mTitleTextView = (TextView) findViewById(R.id.message_title);
-        mMmsInfoTextView = (TextView) findViewById(R.id.mms_info);
-        mMessageTitleLayout = (LinearLayout) findViewById(R.id.message_title_layout);
-        mSenderNameTextView = (TextView) findViewById(R.id.message_sender_name);
-        mMessageBubble = (ConversationMessageBubbleView) findViewById(R.id.message_content);
+        mStatusTextView = findViewById(R.id.message_status);
+        mTitleTextView = findViewById(R.id.message_title);
+        mMmsInfoTextView = findViewById(R.id.mms_info);
+        mMessageTitleLayout = findViewById(R.id.message_title_layout);
+        mSenderNameTextView = findViewById(R.id.message_sender_name);
+        mMessageBubble = findViewById(R.id.message_content);
         mSubjectView = findViewById(R.id.subject_container);
-        mSubjectLabel = (TextView) mSubjectView.findViewById(R.id.subject_label);
-        mSubjectText = (TextView) mSubjectView.findViewById(R.id.subject_text);
+        mSubjectLabel = mSubjectView.findViewById(R.id.subject_label);
+        mSubjectText = mSubjectView.findViewById(R.id.subject_text);
         mDeliveredBadge = findViewById(R.id.smsDeliveredBadge);
-        mMessageMetadataView = (ViewGroup) findViewById(R.id.message_metadata);
-        mMessageTextAndInfoView = (ViewGroup) findViewById(R.id.message_text_and_info);
-        mSimNameView = (TextView) findViewById(R.id.sim_name);
+        mMessageMetadataView = findViewById(R.id.message_metadata);
+        mMessageTextAndInfoView = findViewById(R.id.message_text_and_info);
+        mSimNameView = findViewById(R.id.sim_name);
     }
 
     @Override
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         final int horizontalSpace = MeasureSpec.getSize(widthMeasureSpec);
         final int iconSize = getResources()
-                .getDimensionPixelSize(R.dimen.conversation_message_contact_icon_size);
+                .getDimensionPixelSize(R.dimen.conversation_list_contact_icon_size);
 
         final int unspecifiedMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         final int iconMeasureSpec = MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY);
@@ -300,10 +300,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         }
         final String subjectText = MmsUtils.cleanseMmsSubject(getResources(),
                 mData.getMmsSubject());
-        if (!TextUtils.isEmpty(subjectText)) {
-            return true;
-        }
-        return false;
+        return !TextUtils.isEmpty(subjectText);
     }
 
     private void updateViewContent() {

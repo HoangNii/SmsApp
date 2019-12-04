@@ -63,6 +63,7 @@ import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.helper.Style;
 import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
@@ -141,8 +142,7 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
             final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.contact_picker_fragment, container, false);
-        mRecipientTextView = (ContactRecipientAutoCompleteView)
-                view.findViewById(R.id.recipient_text_view);
+        mRecipientTextView = view.findViewById(R.id.recipient_text_view);
         mRecipientTextView.setThreshold(0);
         mRecipientTextView.setDropDownAnchor(R.id.compose_contact_divider);
 
@@ -171,7 +171,7 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
                 mFrequentContactsListViewHolder,
                 mAllContactsListViewHolder };
 
-        mCustomHeaderViewPager = (CustomHeaderViewPager) view.findViewById(R.id.contact_pager);
+        mCustomHeaderViewPager = view.findViewById(R.id.contact_pager);
         mCustomHeaderViewPager.setViewHolders(viewHolders);
         mCustomHeaderViewPager.setViewPagerTabHeight(CustomHeaderViewPager.DEFAULT_TAB_STRIP_SIZE);
         mCustomHeaderViewPager.setBackgroundColor(getResources()
@@ -180,7 +180,7 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
         // The view pager defaults to the frequent contacts page.
         mCustomHeaderViewPager.setCurrentItem(0);
 
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        mToolbar = view.findViewById(R.id.toolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_light);
         mToolbar.setNavigationContentDescription(R.string.back);
         mToolbar.setNavigationOnClickListener(new OnClickListener() {
@@ -192,7 +192,6 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
 
         mToolbar.inflateMenu(R.menu.compose_menu);
         mToolbar.setOnMenuItemClickListener(this);
-
         mComposeDivider = view.findViewById(R.id.compose_contact_divider);
         mRootView = view;
         return view;

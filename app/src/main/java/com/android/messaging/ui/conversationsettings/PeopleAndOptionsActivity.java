@@ -17,6 +17,7 @@
 package com.android.messaging.ui.conversationsettings;
 
 import android.app.Fragment;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -24,6 +25,7 @@ import com.android.messaging.R;
 import com.android.messaging.ui.BugleActionBarActivity;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.Assert;
+import com.colorsms.style.helper.Style;
 
 /**
  * Shows a list of participants in a conversation.
@@ -36,6 +38,7 @@ public class PeopleAndOptionsActivity extends BugleActionBarActivity {
         setContentView(R.layout.people_and_options_activity);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
     }
 
     @Override

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "aos.andro.messaging"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion rootProject.ext.sdkVersion
         versionCode rootProject.ext.verCode
         versionName rootProject.ext.verName

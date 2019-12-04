@@ -28,6 +28,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.PopupWindow;
 
+import com.android.messaging.R;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.ThreadUtil;
 import com.android.messaging.util.UiUtils;
@@ -79,8 +80,7 @@ public class PopupTransitionAnimation extends Animation {
         mDestRect = new Rect();
         mPopupRect = new Rect();
         mActionBarRect = new Rect();
-        mActionBarView = viewToAnimate.getRootView().findViewById(
-                androidx.appcompat.R.id.action_bar);
+        mActionBarView = viewToAnimate.getRootView().findViewById(R.id.toolbar);
         mRectEvaluator = RectEvaluatorCompat.create();
         setDuration(UiUtils.MEDIAPICKER_TRANSITION_DURATION);
         setInterpolator(UiUtils.DEFAULT_INTERPOLATOR);

@@ -38,19 +38,32 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical">
 
-        <com.android.messaging.ui.ContactIconView
-            android:id="@+id/contact_icon"
-            android:layout_width="@dimen/contact_list_icon_size"
-            android:layout_height="@dimen/contact_list_icon_size"
-            android:importantForAccessibility="no"
-            app:iconSize="normal"
-            android:clickable="true" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/frame_contact_icon"
+                android:importantForAccessibility="no"
+                android:contentDescription="@null"
+                android:layout_width="@dimen/conversation_list_contact_icon_size"
+                android:layout_height="@dimen/conversation_list_contact_icon_size"/>
+            <com.android.messaging.ui.ContactIconView
+                android:id="@+id/contact_icon"
+                android:layout_width="@dimen/conversation_list_contact_icon_size"
+                android:layout_height="@dimen/conversation_list_contact_icon_size"
+                android:importantForAccessibility="no"
+                app:iconSize="large"
+                android:clickable="true" />
+        </FrameLayout>
+
 
         <ImageView
+            android:padding="10dp"
+            android:background="@drawable/bg_oval"
             android:id="@+id/contact_checkmark"
-            android:layout_width="@dimen/contact_list_icon_size"
-            android:layout_height="@dimen/contact_list_icon_size"
-            android:src="@drawable/ic_checkmark_circle_blue"
+            android:layout_width="@dimen/conversation_list_contact_icon_size"
+            android:layout_height="@dimen/conversation_list_contact_icon_size"
+            android:src="@drawable/ic_check"
             android:visibility="gone"
             android:importantForAccessibility="no"
         android:contentDescription="@null"/>
