@@ -7,7 +7,7 @@ public class StyleModel {
     private int styleColor;
     private int avatarFrameResource;
     private int avatarGravity;
-    private int[] avatarHomeContentPadding;
+    private float[] avatarHomeContentPadding;
     private int[] avatarChatContentPadding;
     private int avatarContentColor;
     private int unReadColor;
@@ -24,7 +24,7 @@ public class StyleModel {
     private int preview;
     private int titleColor;
 
-    public StyleModel(int id, String name, int background, int styleColor, int avatarFrameResource, int avatarGravity, int[] avatarHomeContentPadding, int[] avatarChatContentPadding, int avatarContentColor, int unReadColor, int smsHomeColor, int bbChatInboxResource, int bbChatInboxColor, int bbChatInboxTextColor, int bbChatSendResource, int bbChatSendColor, int bbChatSendTextColor, int preview, int titleColor) {
+    public StyleModel(int id, String name, int background, int styleColor, int avatarFrameResource, int avatarGravity, float[] avatarHomeContentPadding, int[] avatarChatContentPadding, int avatarContentColor, int unReadColor, int smsHomeColor, int bbChatInboxResource, int bbChatInboxColor, int bbChatInboxTextColor, int bbChatSendResource, int bbChatSendColor, int bbChatSendTextColor, int preview, int titleColor) {
         this.id = id;
         this.name = name;
         this.background = background;
@@ -110,11 +110,11 @@ public class StyleModel {
         this.avatarGravity = avatarGravity;
     }
 
-    public int[] getAvatarHomeContentPadding() {
+    public float[] getAvatarHomeContentPadding() {
         return avatarHomeContentPadding;
     }
 
-    public void setAvatarHomeContentPadding(int[] avatarHomeContentPadding) {
+    public void setAvatarHomeContentPadding(float[] avatarHomeContentPadding) {
         this.avatarHomeContentPadding = avatarHomeContentPadding;
     }
 

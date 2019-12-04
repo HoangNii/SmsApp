@@ -23,12 +23,18 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.messaging.R;
 import com.android.messaging.ui.ContactIconView;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.AccessibilityUtil;
+import com.bumptech.glide.Glide;
+import com.colorsms.style.App;
+import com.colorsms.style.helper.Style;
+import com.colorsms.style.models.StyleModel;
+import com.colorsms.style.utils.Utils;
 
 public class AddContactsConfirmationDialog implements DialogInterface.OnClickListener {
     private final Context mContext;
@@ -52,14 +58,13 @@ public class AddContactsConfirmationDialog implements DialogInterface.OnClickLis
         .setNegativeButton(cancelStringId, null)
         .create();
         alertDialog.show();
-        final Resources resources = mContext.getResources();
         final Button cancelButton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         if (cancelButton != null) {
-            cancelButton.setTextColor(resources.getColor(R.color.contact_picker_button_text_color));
+            cancelButton.setTextColor(Style.Home.getStyleColor());
         }
         final Button addButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         if (addButton != null) {
-            addButton.setTextColor(resources.getColor(R.color.contact_picker_button_text_color));
+            addButton.setTextColor(Style.Home.getStyleColor());
         }
     }
 
@@ -71,10 +76,23 @@ public class AddContactsConfirmationDialog implements DialogInterface.OnClickLis
     private View createBodyView() {
         final View view = LayoutInflater.from(mContext).inflate(
                 R.layout.add_contacts_confirmation_dialog_body, null);
-        final ContactIconView iconView = (ContactIconView) view.findViewById(R.id.contact_icon);
+        final ContactIconView iconView = view.findViewById(R.id.contact_icon);
         iconView.setImageResourceUri(mAvatarUri);
-        final TextView textView = (TextView) view.findViewById(R.id.participant_name);
+        final TextView textView = view.findViewById(R.id.participant_name);
         textView.setText(mNormalizedDestination);
+        final ImageView iconFrame = view.findViewById(R.id.frame_contact_icon);
+        StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
+        if(model.getId()==0){
+            iconFrame.setImageResource(0);
+        }else {
+            Glide.with(iconFrame).load(model.getAvatarFrameResource()).into(iconFrame);
+        }
+
+        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0], App.get());
+        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1],App.get());
+        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2],App.get());
+        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3],App.get());
+        iconView.setPadding(left,top,right,bottom);
         // Accessibility reason : in case phone numbers are mixed in the display name,
         // we need to vocalize it for talkback.
         final String vocalizedDisplayName = AccessibilityUtil.getVocalizedPhoneNumber(

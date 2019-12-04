@@ -60,6 +60,7 @@ import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.Typefaces;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.UriUtil;
+import com.bumptech.glide.Glide;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.models.StyleModel;
 import com.colorsms.style.utils.Utils;
@@ -139,6 +140,7 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     private AudioAttachmentView mAudioAttachmentView;
     private HostInterface mHostInterface;
     private ImageView mFrameIcon;
+    private View mUnRead;
 
     public ConversationListItemView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -156,7 +158,8 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         mWorkProfileIconView = findViewById(R.id.work_profile_icon);
         mTimestampTextView = findViewById(R.id.conversation_timestamp);
         mContactIconView = findViewById(R.id.conversation_icon);
-        mFrameIcon = findViewById(R.id.frame_icon);
+        mFrameIcon = findViewById(R.id.conversation_frame_icon);
+        mUnRead = findViewById(R.id.conversation_unread);
         mContactCheckmarkView = findViewById(R.id.conversation_checkmark);
         mNotificationBellView = findViewById(R.id.conversation_notification_bell);
         mFailedStatusIconView = findViewById(R.id.conversation_failed_status_icon);
@@ -167,17 +170,6 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         mAudioAttachmentView = findViewById(R.id.audio_attachment_view);
         mConversationNameView.addOnLayoutChangeListener(this);
         mSnippetTextView.addOnLayoutChangeListener(this);
-
-        mContactCheckmarkView.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
-
-        if(model.getId()==0){
-            mFrameIcon.setImageResource(0);
-            mContactIconView.setPadding(0,0,0,0);
-        }else {
-            mFrameIcon.setImageResource(model.getAvatarFrameResource());
-            int px = Utils.dpToPixel(10,getContext());
-            mContactIconView.setPadding(px,px,px,px);
-        }
 
         final Resources resources = getContext().getResources();
         mListItemReadColor = resources.getColor(R.color.conversation_list_item_read);
@@ -405,10 +397,12 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
             maxLines = TextUtils.isEmpty(snippetText) ? 0 : NO_UNREAD_SNIPPET_LINE_COUNT;
             color = mListItemReadColor;
             typeface = mListItemReadTypeface;
+            mUnRead.setVisibility(INVISIBLE);
         } else {
             maxLines = TextUtils.isEmpty(snippetText) ? 0 : UNREAD_SNIPPET_LINE_COUNT;
             color = mListItemUnreadColor;
             typeface = mListItemUnreadTypeface;
+            mUnRead.setVisibility(VISIBLE);
         }
 
         mSnippetTextView.setMaxLines(maxLines);
@@ -525,6 +519,21 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
 
         final int notificationBellVisiblity = mData.getNotificationEnabled() ? GONE : VISIBLE;
         mNotificationBellView.setVisibility(notificationBellVisiblity);
+
+
+        mContactCheckmarkView.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+        mUnRead.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+
+        if(model.getId()==0){
+            mFrameIcon.setImageResource(0);
+        }else {
+            Glide.with(mFrameIcon).load(model.getAvatarFrameResource()).into(mFrameIcon);
+        }
+        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0],getContext());
+        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1],getContext());
+        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2],getContext());
+        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3],getContext());
+        mContactIconView.setPadding(left,top,right,bottom);
     }
 
     public boolean isSwipeAnimatable() {

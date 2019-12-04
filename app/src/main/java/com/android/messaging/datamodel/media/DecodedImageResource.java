@@ -39,7 +39,7 @@ public class DecodedImageResource extends ImageResource {
 
     private Bitmap mBitmap;
     private final int mOrientation;
-    private boolean mCacheable = true;
+    private boolean mCacheable = false;
 
     public DecodedImageResource(final String key, final Bitmap bitmap, int orientation) {
         super(key, orientation);

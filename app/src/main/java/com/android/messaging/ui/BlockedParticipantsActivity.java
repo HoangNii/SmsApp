@@ -16,10 +16,12 @@
 
 package com.android.messaging.ui;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.android.messaging.R;
+import com.colorsms.style.helper.Style;
 
 /**
  * Show a list of currently blocked participants.
@@ -31,7 +33,12 @@ public class BlockedParticipantsActivity extends BugleActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blocked_participants_activity);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Style.Home.getStyleColor()));
+        }
+
+
     }
 
     @Override

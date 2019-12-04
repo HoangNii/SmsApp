@@ -97,6 +97,9 @@ public class ThemeStylePreviewActivity extends AppCompatActivity {
                     Style.Background.setBackgroundChatPosition(1);
                     Style.Background.setHomeTextColor(model.getSmsHomeColor());
 
+
+                    Style.Avatar.setAvatarContentColor(model.getAvatarContentColor());
+
                     Toast.makeText(ThemeStylePreviewActivity.this, "Done!", Toast.LENGTH_SHORT).show();
 
                     App.get().restart();

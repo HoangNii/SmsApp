@@ -20,8 +20,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -42,6 +45,7 @@ import java.io.InputStream;
 import java.util.List;
 
 public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
+
     private static Bitmap sDefaultPersonBitmap;
     private static Bitmap sDefaultPersonBitmapLarge;
 
@@ -150,6 +154,9 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
         final RectF dest = new RectF(0, 0, width, height);
         matrix.setRectToRect(source, dest, Matrix.ScaleToFit.FILL);
 
+        ColorFilter filter = new PorterDuffColorFilter(Style.Avatar.getAvatarContentColor(), PorterDuff.Mode.SRC_IN);
+        paint.setColorFilter(filter);
+
         canvas.drawBitmap(defaultPerson, matrix, paint);
 
         return bitmap;
@@ -163,7 +170,7 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
                 getBackgroundColor());
         final Resources resources = mContext.getResources();
         final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setTypeface(Typeface.create("sans-serif-thin", Typeface.NORMAL));
+        paint.setTypeface(Typeface.create("sans-serif-thin", Typeface.BOLD));
         paint.setColor(resources.getColor(R.color.letter_tile_font_color));
         final float letterToTileRatio = resources.getFraction(R.dimen.letter_to_tile_ratio, 1, 1);
         paint.setTextSize(letterToTileRatio * minOfWidthAndHeight);
@@ -175,8 +182,11 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
         final Canvas canvas = new Canvas(bitmap);
         final float xOffset = halfWidth - textBound.centerX();
         final float yOffset = halfHeight - textBound.centerY();
-        canvas.drawText(firstCharString, xOffset, yOffset, paint);
 
+        ColorFilter filter = new PorterDuffColorFilter(Style.Avatar.getAvatarContentColor(), PorterDuff.Mode.SRC_IN);
+        paint.setColorFilter(filter);
+
+        canvas.drawText(firstCharString, xOffset, yOffset, paint);
         return bitmap;
     }
 

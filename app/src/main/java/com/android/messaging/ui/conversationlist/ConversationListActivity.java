@@ -129,7 +129,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
     public void onBackPressed() {
         int index = getSupportFragmentManager().getBackStackEntryCount();
         if(index>0){
-            super.onBackPressed();
+            getSupportFragmentManager().popBackStack();
         }else if(!mDrawer.closeDrawer()){
             if (isInConversationListSelectMode()) {
                 exitMultiSelectState();

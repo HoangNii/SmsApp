@@ -69,7 +69,18 @@
             android:clipToPadding="false"
             android:duplicateParentState="true"
             android:padding="@dimen/conversation_list_item_view_padding">
-
+            <FrameLayout
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="-10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/conversation_list_contact_icon_size">
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/conversation_unread"
+                    android:background="@drawable/bg_oval"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"/>
+            </FrameLayout>
             <!-- Contact avatar on the left side of the view -->
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -79,21 +90,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/frame_icon"
-                        android:paddingTop="1dp"
-                        android:paddingEnd="2.5dp"
+                        android:src="@drawable/t1_avatar"
+                        android:id="@+id/conversation_frame_icon"
                         android:importantForAccessibility="no"
                         android:contentDescription="@null"
                         android:layout_width="@dimen/conversation_list_contact_icon_size"
                         android:layout_height="@dimen/conversation_list_contact_icon_size"/>
                     <com.android.messaging.ui.ContactIconView
-                        android:padding="10dp"
+                        android:src="@drawable/ic_person_light"
                         android:id="@+id/conversation_icon"
                         android:layout_width="@dimen/conversation_list_contact_icon_size"
                         android:layout_height="@dimen/conversation_list_contact_icon_size"
                         android:importantForAccessibility="no"
                         android:contentDescription="@null"
                         app:iconSize="large"
+                        android:clickable="true"
+                        android:background="@android:color/transparent" />
+                    <ImageView
+                        android:visibility="gone"
+                        android:tint="#F70000"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="21dp"
+                        android:paddingRight="24dp"
+                        android:paddingBottom="15dp"
+                        android:src="@drawable/bg_oval"
+                        android:layout_width="@dimen/conversation_list_contact_icon_size"
+                        android:layout_height="@dimen/conversation_list_contact_icon_size"
+                        android:importantForAccessibility="no"
+                        android:contentDescription="@null"
                         android:clickable="true"
                         android:background="@android:color/transparent" />
                 </FrameLayout>

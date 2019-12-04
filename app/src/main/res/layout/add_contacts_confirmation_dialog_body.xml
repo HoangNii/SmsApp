@@ -27,8 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.AppCompatImageView
-            android:paddingTop="1dp"
-            android:paddingEnd="2.5dp"
+            android:id="@+id/frame_contact_icon"
             android:src="@drawable/t1_avatar"
             android:importantForAccessibility="no"
             android:contentDescription="@null"
@@ -45,15 +44,6 @@
             android:clickable="true"
             android:background="@android:color/transparent" />
     </FrameLayout>
-<!--    <com.android.messaging.ui.ContactIconView-->
-<!--        android:id="@+id/contact_icon"-->
-<!--        android:layout_width="@dimen/conversation_list_contact_icon_size"-->
-<!--        android:layout_height="@dimen/conversation_list_contact_icon_size"-->
-<!--        android:importantForAccessibility="no"-->
-<!--        app:iconSize="large"-->
-<!--        android:layout_gravity="center_vertical"-->
-<!--        android:clickable="true" />-->
-
     <TextView
         android:id="@+id/participant_name"
         android:layout_width="wrap_content"

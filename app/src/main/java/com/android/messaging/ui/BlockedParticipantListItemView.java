@@ -20,11 +20,16 @@ import androidx.core.text.BidiFormatter;
 import androidx.core.text.TextDirectionHeuristicsCompat;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.messaging.R;
 import com.android.messaging.datamodel.data.ParticipantListItemData;
+import com.bumptech.glide.Glide;
+import com.colorsms.style.helper.Style;
+import com.colorsms.style.models.StyleModel;
+import com.colorsms.style.utils.Utils;
 
 /**
  * View for individual participant in blocked participants list.
@@ -34,7 +39,10 @@ import com.android.messaging.datamodel.data.ParticipantListItemData;
 public class BlockedParticipantListItemView extends LinearLayout {
     private TextView mNameTextView;
     private ContactIconView mContactIconView;
+    private ImageView mFrameIcon;
+    private TextView mUnblockText;
     private ParticipantListItemData mData;
+    private StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
 
     public BlockedParticipantListItemView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -42,8 +50,10 @@ public class BlockedParticipantListItemView extends LinearLayout {
 
     @Override
     protected void onFinishInflate() {
-        mNameTextView = (TextView) findViewById(R.id.name);
-        mContactIconView = (ContactIconView) findViewById(R.id.contact_icon);
+        mNameTextView = findViewById(R.id.name);
+        mContactIconView = findViewById(R.id.contact_icon);
+        mFrameIcon = findViewById(R.id.frame_contact_icon);
+        mUnblockText = findViewById(R.id.tap_to_unblock);
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -60,5 +70,16 @@ public class BlockedParticipantListItemView extends LinearLayout {
         mContactIconView.setImageResourceUri(data.getAvatarUri(), data.getContactId(),
                     data.getLookupKey(), data.getNormalizedDestination());
         mNameTextView.setText(data.getDisplayName());
+        if(model.getId()==0){
+            mFrameIcon.setImageResource(0);
+        }else {
+            Glide.with(mFrameIcon).load(model.getAvatarFrameResource()).into(mFrameIcon);
+        }
+        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0],getContext());
+        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1],getContext());
+        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2],getContext());
+        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3],getContext());
+        mContactIconView.setPadding(left,top,right,bottom);
+        mUnblockText.setTextColor(Style.Home.getStyleColor());
     }
 }
