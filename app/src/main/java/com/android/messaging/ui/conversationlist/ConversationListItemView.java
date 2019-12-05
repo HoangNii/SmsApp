@@ -497,7 +497,7 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
                 audioPreviewVisiblity = VISIBLE;
             } else if (ContentType.isVideoType(previewContentType)) {
                 previewImageUri = UriUtil.getUriForResourceId(
-                        getContext(), R.drawable.ic_preview_play);
+                        getContext(), R.drawable.ic_audio_play);
                 previewClickListener = fullScreenPreviewClickListener;
                 previewImageVisibility = VISIBLE;
             } else if (ContentType.isImageType(previewContentType)) {

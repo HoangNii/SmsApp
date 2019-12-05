@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 
 import com.android.messaging.R;
 import com.android.messaging.util.Assert;
+import com.colorsms.style.helper.Style;
 
 /**
  * A view that contains both a view pager and a tab strip wrapped in a linear layout.
@@ -43,8 +44,8 @@ public class CustomHeaderViewPager extends LinearLayout {
         inflater.inflate(R.layout.custom_header_view_pager, this, true);
         setOrientation(LinearLayout.VERTICAL);
 
-        mTabstrip = (ViewPagerTabs) findViewById(R.id.tab_strip);
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mTabstrip = findViewById(R.id.tab_strip);
+        mViewPager = findViewById(R.id.pager);
 
         TypedValue tv = new TypedValue();
         context.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
@@ -65,7 +66,7 @@ public class CustomHeaderViewPager extends LinearLayout {
         final PagerAdapter adapter = new CustomHeaderViewPagerAdapter(viewHolders);
         mViewPager.setAdapter(adapter);
         mTabstrip.setViewPager(mViewPager);
-        mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new OnPageChangeListener() {
 
             @Override
             public void onPageScrollStateChanged(int state) {

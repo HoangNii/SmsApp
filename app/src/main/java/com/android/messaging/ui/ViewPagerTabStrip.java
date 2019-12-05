@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 
 import com.android.messaging.R;
 import com.android.messaging.util.OsUtil;
+import com.colorsms.style.helper.Style;
 
 public class ViewPagerTabStrip extends LinearLayout {
     private int mSelectedUnderlineThickness;
@@ -46,7 +47,7 @@ public class ViewPagerTabStrip extends LinearLayout {
         mSelectedUnderlineThickness =
                 res.getDimensionPixelSize(R.dimen.pager_tab_underline_selected);
         int underlineColor = res.getColor(R.color.contact_picker_tab_underline);
-        int backgroundColor = res.getColor(R.color.action_bar_background_color);
+        int backgroundColor = Style.Home.getStyleColor();
 
         mSelectedUnderlinePaint = new Paint();
         mSelectedUnderlinePaint.setColor(underlineColor);

@@ -171,7 +171,7 @@ public class Style {
 
         public static int getStyleId(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
-            return preferences.getInt("style_id",0);
+            return preferences.getInt("style_id",1);
         }
     }
 

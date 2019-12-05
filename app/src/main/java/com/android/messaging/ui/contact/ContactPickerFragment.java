@@ -189,6 +189,7 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
                 mHost.onBackButtonPressed();
             }
         });
+        mToolbar.setBackgroundColor(Style.Home.getStyleColor());
 
         mToolbar.inflateMenu(R.menu.compose_menu);
         mToolbar.setOnMenuItemClickListener(this);
@@ -575,8 +576,7 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
         // Hide the action bar for contact picker mode. The custom ToolBar containing chips UI
         // etc. will take the spot of the action bar.
         actionBar.hide();
-        UiUtils.setStatusBarColor(getActivity(),
-                getResources().getColor(R.color.compose_notification_bar_background));
+        UiUtils.setStatusBarColor(getActivity(),Style.Home.getStyleColor());
     }
 
     private GetOrCreateConversationActionMonitor mMonitor;

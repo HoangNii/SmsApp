@@ -43,6 +43,7 @@ import com.android.messaging.util.ContentType;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.MediaUtil;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.helper.Style;
 
 /**
  * A reusable widget that hosts an audio player for audio attachment playback. This widget is used
@@ -107,9 +108,9 @@ public class AudioAttachmentView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mPlayPauseButton = (AudioAttachmentPlayPauseButton) findViewById(R.id.play_pause_button);
-        mChronometer = (PausableChronometer) findViewById(R.id.timer);
-        mProgressBar = (AudioPlaybackProgressBar) findViewById(R.id.progress);
+        mPlayPauseButton = findViewById(R.id.play_pause_button);
+        mChronometer = findViewById(R.id.timer);
+        mProgressBar = findViewById(R.id.progress);
         mPlayPauseButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -373,12 +374,14 @@ public class AudioAttachmentView extends LinearLayout {
                 mProgressBar.setVisibility(GONE);
                 mChronometer.setVisibility(GONE);
                 ((MarginLayoutParams) mPlayPauseButton.getLayoutParams()).setMargins(0, 0, 0, 0);
-                final ImageView playButton = (ImageView) findViewById(R.id.play_button);
+                final ImageView playButton = findViewById(R.id.play_button);
                 playButton.setImageDrawable(
-                        getResources().getDrawable(R.drawable.ic_preview_play));
-                final ImageView pauseButton = (ImageView) findViewById(R.id.pause_button);
+                        getResources().getDrawable(R.drawable.ic_audio_play));
+                playButton.setColorFilter(Style.Home.getStyleColor());
+                final ImageView pauseButton = findViewById(R.id.pause_button);
                 pauseButton.setImageDrawable(
-                        getResources().getDrawable(R.drawable.ic_preview_pause));
+                        getResources().getDrawable(R.drawable.ic_audio_pause));
+                pauseButton.setColorFilter(Style.Home.getStyleColor());
                 break;
 
             default:

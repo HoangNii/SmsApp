@@ -145,8 +145,6 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
     private ComposeMessageView mComposeMessageView;
     private RecyclerView mRecyclerView;
     private ConversationMessageAdapter mAdapter;
-    private ConversationFastScroller mFastScroller;
-
     private View mConversationComposeDivider;
     private ChangeDefaultSmsAppHelper mChangeDefaultSmsAppHelper;
 
@@ -606,9 +604,6 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
         mConversationComposeDivider = view.findViewById(R.id.conversation_compose_divider);
         mScrollToDismissThreshold = ViewConfiguration.get(getActivity()).getScaledTouchSlop();
         mRecyclerView.addOnScrollListener(mListScrollListener);
-        mFastScroller = ConversationFastScroller.addTo(mRecyclerView,
-                UiUtils.isRtlMode() ? ConversationFastScroller.POSITION_LEFT_SIDE :
-                    ConversationFastScroller.POSITION_RIGHT_SIDE);
 
         mComposeMessageView = (ComposeMessageView)
                 view.findViewById(R.id.message_compose_view_container);

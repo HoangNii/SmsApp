@@ -225,7 +225,7 @@ public class ConversationActivity extends BugleActionBarActivity
         actionBar.setBackgroundDrawable(new ColorDrawable(themePosition==0?styleColor: Color.TRANSPARENT));
         toolbar.setTitleTextColor(homeTittleColor);
 
-        final Drawable upArrow = getResources().getDrawable(R.drawable.ic_back);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_light);
         upArrow.setColorFilter(homeTittleColor, PorterDuff.Mode.SRC_ATOP);
         actionBar.setHomeAsUpIndicator(upArrow);
         setOverflowButtonColor(toolbar,homeTittleColor);

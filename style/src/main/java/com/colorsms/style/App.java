@@ -14,5 +14,7 @@ public abstract class App extends Application {
         App.app = app;
     }
 
+
+
     public abstract void restart();
 }

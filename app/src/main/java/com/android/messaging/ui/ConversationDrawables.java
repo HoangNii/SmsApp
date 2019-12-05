@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import com.android.messaging.Factory;
 import com.android.messaging.R;
 import com.android.messaging.util.ImageUtils;
+import com.colorsms.style.helper.Style;
 
 /**
  * A singleton cache that holds tinted drawable resources for displaying messages, such as
@@ -101,7 +102,7 @@ public class ConversationDrawables {
         mIncomingAudioButtonColor =
                 resources.getColor(R.color.message_audio_button_color_incoming);
         mSelectedBubbleColor = resources.getColor(R.color.message_bubble_color_selected);
-        mThemeColor = resources.getColor(R.color.primary_color);
+        mThemeColor = Style.Home.getStyleColor();
     }
 
     public Drawable getBubbleDrawable(final boolean selected, final boolean incoming,
