@@ -21,14 +21,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <com.android.messaging.ui.ContactIconView
-        android:id="@+id/conversation_icon"
-        android:layout_width="@dimen/conversation_list_contact_icon_size"
-        android:layout_height="@dimen/conversation_list_contact_icon_size"
-        app:iconSize="large"
-        android:clickable="true"
-        android:layout_gravity="center_vertical"
-        android:importantForAccessibility="no" />
+    <FrameLayout
+        android:id="@+id/frame_icon"
+        android:layout_width="@dimen/contact_icon_view_normal_size"
+        android:layout_height="@dimen/contact_icon_view_normal_size">
+        <com.android.messaging.ui.ContactIconView
+            android:id="@+id/conversation_icon"
+            android:layout_width="@dimen/contact_icon_view_normal_size"
+            android:layout_height="@dimen/contact_icon_view_normal_size"
+            app:iconSize="normal"
+            android:clickable="true"
+            android:layout_gravity="center_vertical"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
 
     <com.android.messaging.ui.conversation.ConversationMessageBubbleView
         android:id="@+id/message_content"

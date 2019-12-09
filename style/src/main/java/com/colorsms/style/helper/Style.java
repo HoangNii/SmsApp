@@ -216,6 +216,11 @@ public class Style {
             return preferences.getBoolean("use_bubble_shape_default",true);
         }
 
+        public static void setUseBubbleShapeDefault(boolean bl){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
+            preferences.edit().putBoolean("use_bubble_shape_default",bl).apply();
+        }
+
         public static void setBubbleShapeDefaultPosition(int position){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             preferences.edit().putInt("bubble_shape_position",position).apply();
@@ -233,7 +238,7 @@ public class Style {
 
         public static int getBubbleShapeDefaultReceivedColor(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
-            return preferences.getInt("bubble_shape_default_received_color", ContextCompat.getColor(App.get(),R.color.colorBubbleInboxDefault));
+            return preferences.getInt("bubble_shape_default_received_color",Color.parseColor("#3AB54A"));
         }
 
         public static void setBubbleShapeDefaultSentColor(int position){
@@ -243,27 +248,27 @@ public class Style {
 
         public static int getBubbleShapeDefaultSentColor(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
-            return preferences.getInt("bubble_shape_default_sent_color", Home.getStyleColor());
+            return preferences.getInt("bubble_shape_default_sent_color",Color.parseColor("#FBB03B"));
         }
 
 
 
-        public static void setBubbleTextDefaultReceivedColor(int color){
+        public static void setBubbleTextReceivedColor(int color){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             preferences.edit().putInt("bubble_text_default_received_color",color).apply();
         }
 
-        public static int getBubbleTextDefaultReceivedColor(){
+        public static int getBubbleTextReceivedColor(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
-            return preferences.getInt("bubble_text_default_received_color", Color.parseColor("#555555"));
+            return preferences.getInt("bubble_text_default_received_color",Color.WHITE);
         }
 
-        public static void setBubbleTextDefaultSentColor(int position){
+        public static void setBubbleTextSentColor(int position){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             preferences.edit().putInt("bubble_text_default_sent_color",position).apply();
         }
 
-        public static int getBubbleTextDefaultSentColor(){
+        public static int getBubbleTextSentColor(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             return preferences.getInt("bubble_text_default_sent_color",Color.WHITE);
         }
@@ -400,6 +405,17 @@ public class Style {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             return preferences.getInt("avatar_content_color",ContextCompat.getColor(App.get(),R.color.colorPrimary));
         }
+
+        public static void setAvatarGravity(int gravity){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
+            preferences.edit().putInt("avatar_gravity",gravity).apply();
+        }
+
+        public static int getAvatarGravity(){
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
+            return preferences.getInt("avatar_gravity",Gravity.CENTER_VERTICAL);
+        }
+
 
     }
 }

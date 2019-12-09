@@ -17,12 +17,14 @@ package com.android.messaging.ui;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
 import com.android.messaging.Factory;
 import com.android.messaging.R;
 import com.android.messaging.util.ImageUtils;
 import com.colorsms.style.helper.Style;
+import com.colorsms.style.models.StyleModel;
 
 /**
  * A singleton cache that holds tinted drawable resources for displaying messages, such as
@@ -54,6 +56,8 @@ public class ConversationDrawables {
     private int mSelectedBubbleColor;
     private int mThemeColor;
 
+
+
     public static ConversationDrawables get() {
         if (sInstance == null) {
             sInstance = new ConversationDrawables(Factory.get().getApplicationContext());
@@ -73,8 +77,8 @@ public class ConversationDrawables {
 
     public void updateDrawables() {
         final Resources resources = mContext.getResources();
-
         mIncomingBubbleDrawable = resources.getDrawable(R.drawable.msg_bubble_incoming);
+
         mIncomingBubbleNoArrowDrawable =
                 resources.getDrawable(R.drawable.message_bubble_incoming_no_arrow);
         mIncomingErrorBubbleDrawable = resources.getDrawable(R.drawable.msg_bubble_error);
@@ -107,6 +111,9 @@ public class ConversationDrawables {
 
     public Drawable getBubbleDrawable(final boolean selected, final boolean incoming,
             final boolean needArrow, final boolean isError) {
+
+        getBbStyle();
+
         final Drawable protoDrawable;
         if (needArrow) {
             if (incoming) {
@@ -135,6 +142,25 @@ public class ConversationDrawables {
         }
 
         return ImageUtils.getTintedDrawable(mContext, protoDrawable, color);
+    }
+
+    private void getBbStyle() {
+        int[] bbChat;
+        if(Style.Bubble.isUseBubbleShapeDefault()){
+            bbChat = Style.Bubble.getBubbleDefaultList()[Style.Bubble.getBubbleShapeDefaultPosition()];
+            mThemeColor  = Style.Bubble.getBubbleShapeDefaultReceivedColor();
+            mOutgoingBubbleColor = Style.Bubble.getBubbleShapeDefaultSentColor();
+        }else {
+            StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
+            bbChat = new int[]{model.getBbChatInboxResource(),model.getBbChatSendResource()};
+            mThemeColor = Color.TRANSPARENT;
+            mOutgoingBubbleColor = Color.TRANSPARENT;
+        }
+        mIncomingBubbleDrawable = mContext.getResources().getDrawable(bbChat[0]);
+        mOutgoingBubbleDrawable =  mContext.getResources().getDrawable(bbChat[1]);
+        mIncomingBubbleNoArrowDrawable = mIncomingBubbleDrawable;
+        mOutgoingBubbleNoArrowDrawable = mOutgoingBubbleDrawable;
+
     }
 
     private int getAudioButtonColor(final boolean incoming) {

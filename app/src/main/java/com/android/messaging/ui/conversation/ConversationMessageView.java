@@ -70,6 +70,7 @@ import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.YouTubeUtil;
+import com.colorsms.style.helper.Style;
 import com.google.common.base.Predicate;
 
 import java.util.Collections;
@@ -131,6 +132,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
             }
         });
 
+        
         mMessageAttachmentsView = findViewById(R.id.message_attachments);
         mMultiAttachmentView = findViewById(R.id.multiple_attachments);
         mMultiAttachmentView.setOnAttachmentClickListener(this);
@@ -161,8 +163,14 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
     @Override
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         final int horizontalSpace = MeasureSpec.getSize(widthMeasureSpec);
-        final int iconSize = getResources()
-                .getDimensionPixelSize(R.dimen.conversation_list_contact_icon_size);
+
+        int iconSize;
+        if(mData.getIsIncoming()){
+            iconSize = getResources()
+                    .getDimensionPixelSize(R.dimen.contact_icon_view_normal_size);
+        } else {
+            iconSize = 0;
+        }
 
         final int unspecifiedMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         final int iconMeasureSpec = MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY);
@@ -486,7 +494,10 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         updateMessageAttachments();
         updateMessageSubject();
         mMessageBubble.bind(mData);
+
+
     }
+
 
     private void updateMessageAttachments() {
         // Bind video, audio, and VCard attachments. If there are multiple, they stack vertically.
@@ -774,6 +785,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
 
         mMessageMetadataView.setPadding(0, metadataTopPadding, 0, 0);
 
+
         updateTextAppearance();
 
         requestLayout();
@@ -961,7 +973,9 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
                     break;
             }
         }
-        final int messageColor = getResources().getColor(messageColorResId);
+//        final int messageColor = getResources().getColor(messageColorResId);
+
+        final int messageColor = getMessengerColor();
         mMessageTextView.setTextColor(messageColor);
         mMessageTextView.setLinkTextColor(messageColor);
         mSubjectText.setTextColor(messageColor);
@@ -975,12 +989,24 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
                 mData.hasAttachments() && !shouldShowMessageTextBubble()) {
             timestampColorResId = R.color.timestamp_text_outgoing;
         }
-        mStatusTextView.setTextColor(getResources().getColor(timestampColorResId));
-
+        if(timestampColorResId==R.color.message_failed_timestamp_text){
+            mStatusTextView.setTextColor(getResources().getColor(timestampColorResId));
+        }else {
+            mStatusTextView.setTextColor(messageColor);
+        }
+        mStatusTextView.setAlpha(0.8f);
         mSubjectLabel.setTextColor(getResources().getColor(subjectLabelColorResId));
-        mSenderNameTextView.setTextColor(getResources().getColor(timestampColorResId));
+        mSenderNameTextView.setTextColor(messageColor);
+        mSenderNameTextView.setAlpha(0.8f);
     }
 
+    private int getMessengerColor() {
+        if(mData.getIsIncoming()){
+            return Style.Bubble.getBubbleTextReceivedColor();
+        }else {
+            return Style.Bubble.getBubbleTextSentColor();
+        }
+    }
     /**
      * If we don't know the size of the image, we want to show it in a fixed-sized frame to
      * avoid janks when the image is loaded and resized. Otherwise, we can set the imageview to
