@@ -37,8 +37,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.messaging.R;
@@ -70,7 +72,10 @@ import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.YouTubeUtil;
+import com.bumptech.glide.Glide;
 import com.colorsms.style.helper.Style;
+import com.colorsms.style.models.StyleModel;
+import com.colorsms.style.utils.Utils;
 import com.google.common.base.Predicate;
 
 import java.util.Collections;
@@ -111,6 +116,10 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
     private ViewGroup mMessageMetadataView;
     private ViewGroup mMessageTextAndInfoView;
     private TextView mSimNameView;
+    private FrameLayout mFrameContactIconLayout;
+    private ImageView mFrameContactIcon;
+
+    private StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
 
     private boolean mOneOnOne;
     private ConversationMessageViewHost mHost;
@@ -124,6 +133,8 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
     @Override
     protected void onFinishInflate() {
         mContactIconView = findViewById(R.id.conversation_icon);
+        mFrameContactIconLayout = findViewById(R.id.frame_icon);
+        mFrameContactIcon = findViewById(R.id.frame_contact_icon);
         mContactIconView.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(final View view) {
@@ -132,7 +143,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
             }
         });
 
-        
+
         mMessageAttachmentsView = findViewById(R.id.message_attachments);
         mMultiAttachmentView = findViewById(R.id.multiple_attachments);
         mMultiAttachmentView.setOnAttachmentClickListener(this);
@@ -158,24 +169,36 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         mMessageMetadataView = findViewById(R.id.message_metadata);
         mMessageTextAndInfoView = findViewById(R.id.message_text_and_info);
         mSimNameView = findViewById(R.id.sim_name);
+
+        if(model.getId()==0){
+            mFrameContactIcon.setImageResource(0);
+        }else {
+            Glide.with(mFrameContactIcon).load(model.getAvatarFrameResource()).into(mFrameContactIcon);
+        }
+        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0]*0.75f,getContext());
+        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1]*0.75f,getContext());
+        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2]*0.75f,getContext());
+        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3]*0.75f,getContext());
+        mContactIconView.setPadding(left,top,right,bottom);
+
+        ((FrameLayout.LayoutParams)mContactIconView.getLayoutParams()).gravity = model.getAvatarGravity();
+        ((FrameLayout.LayoutParams)mFrameContactIcon.getLayoutParams()).gravity = model.getAvatarGravity();
+
+
+        mFrameContactIconLayout.setVisibility(mData.getIsIncoming()?VISIBLE:GONE);
     }
 
     @Override
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         final int horizontalSpace = MeasureSpec.getSize(widthMeasureSpec);
 
-        int iconSize;
-        if(mData.getIsIncoming()){
-            iconSize = getResources()
-                    .getDimensionPixelSize(R.dimen.contact_icon_view_normal_size);
-        } else {
-            iconSize = 0;
-        }
+        int iconSize = getResources()
+                .getDimensionPixelSize(R.dimen.contact_icon_view_normal_size);
 
         final int unspecifiedMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         final int iconMeasureSpec = MeasureSpec.makeMeasureSpec(iconSize, MeasureSpec.EXACTLY);
 
-        mContactIconView.measure(iconMeasureSpec, iconMeasureSpec);
+        mFrameContactIconLayout.measure(iconMeasureSpec, iconMeasureSpec);
 
         final int arrowWidth =
                 getResources().getDimensionPixelSize(R.dimen.message_bubble_arrow_width);
@@ -183,14 +206,14 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         // We need to subtract contact icon width twice from the horizontal space to get
         // the max leftover space because we want the message bubble to extend no further than the
         // starting position of the message bubble in the opposite direction.
-        final int maxLeftoverSpace = horizontalSpace - mContactIconView.getMeasuredWidth() * 2
+        final int maxLeftoverSpace = horizontalSpace - mFrameContactIconLayout.getMeasuredWidth() * 2
                 - arrowWidth - getPaddingLeft() - getPaddingRight();
         final int messageContentWidthMeasureSpec = MeasureSpec.makeMeasureSpec(maxLeftoverSpace,
                 MeasureSpec.AT_MOST);
 
         mMessageBubble.measure(messageContentWidthMeasureSpec, unspecifiedMeasureSpec);
 
-        final int maxHeight = Math.max(mContactIconView.getMeasuredHeight(),
+        final int maxHeight = Math.max(mFrameContactIconLayout.getMeasuredHeight(),
                 mMessageBubble.getMeasuredHeight());
         setMeasuredDimension(horizontalSpace, maxHeight + getPaddingBottom() + getPaddingTop());
     }
@@ -200,8 +223,8 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
             final int bottom) {
         final boolean isRtl = AccessibilityUtil.isLayoutRtl(this);
 
-        final int iconWidth = mContactIconView.getMeasuredWidth();
-        final int iconHeight = mContactIconView.getMeasuredHeight();
+        final int iconWidth = mFrameContactIconLayout.getMeasuredWidth();
+        final int iconHeight = mMessageBubble.getMeasuredHeight();
         final int iconTop = getPaddingTop();
         final int contentWidth = (right -left) - iconWidth - getPaddingLeft() - getPaddingRight();
         final int contentHeight = mMessageBubble.getMeasuredHeight();
@@ -218,19 +241,39 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
                 contentLeft = iconLeft + iconWidth;
             }
         } else {
+//            if (isRtl) {
+//                iconLeft = getPaddingLeft();
+//                contentLeft = iconLeft + iconWidth;
+//            } else {
+//                iconLeft = (right - left) - getPaddingRight() - iconWidth;
+//                contentLeft = iconLeft - contentWidth;
+//            }
             if (isRtl) {
                 iconLeft = getPaddingLeft();
                 contentLeft = iconLeft + iconWidth;
             } else {
-                iconLeft = (right - left) - getPaddingRight() - iconWidth;
+                iconLeft = (right - left) - getPaddingRight();
                 contentLeft = iconLeft - contentWidth;
             }
         }
 
-        mContactIconView.layout(iconLeft, iconTop, iconLeft + iconWidth, iconTop + iconHeight);
+        mFrameContactIconLayout.layout(iconLeft, iconTop, iconLeft + iconWidth, iconTop + iconHeight);
 
         mMessageBubble.layout(contentLeft, contentTop, contentLeft + contentWidth,
                 contentTop + contentHeight);
+        this.post(new Runnable() {
+            @Override
+            public void run() {
+                if(model.getAvatarGravity()==Gravity.BOTTOM){
+                    mMessageBubble.setPadding(0,0,0,iconWidth/2);
+                }else if(model.getAvatarGravity()==Gravity.TOP){
+                    mMessageBubble.setPadding(0,iconWidth/2,0,0);
+                }else {
+                    mMessageBubble.setPadding(0,0,0,0);
+                }
+            }
+        });
+
     }
 
     /**
@@ -473,10 +516,10 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
                 messageTextAndOrInfoVisible ? View.VISIBLE : View.GONE);
 
         if (shouldShowSimplifiedVisualStyle()) {
-            mContactIconView.setVisibility(View.GONE);
+            mFrameContactIconLayout.setVisibility(View.GONE);
             mContactIconView.setImageResourceUri(null);
         } else {
-            mContactIconView.setVisibility(View.VISIBLE);
+            mFrameContactIconLayout.setVisibility(View.VISIBLE);
             final Uri avatarUri = AvatarUriUtil.createAvatarUri(
                     mData.getSenderProfilePhotoUri(),
                     mData.getSenderFullName(),
@@ -672,84 +715,36 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         final Resources res = getResources();
         final ConversationDrawables drawableProvider = ConversationDrawables.get();
         final boolean incoming = mData.getIsIncoming();
-        final boolean outgoing = !incoming;
-        final boolean showArrow =  shouldShowMessageBubbleArrow();
-
         final int messageTopPaddingClustered =
                 res.getDimensionPixelSize(R.dimen.message_padding_same_author);
         final int messageTopPaddingDefault =
                 res.getDimensionPixelSize(R.dimen.message_padding_default);
-        final int arrowWidth = res.getDimensionPixelOffset(R.dimen.message_bubble_arrow_width);
-        final int messageTextMinHeightDefault = res.getDimensionPixelSize(
-                R.dimen.conversation_message_contact_icon_size);
-        final int messageTextLeftRightPadding = res.getDimensionPixelOffset(
-                R.dimen.message_text_left_right_padding);
-        final int textTopPaddingDefault = res.getDimensionPixelOffset(
-                R.dimen.message_text_top_padding);
-        final int textBottomPaddingDefault = res.getDimensionPixelOffset(
-                R.dimen.message_text_bottom_padding);
 
         // These values depend on whether the message has text, attachments, or both.
         // We intentionally don't set defaults, so the compiler will tell us if we forget
         // to set one of them, or if we set one more than once.
         final int contentLeftPadding, contentRightPadding;
         final Drawable textBackground;
-        final int textMinHeight;
-        final int textTopMargin;
-        final int textTopPadding, textBottomPadding;
-        final int textLeftPadding, textRightPadding;
 
         if (mData.hasAttachments()) {
             if (shouldShowMessageTextBubble()) {
                 // Text and attachment(s)
-                contentLeftPadding = incoming ? arrowWidth : 0;
-                contentRightPadding = outgoing ? arrowWidth : 0;
                 textBackground = drawableProvider.getBubbleDrawable(
                         isSelected(),
                         incoming,
                         false /* needArrow */,
                         mData.hasIncomingErrorStatus());
-                textMinHeight = messageTextMinHeightDefault;
-                textTopMargin = messageTopPaddingClustered;
-                textTopPadding = textTopPaddingDefault;
-                textBottomPadding = textBottomPaddingDefault;
-                textLeftPadding = messageTextLeftRightPadding;
-                textRightPadding = messageTextLeftRightPadding;
             } else {
                 // Attachment(s) only
-                contentLeftPadding = incoming ? arrowWidth : 0;
-                contentRightPadding = outgoing ? arrowWidth : 0;
                 textBackground = null;
-                textMinHeight = 0;
-                textTopMargin = 0;
-                textTopPadding = 0;
-                textBottomPadding = 0;
-                textLeftPadding = 0;
-                textRightPadding = 0;
             }
         } else {
             // Text only
-            contentLeftPadding = (!showArrow && incoming) ? arrowWidth : 0;
-            contentRightPadding = (!showArrow && outgoing) ? arrowWidth : 0;
             textBackground = drawableProvider.getBubbleDrawable(
                     isSelected(),
                     incoming,
                     shouldShowMessageBubbleArrow(),
                     mData.hasIncomingErrorStatus());
-            textMinHeight = messageTextMinHeightDefault;
-            textTopMargin = 0;
-            textTopPadding = textTopPaddingDefault;
-            textBottomPadding = textBottomPaddingDefault;
-            if (showArrow && incoming) {
-                textLeftPadding = messageTextLeftRightPadding + arrowWidth;
-            } else {
-                textLeftPadding = messageTextLeftRightPadding;
-            }
-            if (showArrow && outgoing) {
-                textRightPadding = messageTextLeftRightPadding + arrowWidth;
-            } else {
-                textRightPadding = messageTextLeftRightPadding;
-            }
         }
 
         // These values do not depend on whether the message includes attachments
@@ -762,21 +757,6 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
 
         // Update the message text/info views
         ImageUtils.setBackgroundDrawableOnView(mMessageTextAndInfoView, textBackground);
-        mMessageTextAndInfoView.setMinimumHeight(textMinHeight);
-        final LinearLayout.LayoutParams textAndInfoLayoutParams =
-                (LinearLayout.LayoutParams) mMessageTextAndInfoView.getLayoutParams();
-        textAndInfoLayoutParams.topMargin = textTopMargin;
-
-        if (UiUtils.isRtlMode()) {
-            // Need to switch right and left padding in RtL mode
-            mMessageTextAndInfoView.setPadding(textRightPadding, textTopPadding, textLeftPadding,
-                    textBottomPadding);
-            mMessageBubble.setPadding(contentRightPadding, 0, contentLeftPadding, 0);
-        } else {
-            mMessageTextAndInfoView.setPadding(textLeftPadding, textTopPadding, textRightPadding,
-                    textBottomPadding);
-            mMessageBubble.setPadding(contentLeftPadding, 0, contentRightPadding, 0);
-        }
 
         // Update the message row and message bubble views
         setPadding(getPaddingLeft(), messageTopPadding, getPaddingRight(), 0);
