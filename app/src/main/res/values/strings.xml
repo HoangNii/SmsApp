@@ -16,7 +16,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- The name of the application as it appears under the main Launcher icon and in various activity titles -->
-    <string name="app_name">Messaging</string>
+    <string name="app_name">Color SMS</string>
 
     <!-- The name of the application as it appears in external share intent dialogs -->
     <string name="share_intent_label">Messaging</string>
@@ -26,6 +26,7 @@
     <string name="action_settings">Settings</string>
     <string name="sendButtonContentDescription">Send Message</string>
     <string name="attachMediaButtonContentDescription">Add an attachment</string>
+    <string name="attachIconContentDescription">Add Icon</string>
     <string name="help_and_feedback_activity_label">Help</string>
 
     <string name="welcome">Welcome</string>

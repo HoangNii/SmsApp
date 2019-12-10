@@ -5,9 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import com.colorsms.style.App;
@@ -231,22 +229,22 @@ public class Style {
             return preferences.getInt("bubble_shape_position",0);
         }
 
-        public static void setBubbleShapeDefaultReceivedColor(int color){
+        public static void setBubbleShapeReceivedColor(int color){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             preferences.edit().putInt("bubble_shape_default_received_color",color).apply();
         }
 
-        public static int getBubbleShapeDefaultReceivedColor(){
+        public static int getBubbleShapeReceivedColor(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             return preferences.getInt("bubble_shape_default_received_color",Color.parseColor("#3AB54A"));
         }
 
-        public static void setBubbleShapeDefaultSentColor(int position){
+        public static void setBubbleShapeSentColor(int position){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             preferences.edit().putInt("bubble_shape_default_sent_color",position).apply();
         }
 
-        public static int getBubbleShapeDefaultSentColor(){
+        public static int getBubbleShapeSentColor(){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.get());
             return preferences.getInt("bubble_shape_default_sent_color",Color.parseColor("#FBB03B"));
         }
@@ -277,6 +275,26 @@ public class Style {
         public static int[] getBubbleShapeDefault(){
             int position = getBubbleShapeDefaultPosition();
             return bubbleDefaultList[position];
+        }
+
+        public static void toReloadBubbleStyle() {
+            StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
+            if(model.getId()==0){
+                Style.Bubble.setUseBubbleShapeDefault(true);
+                Style.Bubble.setBubbleShapeDefaultPosition(0);
+                Style.Bubble.setBubbleTextReceivedColor(Color.WHITE);
+                Style.Bubble.setBubbleTextSentColor(Color.WHITE);
+                Style.Bubble.setBubbleShapeSentColor(Color.parseColor("#3AB54A"));
+                Style.Bubble.setBubbleShapeReceivedColor(Color.parseColor("#FBB03B"));
+                Style.Avatar.setAvatarGravity(Gravity.BOTTOM);
+            }else {
+                Style.Bubble.setUseBubbleShapeDefault(false);
+                Style.Bubble.setBubbleTextReceivedColor(model.getBbChatInboxTextColor());
+                Style.Bubble.setBubbleTextSentColor(model.getBbChatSendTextColor());
+                Style.Bubble.setBubbleShapeSentColor(Color.TRANSPARENT);
+                Style.Bubble.setBubbleShapeReceivedColor(Color.TRANSPARENT);
+                Style.Avatar.setAvatarGravity(model.getAvatarGravity());
+            }
         }
     }
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/chat_preview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_gravity="center_vertical"
+            android:id="@+id/frame_icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp">
+            <ImageView
+                android:id="@+id/frame_contact_icon"
+                android:src="@drawable/t1_avatar"
+                android:layout_width="42dp"
+                android:layout_height="42dp"/>
+            <ImageView
+                android:src="@drawable/ic_user"
+                android:id="@+id/contact_icon"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center_vertical"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+        <FrameLayout
+            android:paddingBottom="10dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:id="@+id/view_bubble_inbox"
+                android:background="@drawable/t1_bb_inbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_gravity="end"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_inbox"
+                    android:text="Good morning!"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText" />
+            </FrameLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:paddingBottom="10dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:id="@+id/view_bubble_send"
+                android:layout_gravity="end"
+                android:background="@drawable/t1_bb_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UselessParent">
+                <TextView
+                    android:layout_gravity="end"
+                    android:textSize="15sp"
+                    android:textColor="#7E7E7E"
+                    android:id="@+id/tv_send"
+                    android:text="Good morning!\nHow are you today?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText,SmallSp" />
+            </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

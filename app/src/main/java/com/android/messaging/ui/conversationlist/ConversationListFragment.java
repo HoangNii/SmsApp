@@ -174,7 +174,7 @@ public class ConversationListFragment extends Fragment implements ConversationLi
      */
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
-            final Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.conversation_list_fragment,
                 container, false);
         mRecyclerView = rootView.findViewById(android.R.id.list);
@@ -246,13 +246,24 @@ public class ConversationListFragment extends Fragment implements ConversationLi
 
 
         //set color
-        mStartNewConversationButton.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+        updateAddButtonColor();
 
         setHasOptionsMenu(true);
 
         return rootView;
     }
 
+    public void updateListColor(){
+        if(mAdapter!=null){
+            mAdapter.notifyItemRangeChanged(0,mAdapter.getItemCount());
+        }
+
+    }
+
+    public void updateAddButtonColor(){
+        if(mStartNewConversationButton!=null)
+            mStartNewConversationButton.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+    }
 
     @Override
     public void onAttach(final Activity activity) {
@@ -296,7 +307,7 @@ public class ConversationListFragment extends Fragment implements ConversationLi
 
     @Override
     public void onConversationListCursorUpdated(final ConversationListData data,
-            final Cursor cursor) {
+                                                final Cursor cursor) {
         mListBinding.ensureBound(data);
         final Cursor oldCursor = mAdapter.swapCursor(cursor);
         updateEmptyListUi(cursor == null || cursor.getCount() == 0);
@@ -355,7 +366,7 @@ public class ConversationListFragment extends Fragment implements ConversationLi
      */
     @Override
     public void onConversationClicked(final ConversationListItemData conversationListItemData,
-            final boolean isLongClick, final ConversationListItemView conversationView) {
+                                      final boolean isLongClick, final ConversationListItemView conversationView) {
         final ConversationListData listData = mListBinding.getData();
         mHost.onConversationClick(listData, conversationListItemData, isLongClick,
                 conversationView);
@@ -430,6 +441,8 @@ public class ConversationListFragment extends Fragment implements ConversationLi
             }
         });
     }
+
+
 
     public View getHeroElementForTransition() {
         return mArchiveMode ? null : mStartNewConversationButton;

@@ -174,7 +174,7 @@ public class AudioAttachmentView extends LinearLayout {
             final Uri dataSourceUri, final boolean incoming, final boolean showAsSelected) {
         final String currentUriString = (mDataSourceUri == null) ? "" : mDataSourceUri.toString();
         final String newUriString = (dataSourceUri == null) ? "" : dataSourceUri.toString();
-        final int themeColor = ConversationDrawables.get().getConversationThemeColor();
+        final int themeColor = ConversationDrawables.get().getStyleThemeColor();
         final boolean useIncomingStyle = incoming || showAsSelected;
         final boolean visualStyleChanged = mThemeColor != themeColor ||
                 mUseIncomingStyle != useIncomingStyle;

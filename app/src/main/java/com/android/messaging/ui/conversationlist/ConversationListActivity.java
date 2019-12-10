@@ -16,6 +16,7 @@
 
 package com.android.messaging.ui.conversationlist;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -34,9 +35,12 @@ import com.android.messaging.R;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.Trace;
+import com.colorsms.style.fragments.BubbleThemeFragment;
+import com.colorsms.style.fragments.ColorThemeFragment;
 import com.colorsms.style.fragments.ThemeStyleFragment;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.helper.StyleHelper;
+import com.colorsms.style.utils.StoreUtils;
 import com.colorsms.style.views.DrawerLayout;
 
 public class ConversationListActivity extends AbstractConversationListActivity {
@@ -153,11 +157,70 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                         ThemeStyleFragment.startAddToBackStack(ConversationListActivity.this,ThemeStyleFragment.newInstance());
                     }
                 },300);
-
                 break;
             case R.id.nav_theme_color:
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        onShowColorSelect();
+                    }
+                },300);
+                break;
+            case R.id.nav_bubble:
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        BubbleThemeFragment.startAddToBackStack(ConversationListActivity.this,BubbleThemeFragment.newInstance());
+                    }
+                },300);
+                break;
+            case R.id.nav_background:
+                break;
+            case R.id.nav_font:
+                break;
+            case R.id.nav_rate_us:
+            case R.id.nav_feedback:
+                StoreUtils.goToStore(this,getPackageName());
+                break;
+            case R.id.nav_share:
+                StoreUtils.ShareApp(this,getPackageName());
                 break;
         }
+    }
+
+    private void onShowColorSelect() {
+        ColorThemeFragment fragment = ColorThemeFragment.newInstance();
+        fragment.setColorUpdateListener(new ColorThemeFragment.ColorUpdateListener() {
+            @Override
+            public void onColorUpdate(boolean isDestroy) {
+                setStyleBackground();
+                setStyleNavigation();
+                updateAddButtonColor();
+                if(Style.ColorStyle.getStyleId()==0&&isDestroy){
+                    final ProgressDialog dialog = new ProgressDialog(ConversationListActivity.this);
+                    dialog.setMessage("Update UI...");
+                    dialog.setCancelable(false);
+                    dialog.show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            updateListColor();
+                            if (!isInConversationListSelectMode()) {
+                                updateActionBar(getSupportActionBar());
+                            }
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                }
+                            },500);
+                        }
+                    },200);
+                }
+
+            }
+        });
+        ColorThemeFragment.startAddToBackStack(this,fragment);
     }
 
     @Override
@@ -240,6 +303,24 @@ public class ConversationListActivity extends AbstractConversationListActivity {
         // window focus only after the lock screen is unlocked.
         if (hasFocus && conversationListFragment != null) {
             conversationListFragment.setScrolledToNewestConversationIfNeeded();
+        }
+    }
+
+    private void updateAddButtonColor(){
+        final ConversationListFragment conversationListFragment =
+                (ConversationListFragment) getFragmentManager().findFragmentById(
+                        R.id.conversation_list_fragment);
+        if(conversationListFragment!=null){
+            conversationListFragment.updateAddButtonColor();
+        }
+    }
+
+    private void updateListColor(){
+        final ConversationListFragment conversationListFragment =
+                (ConversationListFragment) getFragmentManager().findFragmentById(
+                        R.id.conversation_list_fragment);
+        if(conversationListFragment!=null){
+            conversationListFragment.updateListColor();
         }
     }
 }

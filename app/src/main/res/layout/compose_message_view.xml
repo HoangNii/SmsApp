@@ -91,14 +91,23 @@
                     <ImageButton
                         android:id="@+id/attach_media_button"
                         style="@style/ComposeMessageViewAttachMediaButtonStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_attachment_dark"
+                        android:src="@drawable/ic_add_media"
                         android:paddingTop="@dimen/compose_message_attachment_padding_topBottom"
                         android:paddingBottom="@dimen/compose_message_attachment_padding_topBottom"
                         android:contentDescription="@string/attachMediaButtonContentDescription" />
-
+                    <ImageButton
+                        android:id="@+id/attach_icon"
+                        style="@style/ComposeMessageViewAttachMediaButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_emoji"
+                        android:paddingTop="@dimen/compose_message_attachment_padding_topBottom"
+                        android:paddingBottom="@dimen/compose_message_attachment_padding_topBottom"
+                        android:contentDescription="@string/attachIconContentDescription" />
                     <com.android.messaging.ui.PlainTextEditText
                         android:id="@+id/compose_message_text"
                         style="@style/ConversationComposeSendText"

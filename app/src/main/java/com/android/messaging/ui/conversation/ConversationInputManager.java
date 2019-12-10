@@ -350,7 +350,7 @@ public class ConversationInputManager implements ConversationInput.ConversationI
         public boolean show(boolean animate) {
             if (mMediaPicker == null) {
                 mMediaPicker = getExistingOrCreateMediaPicker();
-                setConversationThemeColor(ConversationDrawables.get().getConversationThemeColor());
+                setConversationThemeColor(ConversationDrawables.get().getStyleThemeColor());
                 mMediaPicker.setSubscriptionDataProvider(mHost);
                 mMediaPicker.setDraftMessageDataModel(mDraftDataModel);
                 mMediaPicker.setListener(new MediaPickerListener() {

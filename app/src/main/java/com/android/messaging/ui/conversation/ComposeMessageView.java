@@ -17,6 +17,7 @@ package com.android.messaging.ui.conversation;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -68,6 +69,7 @@ import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.MediaUtil;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.helper.Style;
 
 import java.util.Collection;
 import java.util.List;
@@ -186,7 +188,7 @@ public class ComposeMessageView extends LinearLayout
 
     @Override
     protected void onFinishInflate() {
-        mComposeEditText = (PlainTextEditText) findViewById(
+        mComposeEditText = findViewById(
                 R.id.compose_message_text);
         mComposeEditText.setOnEditorActionListener(this);
         mComposeEditText.addTextChangedListener(this);
@@ -213,7 +215,7 @@ public class ComposeMessageView extends LinearLayout
                 new LengthFilter(MmsConfig.get(ParticipantData.DEFAULT_SELF_SUB_ID)
                         .getMaxTextLimit()) });
 
-        mSelfSendIcon = (SimIconView) findViewById(R.id.self_send_icon);
+        mSelfSendIcon = findViewById(R.id.self_send_icon);
         mSelfSendIcon.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -236,7 +238,7 @@ public class ComposeMessageView extends LinearLayout
             }
         });
 
-        mComposeSubjectText = (PlainTextEditText) findViewById(
+        mComposeSubjectText = findViewById(
                 R.id.compose_subject_text);
         // We need the listener to change the avatar to the send button when the user starts
         // typing a subject without a message.
@@ -247,7 +249,7 @@ public class ComposeMessageView extends LinearLayout
                 new LengthFilter(MmsConfig.get(ParticipantData.DEFAULT_SELF_SUB_ID)
                         .getMaxSubjectLength())});
 
-        mDeleteSubjectButton = (ImageButton) findViewById(R.id.delete_subject_button);
+        mDeleteSubjectButton = findViewById(R.id.delete_subject_button);
         mDeleteSubjectButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View clickView) {
@@ -259,7 +261,7 @@ public class ComposeMessageView extends LinearLayout
 
         mSubjectView = findViewById(R.id.subject_view);
 
-        mSendButton = (ImageButton) findViewById(R.id.send_message_button);
+        mSendButton = findViewById(R.id.send_message_button);
         mSendButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View clickView) {
@@ -297,7 +299,7 @@ public class ComposeMessageView extends LinearLayout
         });
 
         mAttachMediaButton =
-                (ImageButton) findViewById(R.id.attach_media_button);
+                findViewById(R.id.attach_media_button);
         mAttachMediaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View clickView) {
@@ -306,11 +308,14 @@ public class ComposeMessageView extends LinearLayout
             }
         });
 
-        mAttachmentPreview = (AttachmentPreview) findViewById(R.id.attachment_draft_view);
+        mAttachmentPreview = findViewById(R.id.attachment_draft_view);
         mAttachmentPreview.setComposeMessageView(this);
 
-        mCharCounter = (TextView) findViewById(R.id.char_counter);
-        mMmsIndicator = (TextView) findViewById(R.id.mms_indicator);
+        mCharCounter = findViewById(R.id.char_counter);
+        mMmsIndicator = findViewById(R.id.mms_indicator);
+
+        mAttachMediaButton.setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+        mSendButton.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
     }
 
     private void hideAttachmentsWhenShowingSims(final boolean simPickerVisible) {
@@ -916,7 +921,7 @@ public class ComposeMessageView extends LinearLayout
     }
 
     public boolean updateActionBar(final ActionBar actionBar) {
-        return mInputManager != null ? mInputManager.updateActionBar(actionBar) : false;
+        return mInputManager != null && mInputManager.updateActionBar(actionBar);
     }
 
     public static boolean shouldShowSimSelector(final ConversationData convData) {

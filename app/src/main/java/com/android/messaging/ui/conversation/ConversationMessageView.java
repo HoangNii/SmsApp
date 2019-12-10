@@ -120,6 +120,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
     private ImageView mFrameContactIcon;
 
     private StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
+    private int contactGravity = Style.Avatar.getAvatarGravity();
 
     private boolean mOneOnOne;
     private ConversationMessageViewHost mHost;
@@ -181,8 +182,8 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3]*0.75f,getContext());
         mContactIconView.setPadding(left,top,right,bottom);
 
-        ((FrameLayout.LayoutParams)mContactIconView.getLayoutParams()).gravity = model.getAvatarGravity();
-        ((FrameLayout.LayoutParams)mFrameContactIcon.getLayoutParams()).gravity = model.getAvatarGravity();
+        ((FrameLayout.LayoutParams)mContactIconView.getLayoutParams()).gravity = contactGravity;
+        ((FrameLayout.LayoutParams)mFrameContactIcon.getLayoutParams()).gravity = contactGravity;
 
 
         mFrameContactIconLayout.setVisibility(mData.getIsIncoming()?VISIBLE:GONE);
@@ -264,9 +265,9 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         this.post(new Runnable() {
             @Override
             public void run() {
-                if(model.getAvatarGravity()==Gravity.BOTTOM){
+                if(contactGravity==Gravity.BOTTOM){
                     mMessageBubble.setPadding(0,0,0,iconWidth/2);
-                }else if(model.getAvatarGravity()==Gravity.TOP){
+                }else if(contactGravity==Gravity.TOP){
                     mMessageBubble.setPadding(0,iconWidth/2,0,0);
                 }else {
                     mMessageBubble.setPadding(0,0,0,0);

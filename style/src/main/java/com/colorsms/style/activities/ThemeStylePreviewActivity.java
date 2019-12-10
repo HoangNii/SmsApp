@@ -97,18 +97,7 @@ public class ThemeStylePreviewActivity extends AppCompatActivity {
                     Style.Background.setBackgroundChatPosition(1);
                     Style.Background.setHomeTextColor(model.getSmsHomeColor());
 
-                    if(model.getId()==0){
-                        Style.Bubble.setUseBubbleShapeDefault(true);
-                        Style.Bubble.setBubbleShapeDefaultPosition(0);
-                        Style.Bubble.setBubbleShapeDefaultSentColor(Color.parseColor("#3AB54A"));
-                        Style.Bubble.setBubbleShapeDefaultReceivedColor(Color.parseColor("#FBB03B"));
-                        Style.Bubble.setBubbleTextSentColor(Color.parseColor("#FFFFFF"));
-                        Style.Bubble.setBubbleTextReceivedColor(Color.parseColor("#FFFFFF"));
-                    }else {
-                        Style.Bubble.setUseBubbleShapeDefault(false);
-                        Style.Bubble.setBubbleTextSentColor(model.getBbChatSendTextColor());
-                        Style.Bubble.setBubbleTextReceivedColor(model.getBbChatInboxTextColor());
-                    }
+                    Style.Bubble.toReloadBubbleStyle();
 
                     Style.Avatar.setAvatarGravity(model.getAvatarGravity());
                     Style.Avatar.setAvatarContentColor(model.getAvatarContentColor());

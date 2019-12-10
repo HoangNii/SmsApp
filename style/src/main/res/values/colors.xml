@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="colorBubbleInboxDefault">#7ADADADA</color>
+    <color name="colorBubblePreview">#7A9C9C9C</color>
 </resources>

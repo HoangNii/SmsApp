@@ -526,6 +526,9 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
 
         mContactCheckmarkView.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
         mUnRead.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+        mNotificationBellView.setColorFilter(mListItemReadColor, PorterDuff.Mode.SRC_IN);
+
+
 
         if(model.getId()==0){
             mFrameIcon.setImageResource(0);

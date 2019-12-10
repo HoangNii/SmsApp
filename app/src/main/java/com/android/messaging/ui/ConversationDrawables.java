@@ -17,7 +17,6 @@ package com.android.messaging.ui;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
 import com.android.messaging.Factory;
@@ -54,7 +53,7 @@ public class ConversationDrawables {
     private int mIncomingErrorBubbleColor;
     private int mIncomingAudioButtonColor;
     private int mSelectedBubbleColor;
-    private int mThemeColor;
+    private int mIncomingBubbleColor;
 
 
 
@@ -72,7 +71,11 @@ public class ConversationDrawables {
     }
 
     public int getConversationThemeColor() {
-        return mThemeColor;
+        return mIncomingBubbleColor;
+    }
+
+    public int getStyleThemeColor() {
+        return Style.Home.getStyleColor();
     }
 
     public void updateDrawables() {
@@ -106,7 +109,7 @@ public class ConversationDrawables {
         mIncomingAudioButtonColor =
                 resources.getColor(R.color.message_audio_button_color_incoming);
         mSelectedBubbleColor = resources.getColor(R.color.message_bubble_color_selected);
-        mThemeColor = Style.Home.getStyleColor();
+        mIncomingBubbleColor = Style.Home.getStyleColor();
     }
 
     public Drawable getBubbleDrawable(final boolean selected, final boolean incoming,
@@ -135,7 +138,7 @@ public class ConversationDrawables {
             if (isError) {
                 color = mIncomingErrorBubbleColor;
             } else {
-                color = mThemeColor;
+                color = mIncomingBubbleColor;
             }
         } else {
             color = mOutgoingBubbleColor;
@@ -146,16 +149,14 @@ public class ConversationDrawables {
 
     private void getBbStyle() {
         int[] bbChat;
-        if(Style.Bubble.isUseBubbleShapeDefault()){
+        StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
+        if(model.getId()==0||Style.Bubble.isUseBubbleShapeDefault()){
             bbChat = Style.Bubble.getBubbleDefaultList()[Style.Bubble.getBubbleShapeDefaultPosition()];
-            mThemeColor  = Style.Bubble.getBubbleShapeDefaultReceivedColor();
-            mOutgoingBubbleColor = Style.Bubble.getBubbleShapeDefaultSentColor();
         }else {
-            StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
             bbChat = new int[]{model.getBbChatInboxResource(),model.getBbChatSendResource()};
-            mThemeColor = Color.TRANSPARENT;
-            mOutgoingBubbleColor = Color.TRANSPARENT;
         }
+        mIncomingBubbleColor = Style.Bubble.getBubbleShapeReceivedColor();
+        mOutgoingBubbleColor = Style.Bubble.getBubbleShapeSentColor();
         mIncomingBubbleDrawable = mContext.getResources().getDrawable(bbChat[0]);
         mOutgoingBubbleDrawable =  mContext.getResources().getDrawable(bbChat[1]);
         mIncomingBubbleNoArrowDrawable = mIncomingBubbleDrawable;
@@ -164,7 +165,7 @@ public class ConversationDrawables {
     }
 
     private int getAudioButtonColor(final boolean incoming) {
-        return incoming ? mIncomingAudioButtonColor : mThemeColor;
+        return incoming ? mIncomingAudioButtonColor : mIncomingBubbleColor;
     }
 
     public Drawable getPlayButtonDrawable(final boolean incoming) {
@@ -190,7 +191,7 @@ public class ConversationDrawables {
     public Drawable getFastScrollThumbDrawable(final boolean pressed) {
         if (pressed) {
             return ImageUtils.getTintedDrawable(mContext, mFastScrollThumbPressedDrawable,
-                    mThemeColor);
+                    mIncomingBubbleColor);
         } else {
             return mFastScrollThumbDrawable;
         }
@@ -199,6 +200,6 @@ public class ConversationDrawables {
     public Drawable getFastScrollPreviewDrawable(boolean positionRight) {
         Drawable protoDrawable = positionRight ? mFastScrollPreviewDrawableRight :
             mFastScrollPreviewDrawableLeft;
-        return ImageUtils.getTintedDrawable(mContext, protoDrawable, mThemeColor);
+        return ImageUtils.getTintedDrawable(mContext, protoDrawable, mIncomingBubbleColor);
     }
 }
