@@ -142,8 +142,6 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     private ImageView mFailedStatusIconView;
     private ImageView mCrossSwipeArchiveLeftImageView;
     private ImageView mCrossSwipeArchiveRightImageView;
-    private AsyncImageView mImagePreviewView;
-    private AudioAttachmentView mAudioAttachmentView;
     private HostInterface mHostInterface;
     private ImageView mFrameIcon;
     private View mUnRead;
@@ -172,8 +170,6 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         mCrossSwipeArchiveLeftImageView = findViewById(R.id.crossSwipeArchiveIconLeft);
         mCrossSwipeArchiveRightImageView =
                 findViewById(R.id.crossSwipeArchiveIconRight);
-        mImagePreviewView = findViewById(R.id.conversation_image_preview);
-        mAudioAttachmentView = findViewById(R.id.audio_attachment_view);
         mConversationNameView.addOnLayoutChangeListener(this);
         mSnippetTextView.addOnLayoutChangeListener(this);
 
@@ -482,44 +478,6 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         mContactCheckmarkView.setVisibility(checkmarkVisiblity);
         mFailedStatusIconView.setVisibility(failStatusVisiblity);
 
-        final Uri previewUri = mData.getShowDraft() ?
-                mData.getDraftPreviewUri() : mData.getPreviewUri();
-        final String previewContentType = mData.getShowDraft() ?
-                mData.getDraftPreviewContentType() : mData.getPreviewContentType();
-        OnClickListener previewClickListener = null;
-        Uri previewImageUri = null;
-        int previewImageVisibility = GONE;
-        int audioPreviewVisiblity = GONE;
-        if (previewUri != null && !TextUtils.isEmpty(previewContentType)) {
-            if (ContentType.isAudioType(previewContentType)) {
-                boolean incoming = !(mData.getShowDraft() || mData.getIsMessageTypeOutgoing());
-                mAudioAttachmentView.bind(previewUri, incoming, false);
-                audioPreviewVisiblity = VISIBLE;
-            } else if (ContentType.isVideoType(previewContentType)) {
-                previewImageUri = UriUtil.getUriForResourceId(
-                        getContext(), R.drawable.ic_audio_play);
-                previewClickListener = fullScreenPreviewClickListener;
-                previewImageVisibility = VISIBLE;
-            } else if (ContentType.isImageType(previewContentType)) {
-                previewImageUri = previewUri;
-                previewClickListener = fullScreenPreviewClickListener;
-                previewImageVisibility = VISIBLE;
-            }
-        }
-
-        final int imageSize = resources.getDimensionPixelSize(
-                R.dimen.conversation_list_image_preview_size);
-        mImagePreviewView.setImageResourceId(
-                new UriImageRequestDescriptor(previewImageUri, imageSize, imageSize,
-                        true /* allowCompression */, false /* isStatic */, false /*cropToCircle*/,
-                        ImageUtils.DEFAULT_CIRCLE_BACKGROUND_COLOR /* circleBackgroundColor */,
-                        ImageUtils.DEFAULT_CIRCLE_STROKE_COLOR /* circleStrokeColor */));
-        mImagePreviewView.setOnLongClickListener(this);
-        mImagePreviewView.setVisibility(previewImageVisibility);
-        mImagePreviewView.setOnClickListener(previewClickListener);
-        mAudioAttachmentView.setOnLongClickListener(this);
-        mAudioAttachmentView.setVisibility(audioPreviewVisiblity);
-
         final int notificationBellVisiblity = mData.getNotificationEnabled() ? GONE : VISIBLE;
         mNotificationBellView.setVisibility(notificationBellVisiblity);
 
@@ -648,7 +606,7 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     }
 
     private boolean processClick(final View v, final boolean isLongClick) {
-        Assert.isTrue(v == mSwipeableContainer || v == mContactIconView || v == mImagePreviewView);
+//        Assert.isTrue(v == mSwipeableContainer || v == mContactIconView || v == mImagePreviewView);
         Assert.notNull(mData.getName());
 
         if (mHostInterface != null) {

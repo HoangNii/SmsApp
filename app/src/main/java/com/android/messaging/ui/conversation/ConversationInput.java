@@ -16,6 +16,8 @@
 package com.android.messaging.ui.conversation;
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.ActionBar;
 
 /**
@@ -44,9 +46,11 @@ public abstract class ConversationInput {
     public ConversationInput(ConversationInputBase baseHost, final boolean isShowing) {
         mConversationInputBase = baseHost;
         mShowing = isShowing;
+        Log.e("mInput",mShowing+" ConversationInput");
     }
 
     public boolean onBackPressed() {
+        Log.e("mInput",mShowing+" onBackPressed");
         if (mShowing) {
             mConversationInputBase.showHideInternal(this, false /* show */, true /* animate */);
             return true;

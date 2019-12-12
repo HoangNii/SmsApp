@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -185,8 +187,28 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         ((FrameLayout.LayoutParams)mContactIconView.getLayoutParams()).gravity = contactGravity;
         ((FrameLayout.LayoutParams)mFrameContactIcon.getLayoutParams()).gravity = contactGravity;
 
-
         mFrameContactIconLayout.setVisibility(mData.getIsIncoming()?VISIBLE:GONE);
+
+        Typeface tp = Style.Font.getFontTypeFace(Style.Font.getFontFamilyPosition());
+        mMessageTextView.setTypeface(tp);
+        mTitleTextView.setTypeface(tp);
+        mMmsInfoTextView.setTypeface(tp);
+        mMmsInfoTextView.setTypeface(tp);
+        mSenderNameTextView.setTypeface(tp);
+        mSubjectLabel.setTypeface(tp);
+        mSubjectText.setTypeface(tp);
+        mStatusTextView.setTypeface(tp);
+
+        int fontSize = Style.Font.getFontSize();
+        mMessageTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,fontSize);
+        mTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,fontSize);
+        mMmsInfoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,fontSize);
+        mMmsInfoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,fontSize);
+        mSenderNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP,fontSize);
+        mSubjectLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP,fontSize);
+        mSubjectText.setTextSize(TypedValue.COMPLEX_UNIT_SP,fontSize);
+
+
     }
 
     @Override

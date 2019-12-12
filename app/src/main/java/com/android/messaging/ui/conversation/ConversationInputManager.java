@@ -19,6 +19,8 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
+
+import android.util.Log;
 import android.widget.EditText;
 
 import com.android.messaging.R;
@@ -94,10 +96,10 @@ public class ConversationInputManager implements ConversationInput.ConversationI
     private final ConversationImeKeyboard mImeInput;
     private int mUpdateCount;
 
-    private final ImeUtil.ImeStateObserver mImeStateObserver = new ImeUtil.ImeStateObserver() {
+    private ImeUtil.ImeStateObserver mImeStateObserver = new ImeUtil.ImeStateObserver() {
         @Override
         public void onImeStateChanged(final boolean imeOpen) {
-            mImeInput.onVisibilityChanged(imeOpen);
+            mImeInput.onVisibilityChanged(false);
         }
     };
 
@@ -147,6 +149,13 @@ public class ConversationInputManager implements ConversationInput.ConversationI
             }
         }
         updateHostOptionsMenu();
+
+        mImeStateObserver = new ImeUtil.ImeStateObserver() {
+            @Override
+            public void onImeStateChanged(final boolean imeOpen) {
+                mImeInput.onVisibilityChanged(imeOpen);
+            }
+        };
     }
 
     public void onDetach() {

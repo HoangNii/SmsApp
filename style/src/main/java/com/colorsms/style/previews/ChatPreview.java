@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -100,6 +101,12 @@ public class ChatPreview extends FrameLayout {
         }
 
         ((LinearLayout.LayoutParams)frameIcon.getLayoutParams()).gravity = Style.Avatar.getAvatarGravity();
+
+
+        tvSend.setTypeface(Style.Font.getFontTypeFace(Style.Font.getFontFamilyPosition()));
+        tvInbox.setTypeface(Style.Font.getFontTypeFace(Style.Font.getFontFamilyPosition()));
+        tvSend.setTextSize(TypedValue.COMPLEX_UNIT_SP,Style.Font.getFontSize());
+        tvInbox.setTextSize(TypedValue.COMPLEX_UNIT_SP,Style.Font.getFontSize());
     }
 
 

@@ -32,6 +32,8 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.android.messaging.R;
 import com.android.messaging.datamodel.MessagingContentProvider;
 import com.android.messaging.datamodel.data.MessageData;
@@ -272,6 +274,7 @@ public class ConversationActivity extends BugleActionBarActivity
         // Let the conversation fragment handle the back press.
         final ConversationFragment conversationFragment = getConversationFragment();
         if (conversationFragment != null && conversationFragment.onBackPressed()) {
+
             return;
         }
         super.onBackPressed();

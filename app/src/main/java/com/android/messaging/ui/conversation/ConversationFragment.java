@@ -1240,10 +1240,7 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
     }
 
     public boolean onBackPressed() {
-        if (mComposeMessageView.onBackPressed()) {
-            return true;
-        }
-        return false;
+        return mComposeMessageView.onBackPressed();
     }
 
     public boolean onNavigationUpPressed() {

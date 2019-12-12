@@ -35,8 +35,10 @@ import com.android.messaging.R;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.Trace;
+import com.colorsms.style.fragments.BackgroundFragment;
 import com.colorsms.style.fragments.BubbleThemeFragment;
 import com.colorsms.style.fragments.ColorThemeFragment;
+import com.colorsms.style.fragments.FontFragment;
 import com.colorsms.style.fragments.ThemeStyleFragment;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.helper.StyleHelper;
@@ -175,8 +177,20 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 },300);
                 break;
             case R.id.nav_background:
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        BackgroundFragment.startAddToBackStack(ConversationListActivity.this,BackgroundFragment.newInstance());
+                    }
+                },300);
                 break;
             case R.id.nav_font:
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        FontFragment.startAddToBackStack(ConversationListActivity.this,FontFragment.newInstance());
+                    }
+                },300);
                 break;
             case R.id.nav_rate_us:
             case R.id.nav_feedback:

@@ -18,6 +18,7 @@ package com.android.messaging.ui.conversation;
 import android.content.Context;
 import androidx.core.util.Pair;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.messaging.Factory;
 import com.android.messaging.R;
