@@ -17,4 +17,9 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+
+    <style name="PauseDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/anim_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_out</item>
+    </style>
 </resources>

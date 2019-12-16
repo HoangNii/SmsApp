@@ -516,6 +516,10 @@
         <activity
             android:theme="@style/PreviewTheme"
             android:name="com.colorsms.style.activities.ThemeStylePreviewActivity"/>
+
+        <activity
+            android:theme="@style/PreviewTheme"
+            android:name="com.colorsms.style.activities.BackgroundPreviewActivity"/>
     </application>
 
 </manifest>

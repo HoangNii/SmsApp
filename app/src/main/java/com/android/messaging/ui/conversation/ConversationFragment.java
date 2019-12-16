@@ -760,7 +760,14 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
         Drawable drawable = menu.findItem(R.id.action_call).getIcon();
         if(drawable != null) {
             drawable.mutate();
-            drawable.setColorFilter(Style.Home.getHomeTitleColor(), PorterDuff.Mode.SRC_ATOP);
+
+            int background  = Style.Background.getBackgroundChatPosition();
+            int homeTittleColor;
+            if(background!=1){
+                homeTittleColor = Style.Background.getHomeTextColor();
+            }else homeTittleColor = Style.Home.getHomeTitleColor();
+
+            drawable.setColorFilter(homeTittleColor, PorterDuff.Mode.SRC_ATOP);
         }
     }
 
@@ -1597,7 +1604,13 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
                 actionBar.show();
             }
 
-            conversationNameView.setTextColor(Style.Home.getHomeTitleColor());
+            int background  = Style.Background.getBackgroundChatPosition();
+            int homeTittleColor;
+            if(background!=1){
+                homeTittleColor = Style.Background.getHomeTextColor();
+            }else homeTittleColor = Style.Home.getHomeTitleColor();
+
+            conversationNameView.setTextColor(homeTittleColor);
         }
     }
 

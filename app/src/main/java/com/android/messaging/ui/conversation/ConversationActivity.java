@@ -214,7 +214,7 @@ public class ConversationActivity extends BugleActionBarActivity
     private void setStyleBackground() {
         final View root = findViewById(R.id.root);
         View main = findViewById(R.id.main);
-        StyleHelper.Loader.loadBackgroundHome(root,main);
+        StyleHelper.Loader.loadBackgroundHome(root,main,false);
 
     }
 
@@ -222,9 +222,13 @@ public class ConversationActivity extends BugleActionBarActivity
         //set style
         int styleColor = Style.Home.getStyleColor();
         int themePosition = Style.ColorStyle.getStyleId();
-        int homeTittleColor = Style.Home.getHomeTitleColor();
+        int background  = Style.Background.getBackgroundChatPosition();
+        int homeTittleColor;
+        if(background!=1){
+            homeTittleColor = Style.Background.getHomeTextColor();
+        }else homeTittleColor = Style.Home.getHomeTitleColor();
 
-        actionBar.setBackgroundDrawable(new ColorDrawable(themePosition==0?styleColor: Color.TRANSPARENT));
+        actionBar.setBackgroundDrawable(new ColorDrawable(themePosition==0&&background==1?styleColor: Color.TRANSPARENT));
         toolbar.setTitleTextColor(homeTittleColor);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.ic_back);

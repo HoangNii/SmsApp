@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.colorsms.style.R;
+import com.colorsms.style.activities.BackgroundPreviewActivity;
 import com.colorsms.style.adapters.BackgroundAdapter;
 import com.github.kayvannj.permission_utils.Func;
 import com.github.kayvannj.permission_utils.PermissionUtil;
@@ -51,9 +52,8 @@ public class BackgroundFragment extends BaseFragment {
                                 }
                             }).ask(12);
                 }else {
-//                    BackgroundPreviewActivity.startPreview(activity,position,null);
+                    BackgroundPreviewActivity.startPreview(activity,position,null);
                 }
-
 
             }
         });
@@ -70,7 +70,7 @@ public class BackgroundFragment extends BaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 33&&resultCode== Activity.RESULT_OK&&data!=null&&!TextUtils.isEmpty(data.getDataString())) {
-//            BackgroundPreviewActivity.startPreview(activity,0,data.getDataString());
+            BackgroundPreviewActivity.startPreview(activity,0,data.getDataString());
         }else Toast.makeText(activity, "Pick Image Error!", Toast.LENGTH_SHORT).show();
     }
 

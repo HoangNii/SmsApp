@@ -20,14 +20,15 @@ import com.colorsms.style.models.StyleModel;
 public class StyleHelper {
 
     public static class Loader{
-        public static void loadBackgroundHome(final View root, final View main){
+        public static void loadBackgroundHome(final View root, final View main, final boolean isHome){
             root.post(new Runnable() {
                 @Override
                 public void run() {
-                    int position = Style.Background.getBackgroundHomePosition();
+                    StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
+                    int position = isHome?Style.Background.getBackgroundHomePosition():Style.Background.getBackgroundChatPosition();
                     if(position==0){
                         Glide.with(root.getContext())
-                                .load(Style.Background.getBackgroundHomeUri())
+                                .load(isHome?Style.Background.getBackgroundHomeUri():Style.Background.getBackgroundChatUri())
                                 .apply(new RequestOptions()
                                         .centerCrop()
                                         .override(root.getWidth(),root.getHeight()))
@@ -43,11 +44,9 @@ public class StyleHelper {
                                     }
                                 });
                     }else if(position==1){
-                        int styleId  = Style.ColorStyle.getStyleId();
-                        if(styleId==0){
+                        if(model.getId()==0){
                             root.setBackgroundColor(Style.Home.getStyleColor());
                         }else {
-                            StyleModel model = Style.ColorStyle.getStyleModels().get(Style.ColorStyle.getStyleId());
                             Glide.with(root.getContext())
                                     .load(model.getBackground())
                                     .apply(new RequestOptions()
@@ -69,7 +68,7 @@ public class StyleHelper {
                     } else {
                         Glide.with(root.getContext())
                                 .load(ContextCompat.getDrawable(root.getContext(),Style.Background.backgroundList[
-                                        Style.Background.getBackgroundHomePosition()]))
+                                        isHome?Style.Background.getBackgroundHomePosition():Style.Background.getBackgroundChatPosition()]))
                                 .apply(new RequestOptions()
                                         .centerCrop()
                                         .override(root.getWidth(),root.getHeight()))
