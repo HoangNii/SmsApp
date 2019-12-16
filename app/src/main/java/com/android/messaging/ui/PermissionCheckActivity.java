@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.android.messaging.Factory;
 import com.android.messaging.R;
 import com.android.messaging.util.OsUtil;
+import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.UiUtils;
 
 /**
@@ -38,11 +39,7 @@ import com.android.messaging.util.UiUtils;
  */
 public class PermissionCheckActivity extends Activity {
     private static final int REQUIRED_PERMISSIONS_REQUEST_CODE = 1;
-    private static final long AUTOMATED_RESULT_THRESHOLD_MILLLIS = 250;
-    private static final String PACKAGE_URI_PREFIX = "package:";
-    private long mRequestTimeMillis;
     private TextView mNextView;
-    private TextView mSettingsView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -54,35 +51,22 @@ public class PermissionCheckActivity extends Activity {
         setContentView(R.layout.permission_check_activity);
         UiUtils.setStatusBarColor(this, getColor(R.color.permission_check_activity_background));
 
-        findViewById(R.id.exit).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                finish();
-            }
-        });
-
-        mNextView = (TextView) findViewById(R.id.next);
+        mNextView = findViewById(R.id.next);
         mNextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View view) {
+
                 tryRequestPermission();
             }
         });
 
-        mSettingsView = (TextView) findViewById(R.id.settings);
-        mSettingsView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                final Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                        Uri.parse(PACKAGE_URI_PREFIX + getPackageName()));
-                startActivity(intent);
-            }
-        });
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
 
         if (redirectIfNeeded()) {
             return;
@@ -90,43 +74,23 @@ public class PermissionCheckActivity extends Activity {
     }
 
     private void tryRequestPermission() {
-        final String[] missingPermissions = OsUtil.getMissingRequiredPermissions();
-        if (missingPermissions.length == 0) {
-            redirect();
-            return;
-        }
-
-        mRequestTimeMillis = SystemClock.elapsedRealtime();
-        requestPermissions(missingPermissions, REQUIRED_PERMISSIONS_REQUEST_CODE);
+        startActivityForResult(UIIntentsImpl.get().getChangeDefaultSmsAppIntent(this),REQUIRED_PERMISSIONS_REQUEST_CODE);
     }
 
     @Override
-    public void onRequestPermissionsResult(
-            final int requestCode, final String permissions[], final int[] grantResults) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUIRED_PERMISSIONS_REQUEST_CODE) {
             // We do not use grantResults as some of the granted permissions might have been
             // revoked while the permissions dialog box was being shown for the missing permissions.
-            if (OsUtil.hasRequiredPermissions()) {
-                Factory.get().onRequiredPermissionsAcquired();
-                redirect();
-            } else {
-                final long currentTimeMillis = SystemClock.elapsedRealtime();
-                // If the permission request completes very quickly, it must be because the system
-                // automatically denied. This can happen if the user had previously denied it
-                // and checked the "Never ask again" check box.
-                if ((currentTimeMillis - mRequestTimeMillis) < AUTOMATED_RESULT_THRESHOLD_MILLLIS) {
-                    mNextView.setVisibility(View.GONE);
-
-                    mSettingsView.setVisibility(View.VISIBLE);
-                    findViewById(R.id.enable_permission_procedure).setVisibility(View.VISIBLE);
-                }
-            }
+            redirectIfNeeded();
         }
     }
 
+
     /** Returns true if the redirecting was performed */
     private boolean redirectIfNeeded() {
-        if (!OsUtil.hasRequiredPermissions()) {
+        if (!PhoneUtils.getDefault().isDefaultSmsApp()) {
             return false;
         }
 

@@ -37,7 +37,7 @@
     <string name="settings_with_arrow">Settings &gt;</string>
     <string name="settings">Settings</string>
     <!-- Inform user of the names of permissions that are required to use the app -->
-    <string name="required_permissions_promo">Messaging needs permission to SMS, Phone and Contacts.</string>
+    <string name="required_permissions_promo">Messaging needs permission to SMS, Set SMS Default.</string>
     <string name="enable_permission_procedure">You can change permissions in Settings > Apps > Messaging > Permissions.</string>
     <string name="enable_permission_procedure_description">You can change permissions in Settings, Apps, Messaging, Permissions.</string>
 
