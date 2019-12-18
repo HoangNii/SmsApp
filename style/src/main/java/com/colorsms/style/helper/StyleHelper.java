@@ -112,9 +112,6 @@ public class StyleHelper {
                 final View child = parent.getChildAt(i);
                 if (child instanceof ViewGroup) {
                     loadStyleNavigationView((ViewGroup) child);
-                    if(child instanceof FrameLayout){
-                        child.setBackgroundColor(color);
-                    }
                 } else if (child instanceof TextView) {
                     ((TextView) child).setTextColor(color);
                 }else if(child instanceof ImageView){

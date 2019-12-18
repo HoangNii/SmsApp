@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.colorsms.style.R;
 import com.colorsms.style.activities.BackgroundPreviewActivity;
+import com.colorsms.style.activities.FixPickImage;
 import com.colorsms.style.adapters.BackgroundAdapter;
 import com.github.kayvannj.permission_utils.Func;
 import com.github.kayvannj.permission_utils.PermissionUtil;
@@ -43,7 +44,7 @@ public class BackgroundFragment extends BaseFragment {
                             .request(Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE).onAllGranted(
                             new Func() {
                                 @Override protected void call() {
-                                    startPickGallery();
+                                    FixPickImage.startPickImage(activity);
                                 }
                             }).onAnyDenied(
                             new Func() {
@@ -57,21 +58,6 @@ public class BackgroundFragment extends BaseFragment {
 
             }
         });
-    }
-
-    private void startPickGallery() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 33);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 33&&resultCode== Activity.RESULT_OK&&data!=null&&!TextUtils.isEmpty(data.getDataString())) {
-            BackgroundPreviewActivity.startPreview(activity,0,data.getDataString());
-        }else Toast.makeText(activity, "Pick Image Error!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

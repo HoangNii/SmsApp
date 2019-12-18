@@ -8,7 +8,6 @@ public class StyleModel {
     private int avatarFrameResource;
     private int avatarGravity;
     private float[] avatarHomeContentPadding;
-    private int[] avatarChatContentPadding;
     private int avatarContentColor;
     private int unReadColor;
 
@@ -24,15 +23,14 @@ public class StyleModel {
     private int preview;
     private int titleColor;
 
-    public StyleModel(int id, String name, int background, int styleColor, int avatarFrameResource, int avatarGravity, float[] avatarHomeContentPadding, int[] avatarChatContentPadding, int avatarContentColor, int unReadColor, int smsHomeColor, int bbChatInboxResource, int bbChatInboxColor, int bbChatInboxTextColor, int bbChatSendResource, int bbChatSendColor, int bbChatSendTextColor, int preview, int titleColor) {
+    public StyleModel(int id, String name, int background, int styleColor, int avatarFrameResource, int avatarGravity, float[] avatarContentPadding, int avatarContentColor, int unReadColor, int smsHomeColor, int bbChatInboxResource, int bbChatInboxColor, int bbChatInboxTextColor, int bbChatSendResource, int bbChatSendColor, int bbChatSendTextColor, int preview, int titleColor) {
         this.id = id;
         this.name = name;
         this.background = background;
         this.styleColor = styleColor;
         this.avatarFrameResource = avatarFrameResource;
         this.avatarGravity = avatarGravity;
-        this.avatarHomeContentPadding = avatarHomeContentPadding;
-        this.avatarChatContentPadding = avatarChatContentPadding;
+        this.avatarHomeContentPadding = avatarContentPadding;
         this.avatarContentColor = avatarContentColor;
         this.unReadColor = unReadColor;
         this.smsHomeColor = smsHomeColor;
@@ -118,13 +116,6 @@ public class StyleModel {
         this.avatarHomeContentPadding = avatarHomeContentPadding;
     }
 
-    public int[] getAvatarChatContentPadding() {
-        return avatarChatContentPadding;
-    }
-
-    public void setAvatarChatContentPadding(int[] avatarChatContentPadding) {
-        this.avatarChatContentPadding = avatarChatContentPadding;
-    }
 
     public int getAvatarContentColor() {
         return avatarContentColor;

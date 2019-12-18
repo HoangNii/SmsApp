@@ -34,7 +34,7 @@ import java.util.List;
  * can both be cached (albeit not very storage-efficiently) and directly used by the UI.
  */
 public class DecodedImageResource extends ImageResource {
-    private static final int BITMAP_QUALITY = 100;
+    private static final int BITMAP_QUALITY = 50;
     private static final int COMPRESS_QUALITY = 50;
 
     private Bitmap mBitmap;

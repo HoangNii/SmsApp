@@ -17,4 +17,6 @@ public abstract class App extends Application {
 
 
     public abstract void restart();
+
+    public abstract void start(String messId);
 }

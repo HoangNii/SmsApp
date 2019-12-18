@@ -50,8 +50,8 @@ public class ThemeStyleSmsPreviewAdapter extends RecyclerView.Adapter<ThemeStyle
 
         holder.imgContentAvatar.setPadding(
                 Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[0],context),
-                Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[2],context),
                 Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[1],context),
+                Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[2],context),
                 Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[3],context)
         );
 

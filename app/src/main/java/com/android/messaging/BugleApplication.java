@@ -34,6 +34,8 @@ import com.android.messaging.sms.BugleApnSettingsLoader;
 import com.android.messaging.sms.BugleUserAgentInfoLoader;
 import com.android.messaging.sms.MmsConfig;
 import com.android.messaging.ui.ConversationDrawables;
+import com.android.messaging.ui.UIIntents;
+import com.android.messaging.ui.UIIntentsImpl;
 import com.android.messaging.ui.conversationlist.ConversationListActivity;
 import com.android.messaging.util.BugleGservices;
 import com.android.messaging.util.BugleGservicesKeys;
@@ -46,6 +48,8 @@ import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.Trace;
 import com.colorsms.style.App;
 import com.google.common.annotations.VisibleForTesting;
+import com.vanniktech.emoji.EmojiManager;
+import com.vanniktech.emoji.ios.IosEmojiProvider;
 
 import java.io.File;
 import java.lang.Thread.UncaughtExceptionHandler;
@@ -86,6 +90,14 @@ public class BugleApplication extends App implements UncaughtExceptionHandler {
     }
 
     @Override
+    public void start(String messId) {
+        UIIntents.get().launchConversationActivity(
+                this, messId, null,
+                null,
+                false);
+    }
+
+    @Override
     public void onCreate() {
         Trace.beginSection("app.onCreate");
         super.onCreate();
@@ -93,6 +105,8 @@ public class BugleApplication extends App implements UncaughtExceptionHandler {
         setApp(this);
 
         application = this;
+
+        EmojiManager.install(new IosEmojiProvider());
 
         // Note onCreate is called in both test and real application environments
         if (!sRunningTests) {

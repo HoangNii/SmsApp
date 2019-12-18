@@ -40,6 +40,10 @@
     <uses-feature android:name="android.hardware.microphone" android:required="false" />
     <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />
 
+    <uses-permission
+        android:name="android.permission.MODIFY_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+
     <application
         android:name="com.android.messaging.BugleApplication"
         android:allowBackup="false"
@@ -226,20 +230,6 @@
         </activity>
 
          <!-- License -->
-        <activity android:name=".ui.LicenseActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"
-            android:label="@string/menu_license">
-        </activity>
-
-        <!-- Message Forwarding -->
-        <activity
-            android:name=".ui.conversationlist.ForwardMessageActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="user"
-            android:label="@string/forward_message_activity_title"
-            android:theme="@style/BugleTheme.DialogActivity">
-        </activity>
 
         <!-- Entry point for handling remote input/actions. Currently, this is only used by Android
              Wear to send voice replies. Since that uses PendingIntents, we don't need to export
@@ -520,6 +510,28 @@
         <activity
             android:theme="@style/PreviewTheme"
             android:name="com.colorsms.style.activities.BackgroundPreviewActivity"/>
+
+        <activity
+            android:theme="@style/PreviewTheme"
+            android:name="com.colorsms.style.activities.FixPickImage"/>
+
+        <activity
+            android:theme="@style/PreviewTheme"
+            android:name="com.colorsms.style.activities.DialogCallReportActivity"/>
+
+        <receiver android:name="com.colorsms.style.callReport.CallReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.colorsms.style.activities.NewMessageActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:theme="@style/TranslucentDialog" />
     </application>
 
 </manifest>

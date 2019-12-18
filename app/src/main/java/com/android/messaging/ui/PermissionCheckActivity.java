@@ -18,19 +18,18 @@ package com.android.messaging.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.android.messaging.Factory;
+import androidx.core.content.ContextCompat;
+
 import com.android.messaging.R;
-import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.helper.Style;
 
 /**
  * Activity to check if the user has required permissions. If not, it will try to prompt the user
@@ -49,9 +48,10 @@ public class PermissionCheckActivity extends Activity {
         }
 
         setContentView(R.layout.permission_check_activity);
-        UiUtils.setStatusBarColor(this, getColor(R.color.permission_check_activity_background));
+        UiUtils.setStatusBarColor(this, ContextCompat.getColor(this,R.color.permission_check_activity_background));
 
         mNextView = findViewById(R.id.next);
+        mNextView.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
         mNextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View view) {
@@ -66,7 +66,6 @@ public class PermissionCheckActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-
 
         if (redirectIfNeeded()) {
             return;

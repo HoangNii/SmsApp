@@ -2,6 +2,7 @@ package com.colorsms.style.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -46,6 +47,7 @@ public class ThemeStylePreviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try{ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); } catch(Exception ignore){}
         setContentView(R.layout.activity_theme_style_preview);
 
         model = Style.ColorStyle.getStyleModels().get(getIntent().getIntExtra("position",0));

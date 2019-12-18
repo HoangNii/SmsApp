@@ -16,11 +16,14 @@
 
 package com.android.messaging.ui;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.ActionMode;
@@ -365,4 +368,9 @@ public class BugleActionBarActivity extends AppCompatActivity implements ImeUtil
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(this, "vao", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -67,6 +67,7 @@ import com.android.messaging.util.Assert;
 import com.android.messaging.util.ContentType;
 import com.android.messaging.util.ConversationIdSet;
 import com.android.messaging.util.LogUtil;
+import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.UriUtil;
 
@@ -177,6 +178,7 @@ public class UIIntentsImpl extends UIIntents {
         if(context instanceof Activity){
             ((Activity) context).overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
         }
+
     }
 
     @Override

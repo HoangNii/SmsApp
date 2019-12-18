@@ -17,7 +17,6 @@
 package com.android.messaging.ui.appsettings;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.ColorDrawable;
@@ -38,7 +37,6 @@ import android.view.MenuItem;
 
 import com.android.messaging.R;
 import com.android.messaging.ui.BugleActionBarActivity;
-import com.android.messaging.ui.LicenseActivity;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.BuglePrefs;
 import com.android.messaging.util.DebugUtils;
@@ -64,29 +62,6 @@ public class ApplicationSettingsActivity extends BugleActionBarActivity {
         ft.commit();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (super.onCreateOptionsMenu(menu)) {
-            return true;
-        }
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-        case android.R.id.home:
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        case R.id.action_license:
-            final Intent intent = new Intent(this, LicenseActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public static class ApplicationSettingsFragment extends PreferenceFragment implements
             OnSharedPreferenceChangeListener {

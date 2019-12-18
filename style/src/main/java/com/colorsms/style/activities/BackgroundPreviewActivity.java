@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -72,6 +73,7 @@ public class BackgroundPreviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try{ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); } catch(Exception ignore){}
         setContentView(R.layout.activity_background_preview);
 
         findViewById(R.id.bt_back).setOnClickListener(new View.OnClickListener() {
@@ -91,8 +93,9 @@ public class BackgroundPreviewActivity extends AppCompatActivity {
 
         setupPager();
 
-
     }
+
+
 
     private void setupPager() {
         ViewPager pager = findViewById(R.id.pager_preview);

@@ -17,6 +17,7 @@
 package com.android.messaging.ui.conversationlist;
 
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -30,11 +31,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.android.messaging.R;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.Trace;
+import com.bumptech.glide.Glide;
 import com.colorsms.style.fragments.BackgroundFragment;
 import com.colorsms.style.fragments.BubbleThemeFragment;
 import com.colorsms.style.fragments.ColorThemeFragment;
@@ -54,6 +57,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         Trace.beginSection("ConversationListActivity.onCreate");
         super.onCreate(savedInstanceState);
+        try{ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); } catch(Exception ignore){}
         setContentView(R.layout.conversation_list_activity);
         Trace.endSection();
         invalidateActionBar();
@@ -72,7 +76,8 @@ public class ConversationListActivity extends AbstractConversationListActivity {
     }
 
     private void setStyleNavigation() {
-        ViewGroup viewGroup = findViewById(R.id.nav_view);
+        ViewGroup viewGroup = findViewById(R.id.nav_item);
+        findViewById(R.id.nav_header).setBackgroundColor(Style.Home.getStyleColor());
         StyleHelper.Loader.loadStyleNavigationView(viewGroup);
     }
 
@@ -82,7 +87,6 @@ public class ConversationListActivity extends AbstractConversationListActivity {
             actionBar.setTitle(getString(R.string.app_name));
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
             actionBar.show();
 
             setStyleToolbar(actionBar);

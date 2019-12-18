@@ -59,11 +59,12 @@ public class ThemeStyleChatPreviewAdapter extends RecyclerView.Adapter<RecyclerV
                 inboxHolder.viewBb.getBackground().setColorFilter(styleModel.getBbChatInboxColor(), PorterDuff.Mode.SRC_IN);
             }
             inboxHolder.imgContentAvatar.setPadding(
-                    Utils.dpToPixel(styleModel.getAvatarChatContentPadding()[0],context),
-                    Utils.dpToPixel(styleModel.getAvatarChatContentPadding()[2],context),
-                    Utils.dpToPixel(styleModel.getAvatarChatContentPadding()[1],context),
-                    Utils.dpToPixel(styleModel.getAvatarChatContentPadding()[3],context)
+                    Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[0]*0.75f,context),
+                    Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[1]*0.75f,context),
+                    Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[2]*0.75f,context),
+                    Utils.dpToPixel(styleModel.getAvatarHomeContentPadding()[3]*0.75f,context)
             );
+
         }else {
             SendHolder sendHolder = (SendHolder) holder;
             sendHolder.viewBb.setBackgroundResource(styleModel.getBbChatSendResource());

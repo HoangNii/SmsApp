@@ -70,6 +70,9 @@ import com.android.messaging.util.MediaUtil;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.UiUtils;
 import com.colorsms.style.helper.Style;
+import com.vanniktech.emoji.EmojiPopup;
+import com.vanniktech.emoji.listeners.OnEmojiPopupDismissListener;
+import com.vanniktech.emoji.listeners.OnEmojiPopupShownListener;
 
 import java.util.Collection;
 import java.util.List;
@@ -122,6 +125,8 @@ public class ComposeMessageView extends LinearLayout
     private ImageButton mDeleteSubjectButton;
     private AttachmentPreview mAttachmentPreview;
     private ImageButton mAttachMediaButton;
+    private ImageButton mAttachIcon;
+    private EmojiPopup emojiPopup;
 
     private final Binding<DraftMessageData> mBinding;
     private IComposeMessageViewHost mHost;
@@ -298,8 +303,9 @@ public class ComposeMessageView extends LinearLayout
             }
         });
 
-        mAttachMediaButton =
-                findViewById(R.id.attach_media_button);
+        mAttachMediaButton = findViewById(R.id.attach_media_button);
+        mAttachIcon = findViewById(R.id.attach_icon);
+
         mAttachMediaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View clickView) {
@@ -307,6 +313,8 @@ public class ComposeMessageView extends LinearLayout
                 mInputManager.showHideMediaPicker(true /* show */, true /* animate */);
             }
         });
+
+
 
         mAttachmentPreview = findViewById(R.id.attachment_draft_view);
         mAttachmentPreview.setComposeMessageView(this);
@@ -316,6 +324,31 @@ public class ComposeMessageView extends LinearLayout
 
         mAttachMediaButton.setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
         mSendButton.getBackground().setColorFilter(Style.Home.getStyleColor(), PorterDuff.Mode.SRC_IN);
+
+
+        mAttachIcon.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emojiPopup.toggle();
+            }
+        });
+
+        emojiPopup = EmojiPopup.Builder.fromRootView(getRootView())
+                .setKeyboardAnimationStyle(R.style.emoji_fade_animation_style)
+                .setOnEmojiPopupShownListener(new OnEmojiPopupShownListener() {
+                    @Override
+                    public void onEmojiPopupShown() {
+                        mAttachIcon.setImageResource(R.drawable.ic_keyboard);
+                    }
+                })
+                .setOnEmojiPopupDismissListener(new OnEmojiPopupDismissListener() {
+                    @Override
+                    public void onEmojiPopupDismiss() {
+                        mAttachIcon.setImageResource(R.drawable.ic_emoji);
+                    }
+                })
+                .build(mComposeEditText);
+
     }
 
     private void hideAttachmentsWhenShowingSims(final boolean simPickerVisible) {

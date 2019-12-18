@@ -329,6 +329,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         updateViewAppearance();
 
         updateContentDescription();
+
     }
 
     public void setHost(final ConversationMessageViewHost host) {

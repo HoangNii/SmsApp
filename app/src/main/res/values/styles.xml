@@ -87,6 +87,7 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
+
     <style name="BugleActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="height">@dimen/action_bar_height</item>
         <item name="displayOptions">showTitle</item>
@@ -283,6 +284,7 @@
 
     <style name="ConversationListItemViewConversationNameStyle" parent="ConversationListItemViewTextStyle">
         <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/conversation_list_name</item>
     </style>
 

@@ -224,7 +224,7 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
                 container,
                 false);
         mMediaPickerPanel.setMediaPicker(this);
-        mTabStrip = (LinearLayout) mMediaPickerPanel.findViewById(R.id.mediapicker_tabstrip);
+        mTabStrip = mMediaPickerPanel.findViewById(R.id.mediapicker_tabstrip);
         mTabStrip.setBackgroundColor(mThemeColor);
         for (final MediaChooser chooser : mChoosers) {
             chooser.onCreateTabButton(inflater, mTabStrip);
@@ -237,7 +237,7 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
             }
         }
 
-        mViewPager = (ViewPager) mMediaPickerPanel.findViewById(R.id.mediapicker_view_pager);
+        mViewPager = mMediaPickerPanel.findViewById(R.id.mediapicker_view_pager);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(
@@ -672,11 +672,11 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
     }
 
     public boolean canSwipeDownChooser() {
-        return mSelectedChooser == null ? false : mSelectedChooser.canSwipeDown();
+        return mSelectedChooser != null && mSelectedChooser.canSwipeDown();
     }
 
     public boolean isChooserHandlingTouch() {
-        return mSelectedChooser == null ? false : mSelectedChooser.isHandlingTouch();
+        return mSelectedChooser != null && mSelectedChooser.isHandlingTouch();
     }
 
     public void stopChooserTouchHandling() {
@@ -686,7 +686,7 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
     }
 
     boolean getChooserShowsActionBarInFullScreen() {
-        return mSelectedChooser == null ? false : mSelectedChooser.getActionBarTitleResId() != 0;
+        return mSelectedChooser != null && mSelectedChooser.getActionBarTitleResId() != 0;
     }
 
     @Override
@@ -728,7 +728,7 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
 
     @Override
     public void onRequestPermissionsResult(
-            final int requestCode, final String permissions[], final int[] grantResults) {
+            final int requestCode, final String[] permissions, final int[] grantResults) {
         if (mSelectedChooser != null) {
             mSelectedChooser.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }

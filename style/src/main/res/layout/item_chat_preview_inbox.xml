@@ -10,8 +10,8 @@
     <FrameLayout
         android:id="@+id/view_avatar"
         android:layout_gravity="center_vertical"
-        android:layout_width="40dp"
-        android:layout_height="40dp">
+        android:layout_width="42dp"
+        android:layout_height="42dp">
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_avatar_frame"
             android:src="@drawable/t1_avatar"

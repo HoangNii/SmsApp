@@ -21,31 +21,24 @@
     android:layout_height="match_parent"
     android:background="#FAFAFA"
     android:orientation="vertical" >
+    <ImageView
+        android:src="@drawable/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/app_name" />
     <TextView
+        android:paddingBottom="30dp"
         android:textColor="#555555"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/required_permissions_promo"
-        android:paddingTop="96dp"
+        android:paddingTop="56dp"
         style="@style/PromoScreenTextStyle.CenterAligned" />
-    <TextView
-        android:id="@+id/enable_permission_procedure"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:text="@string/enable_permission_procedure"
-        android:contentDescription="@string/enable_permission_procedure_description"
-        style="@style/PromoScreenTextStyle.CenterAligned"
-        android:visibility="invisible"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/white" />
     <!-- Buttons -->
     <TextView
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/bg_save"
         android:id="@+id/next"
         android:layout_width="140dp"
         android:layout_height="45dp"

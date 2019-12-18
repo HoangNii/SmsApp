@@ -85,7 +85,7 @@ public class DeleteConversationAction extends Action implements Parcelable {
 
                 // Remove notifications if necessary
                 BugleNotifications.update(true /* silent */, null /* conversationId */,
-                        BugleNotifications.UPDATE_MESSAGES);
+                        BugleNotifications.UPDATE_MESSAGES,null);
 
                 // We have changed the conversation list
                 MessagingContentProvider.notifyConversationListChanged();

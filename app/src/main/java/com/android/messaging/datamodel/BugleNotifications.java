@@ -42,6 +42,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 
 import com.android.messaging.Factory;
 import com.android.messaging.R;
@@ -80,6 +81,7 @@ import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.RingtoneUtil;
 import com.android.messaging.util.ThreadUtil;
 import com.android.messaging.util.UriUtil;
+import com.colorsms.style.activities.NewMessageActivity;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -152,7 +154,7 @@ public class BugleNotifications {
      * UPDATE_NONE, UPDATE_MESSAGES, UPDATE_ERRORS, or UPDATE_ALL
      */
     public static void update(final boolean silent, final int coverage) {
-        update(silent, null /* conversationId */, coverage);
+        update(silent, null /* conversationId */, coverage,null);
     }
 
     /**
@@ -165,7 +167,7 @@ public class BugleNotifications {
      * UPDATE_NONE, UPDATE_MESSAGES, UPDATE_ERRORS, or UPDATE_ALL
      */
     public static void update(final boolean silent, final String conversationId,
-            final int coverage) {
+                              final int coverage, NewMessageActivity.NewSmsListener listener) {
         if (LogUtil.isLoggable(TAG, LogUtil.VERBOSE)) {
             LogUtil.v(TAG, "Update: silent = " + silent
                     + " conversationId = " + conversationId
@@ -182,7 +184,7 @@ public class BugleNotifications {
             return;
         } else {
             if ((coverage & UPDATE_MESSAGES) != 0) {
-                createMessageNotification(silent, conversationId);
+                createMessageNotification(silent, conversationId,listener);
             }
         }
         if ((coverage & UPDATE_ERRORS) != 0) {
@@ -416,7 +418,7 @@ public class BugleNotifications {
         notifBuilder.setCategory(Notification.CATEGORY_MESSAGE);
         // TODO: Need to fix this for multi conversation notifications to rate limit dings.
         final String conversationId = state.mConversationIds.first();
-
+        Log.e("BugleNotifications","processAndSend :" +conversationId+"");
 
         final Uri ringtoneUri = RingtoneUtil.getNotificationRingtoneUri(state.getRingtoneUri());
         // If the notification's conversation is currently observable (focused or in the
@@ -593,7 +595,7 @@ public class BugleNotifications {
     }
 
     private static void createMessageNotification(final boolean silent,
-            final String conversationId) {
+                                                  final String conversationId, NewMessageActivity.NewSmsListener listener) {
         final NotificationState state = MessageNotificationState.getNotificationState();
         final boolean softSound = DataModel.get().isNewMessageObservable(conversationId);
         if (state == null) {
@@ -605,6 +607,7 @@ public class BugleNotifications {
             return;
         }
         processAndSend(state, silent, softSound);
+        if(listener!=null)listener.onShowReport();
 
         // The rest of the logic here is for supporting Android Wear devices, specifically for when
         // we are notifying about multiple conversations. In that case, the Inbox-style summary
@@ -764,6 +767,8 @@ public class BugleNotifications {
             }
         }
 
+
+
         fireOffNotification(notificationState, attachmentBitmap, avatarIcon, avatarHiRes);
     }
 
@@ -887,6 +892,8 @@ public class BugleNotifications {
         final Context context = Factory.get().getApplicationContext();
 
         final String conversationId = notificationState.mConversationIds.first();
+
+        Log.e("BugleNotifications","addWearableVoiceReplyAction :" +conversationId+"");
         final ConversationLineInfo convInfo =
                 multiMessageNotificationState.mConvList.mConvInfos.get(0);
         final String selfId = convInfo.mSelfParticipantId;

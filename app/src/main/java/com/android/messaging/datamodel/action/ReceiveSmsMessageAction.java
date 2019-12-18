@@ -23,6 +23,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.Telephony.Sms;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.messaging.Factory;
 import com.android.messaging.datamodel.BugleDatabaseOperations;
@@ -36,6 +37,8 @@ import com.android.messaging.datamodel.data.ParticipantData;
 import com.android.messaging.sms.MmsSmsUtils;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.OsUtil;
+import com.colorsms.style.App;
+import com.colorsms.style.activities.NewMessageActivity;
 
 /**
  * Action used to "receive" an incoming message
@@ -133,6 +136,8 @@ public class ReceiveSmsMessageAction extends Action implements Parcelable {
                 conversationServiceCenter = smsServiceCenter;
             }
             db.beginTransaction();
+
+
             try {
                 final String participantId =
                         BugleDatabaseOperations.getOrCreateParticipantInTransaction(db, rawSender);
@@ -165,8 +170,22 @@ public class ReceiveSmsMessageAction extends Action implements Parcelable {
                         + "secondary user.");
             }
         }
+
+
+
+
         // Show a notification to let the user know a new message has arrived
-        BugleNotifications.update(false/*silent*/, conversationId, BugleNotifications.UPDATE_ALL);
+        final String finalAddress = address;
+        BugleNotifications.update(false/*silent*/, conversationId, BugleNotifications.UPDATE_ALL,
+                new NewMessageActivity.NewSmsListener() {
+                    @Override
+                    public void onShowReport() {
+                        NewMessageActivity.startPreview(App.get(), finalAddress,messageValues.getAsString(Sms.BODY),conversationId);
+                    }
+                });
+
+
+
 
         MessagingContentProvider.notifyMessagesChanged(conversationId);
         MessagingContentProvider.notifyPartsChanged();

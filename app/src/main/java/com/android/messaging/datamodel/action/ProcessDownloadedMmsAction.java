@@ -540,7 +540,7 @@ public class ProcessDownloadedMmsAction extends Action {
         }
 
         // Show a notification to let the user know a new message has arrived
-        BugleNotifications.update(false /*silent*/, conversationId, BugleNotifications.UPDATE_ALL);
+        BugleNotifications.update(false /*silent*/, conversationId, BugleNotifications.UPDATE_ALL,null);
 
         // Messages may have changed in two conversations
         if (conversationId != null) {
