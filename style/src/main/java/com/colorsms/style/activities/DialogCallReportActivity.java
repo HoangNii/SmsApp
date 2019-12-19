@@ -25,6 +25,8 @@ import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
 import com.colorsms.style.App;
 import com.colorsms.style.R;
+import com.colorsms.style.ads.Callback;
+import com.colorsms.style.ads.MyAdmobController;
 import com.colorsms.style.callReport.CallReceiver;
 import com.colorsms.style.helper.Style;
 import com.github.kayvannj.permission_utils.Func;
@@ -56,15 +58,16 @@ public class DialogCallReportActivity extends AppCompatActivity {
 
         setup();
 
-//        MyAds.initBannerLock(findViewById(R.id.rootView));
+        MyAdmobController.initBannerReport(this);
 
 
     }
 
     private void loadAds(){
-//        if(!MyAds.isInterReportLoaded()){
-//            MyAds.initInterstitialAdsReport(this);
-//        }
+
+        if(!MyAdmobController.isInterLoaded()){
+            MyAdmobController.initInterstitialAds(this);
+        }
 
         final View loadView = findViewById(R.id.load_view);
         loadView.setBackgroundColor(Style.Home.getStyleColor());
@@ -76,8 +79,14 @@ public class DialogCallReportActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                loadView.setVisibility(View.GONE);
-                reportView.animate().alpha(1).setDuration(500).start();
+                MyAdmobController.showAdsFullNow(DialogCallReportActivity.this, new Callback() {
+                    @Override
+                    public void callBack(Object value, int where) {
+                        loadView.setVisibility(View.GONE);
+                        reportView.animate().alpha(1).setDuration(500).start();
+                    }
+                });
+
             }
         },2000);
     }

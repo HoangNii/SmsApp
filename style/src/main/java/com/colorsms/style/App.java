@@ -1,6 +1,9 @@
 package com.colorsms.style;
 
 import android.app.Application;
+import android.util.Log;
+import com.flurry.android.FlurryAgent;
+import com.flurry.android.FlurryConfig;
 
 public abstract class App extends Application {
 
@@ -14,9 +17,16 @@ public abstract class App extends Application {
         App.app = app;
     }
 
-
-
     public abstract void restart();
 
+
     public abstract void start(String messId);
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        new FlurryAgent.Builder().build(this, "TFXXRV4PWKQT4KRMG8S2");
+    }
+
+    public abstract void startMain();
 }

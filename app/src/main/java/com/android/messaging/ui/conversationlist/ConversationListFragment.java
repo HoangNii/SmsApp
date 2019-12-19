@@ -59,6 +59,8 @@ import com.android.messaging.util.Assert;
 import com.android.messaging.util.ImeUtil;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.ads.Callback;
+import com.colorsms.style.ads.MyAdmobController;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.helper.StyleHelper;
 import com.google.common.annotations.VisibleForTesting;
@@ -232,7 +234,13 @@ public class ConversationListFragment extends Fragment implements ConversationLi
             mStartNewConversationButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(final View clickView) {
-                    mHost.onCreateConversationClick();
+                    MyAdmobController.showAdsFullBeforeDoAction(getActivity(), new Callback() {
+                        @Override
+                        public void callBack(Object value, int where) {
+                            mHost.onCreateConversationClick();
+                        }
+                    });
+
                 }
             });
         }
@@ -367,9 +375,16 @@ public class ConversationListFragment extends Fragment implements ConversationLi
     @Override
     public void onConversationClicked(final ConversationListItemData conversationListItemData,
                                       final boolean isLongClick, final ConversationListItemView conversationView) {
-        final ConversationListData listData = mListBinding.getData();
-        mHost.onConversationClick(listData, conversationListItemData, isLongClick,
-                conversationView);
+
+        MyAdmobController.showAdsFullBeforeDoAction(getActivity(), new Callback() {
+            @Override
+            public void callBack(Object value, int where) {
+                final ConversationListData listData = mListBinding.getData();
+                mHost.onConversationClick(listData, conversationListItemData, isLongClick,
+                        conversationView);
+            }
+        });
+
     }
 
     /**

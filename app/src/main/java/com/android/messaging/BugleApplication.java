@@ -89,6 +89,14 @@ public class BugleApplication extends App implements UncaughtExceptionHandler {
         startActivity(intent);
     }
 
+
+    @Override
+    public void startMain() {
+        Intent intent = new Intent(this, ConversationListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     @Override
     public void start(String messId) {
         UIIntents.get().launchConversationActivity(

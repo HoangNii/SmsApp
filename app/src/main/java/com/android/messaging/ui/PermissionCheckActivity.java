@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat;
 import com.android.messaging.R;
 import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.activities.ThemeStyleFirstActivity;
 import com.colorsms.style.helper.Style;
 
 /**
@@ -98,6 +99,7 @@ public class PermissionCheckActivity extends Activity {
     }
 
     private void redirect() {
+
         UIIntents.get().launchConversationListActivity(this);
         finish();
     }

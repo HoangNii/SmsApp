@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.colorsms.style.App;
 import com.colorsms.style.R;
+import com.colorsms.style.ads.MyAdmobController;
 import com.colorsms.style.helper.Style;
 import java.util.Calendar;
 
@@ -91,6 +92,7 @@ public class NewMessageActivity extends AppCompatActivity {
                 finish();
             }
         });
+        MyAdmobController.initBannerReport(dialog);
         dialog.show();
     }
 

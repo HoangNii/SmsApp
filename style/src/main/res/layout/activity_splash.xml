@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/main"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:src="@drawable/mn_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+    <TextView
+        android:textColor="#fff"
+        android:layout_margin="40dp"
+        android:fontFamily="@font/dancing"
+        android:textSize="30sp"
+        android:text="COLOR SMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

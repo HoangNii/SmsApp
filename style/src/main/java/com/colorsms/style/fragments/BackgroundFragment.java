@@ -15,6 +15,8 @@ import com.colorsms.style.R;
 import com.colorsms.style.activities.BackgroundPreviewActivity;
 import com.colorsms.style.activities.FixPickImage;
 import com.colorsms.style.adapters.BackgroundAdapter;
+import com.colorsms.style.ads.Callback;
+import com.colorsms.style.ads.MyAdmobController;
 import com.github.kayvannj.permission_utils.Func;
 import com.github.kayvannj.permission_utils.PermissionUtil;
 
@@ -38,7 +40,7 @@ public class BackgroundFragment extends BaseFragment {
         rcvBackground.setLayoutManager(new GridLayoutManager(activity,2));
         rcvBackground.setAdapter(new BackgroundAdapter(activity) {
             @Override
-            public void OnItemBackgroundClick(int position) {
+            public void OnItemBackgroundClick(final int position) {
                 if(position==0){
                     mRequestObject = PermissionUtil.with(BackgroundFragment.this)
                             .request(Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE).onAllGranted(
@@ -53,7 +55,13 @@ public class BackgroundFragment extends BaseFragment {
                                 }
                             }).ask(12);
                 }else {
-                    BackgroundPreviewActivity.startPreview(activity,position,null);
+                    MyAdmobController.showAdsFullBeforeDoAction(activity, new Callback() {
+                        @Override
+                        public void callBack(Object value, int where) {
+                            BackgroundPreviewActivity.startPreview(activity,position,null);
+                        }
+                    });
+
                 }
 
             }

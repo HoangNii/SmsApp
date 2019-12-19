@@ -93,6 +93,7 @@ public class BackgroundPreviewActivity extends AppCompatActivity {
 
         setupPager();
 
+
     }
 
 
@@ -149,6 +150,8 @@ public class BackgroundPreviewActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void initTabOne() {

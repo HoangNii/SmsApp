@@ -63,7 +63,7 @@ public abstract class BaseFragment extends Fragment {
                 .beginTransaction()
                 .addToBackStack(tag)
                 .setCustomAnimations(R.anim.anim_in,R.anim.anim_out,R.anim.anim_in,R.anim.anim_out)
-                .add(R.id.root, fragment, tag)
+                .add(R.id.main, fragment, tag)
                 .commitAllowingStateLoss();
 
     }

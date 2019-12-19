@@ -154,6 +154,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@id/img"
+                    android:tint="@color/colorPrimary"
+                    android:padding="12dp"
+                    android:src="@drawable/mn_call_report"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_toEndOf="@+id/img"
+                    android:textColor="#333"
+                    android:gravity="center_vertical"
+                    android:text="Call Report"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:onClick="OnItemNavigationDrawerClick"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?selectableItemBackground"
+                    android:id="@+id/nav_call_report"
+                    android:paddingEnd="10dp"
+                    android:gravity="center_vertical|end"
+                    android:text="ON"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </RelativeLayout>
             <View
                 android:id="@+id/root"
                 android:layout_width="match_parent"

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.colorsms.style.R;
 import com.colorsms.style.activities.ThemeStylePreviewActivity;
 import com.colorsms.style.adapters.ThemeStyleAdapter;
+import com.colorsms.style.ads.Callback;
+import com.colorsms.style.ads.MyAdmobController;
 import com.colorsms.style.helper.Style;
 
 public class ThemeStyleFragment extends BaseFragment {
@@ -35,8 +37,14 @@ public class ThemeStyleFragment extends BaseFragment {
         rcvTheme.setLayoutManager(new GridLayoutManager(activity,2));
         rcvTheme.setAdapter(adapter = new ThemeStyleAdapter(activity, Style.ColorStyle.getStyleModels()) {
             @Override
-            public void OnItemStyleClick(int position) {
-                ThemeStylePreviewActivity.startPreview(activity,position);
+            public void OnItemStyleClick(final int position) {
+                MyAdmobController.showAdsFullBeforeDoAction(activity, new Callback() {
+                    @Override
+                    public void callBack(Object value, int where) {
+                        ThemeStylePreviewActivity.startPreview(activity,position);
+                    }
+                });
+
             }
         });
     }

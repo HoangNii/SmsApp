@@ -27,7 +27,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
-
 import com.android.messaging.R;
 import com.android.messaging.datamodel.action.DeleteConversationAction;
 import com.android.messaging.datamodel.action.UpdateConversationArchiveStatusAction;
@@ -42,23 +41,16 @@ import com.android.messaging.ui.UIIntents;
 import com.android.messaging.ui.contact.AddContactsConfirmationDialog;
 import com.android.messaging.ui.conversationlist.ConversationListFragment.ConversationListFragmentHost;
 import com.android.messaging.ui.conversationlist.MultiSelectActionModeCallback.SelectedConversation;
-import com.android.messaging.util.BugleGservices;
-import com.android.messaging.util.BugleGservicesKeys;
 import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.Trace;
 import com.android.messaging.util.UiUtils;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import javax.annotation.Nullable;
 
-/**
- * Base class for many Conversation List activities. This will handle the common actions of multi
- * select and common launching of intents.
- */
+
 public abstract class AbstractConversationListActivity  extends BugleActionBarActivity
     implements ConversationListFragmentHost, MultiSelectActionModeCallback.Listener {
 

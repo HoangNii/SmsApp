@@ -22,6 +22,7 @@
     android:fitsSystemWindows="true"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:layout_above="@+id/ad"
         android:fitsSystemWindows="true"
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -57,5 +58,6 @@
             </FrameLayout>
         </com.colorsms.style.views.DrawerLayout>
     </RelativeLayout>
+    <include layout="@layout/ads_footer"/>
 
 </RelativeLayout>

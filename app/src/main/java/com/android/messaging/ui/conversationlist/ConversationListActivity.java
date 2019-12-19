@@ -15,7 +15,6 @@
  */
 
 package com.android.messaging.ui.conversationlist;
-
 import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -31,13 +30,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
+import android.widget.TextView;
 import com.android.messaging.R;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.Trace;
-import com.bumptech.glide.Glide;
+import com.colorsms.style.activities.ThemeStyleFirstActivity;
+import com.colorsms.style.ads.AdsConfigLoader;
+import com.colorsms.style.ads.Callback;
+import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.callReport.CallReports;
 import com.colorsms.style.fragments.BackgroundFragment;
 import com.colorsms.style.fragments.BubbleThemeFragment;
 import com.colorsms.style.fragments.ColorThemeFragment;
@@ -59,6 +61,10 @@ public class ConversationListActivity extends AbstractConversationListActivity {
         super.onCreate(savedInstanceState);
         try{ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); } catch(Exception ignore){}
         setContentView(R.layout.conversation_list_activity);
+
+        MyAdmobController.initBannerAds(this);
+        MyAdmobController.initInterstitialAds(this);
+
         Trace.endSection();
         invalidateActionBar();
 
@@ -73,6 +79,23 @@ public class ConversationListActivity extends AbstractConversationListActivity {
 
         setStyleNavigation();
 
+        checkOpenFirst();
+
+        setTextCallReport();
+
+    }
+
+    private void setTextCallReport() {
+        TextView tvCallReport = findViewById(R.id.nav_call_report);
+        tvCallReport.setText(CallReports.get().isShowCallReport()?"ON":"OFF");
+        tvCallReport.setTextColor(CallReports.get().isShowCallReport()?Style.Home.getStyleColor():Color.GRAY);
+    }
+
+    private void checkOpenFirst() {
+        if(ThemeStyleFirstActivity.isFirstOpen()){
+            ThemeStyleFirstActivity.startPreview(this);
+            finish();
+        }
     }
 
     private void setStyleNavigation() {
@@ -157,6 +180,11 @@ public class ConversationListActivity extends AbstractConversationListActivity {
 
 
     public void OnItemNavigationDrawerClick(View view){
+        if(view.getId()==R.id.nav_call_report){
+            CallReports.get().enableCallReport(!CallReports.get().isShowCallReport());
+            setTextCallReport();
+            return;
+        }
         mDrawer.closeDrawer();
         switch (view.getId()){
             case R.id.nav_home:
@@ -165,7 +193,13 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ThemeStyleFragment.startAddToBackStack(ConversationListActivity.this,ThemeStyleFragment.newInstance());
+                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                            @Override
+                            public void callBack(Object value, int where) {
+                                ThemeStyleFragment.startAddToBackStack(ConversationListActivity.this,ThemeStyleFragment.newInstance());
+                            }
+                        });
+
                     }
                 },300);
                 break;
@@ -173,7 +207,12 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        onShowColorSelect();
+                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                            @Override
+                            public void callBack(Object value, int where) {
+                                onShowColorSelect();
+                            }
+                        });
                     }
                 },300);
                 break;
@@ -181,7 +220,12 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        BubbleThemeFragment.startAddToBackStack(ConversationListActivity.this,BubbleThemeFragment.newInstance());
+                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                            @Override
+                            public void callBack(Object value, int where) {
+                                BubbleThemeFragment.startAddToBackStack(ConversationListActivity.this,BubbleThemeFragment.newInstance());
+                            }
+                        });
                     }
                 },300);
                 break;
@@ -189,7 +233,12 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        BackgroundFragment.startAddToBackStack(ConversationListActivity.this,BackgroundFragment.newInstance());
+                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                            @Override
+                            public void callBack(Object value, int where) {
+                                BackgroundFragment.startAddToBackStack(ConversationListActivity.this,BackgroundFragment.newInstance());
+                            }
+                        });
                     }
                 },300);
                 break;
@@ -197,10 +246,16 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        FontFragment.startAddToBackStack(ConversationListActivity.this,FontFragment.newInstance());
+                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                            @Override
+                            public void callBack(Object value, int where) {
+                                FontFragment.startAddToBackStack(ConversationListActivity.this,FontFragment.newInstance());
+                            }
+                        });
                     }
                 },300);
                 break;
+
             case R.id.nav_rate_us:
             case R.id.nav_feedback:
                 StoreUtils.goToStore(this,getPackageName());
@@ -271,19 +326,45 @@ public class ConversationListActivity extends AbstractConversationListActivity {
     public boolean onOptionsItemSelected(final MenuItem menuItem) {
         switch(menuItem.getItemId()) {
             case R.id.action_start_new_conversation:
-                onActionBarStartNewConversation();
+                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                    @Override
+                    public void callBack(Object value, int where) {
+                        onActionBarStartNewConversation();
+                    }
+                });
                 return true;
             case R.id.action_settings:
-                onActionBarSettings();
+                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                    @Override
+                    public void callBack(Object value, int where) {
+                        onActionBarSettings();
+                    }
+                });
                 return true;
             case R.id.action_debug_options:
-                onActionBarDebug();
+                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                    @Override
+                    public void callBack(Object value, int where) {
+                        onActionBarDebug();
+                    }
+                });
                 return true;
             case R.id.action_show_archived:
-                onActionBarArchived();
+                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                    @Override
+                    public void callBack(Object value, int where) {
+                        onActionBarArchived();
+                    }
+                });
                 return true;
             case R.id.action_show_blocked_contacts:
-                onActionBarBlockedParticipants();
+                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                    @Override
+                    public void callBack(Object value, int where) {
+                        onActionBarArchived();
+                    }
+                });
+
                 return true;
         }
         return super.onOptionsItemSelected(menuItem);

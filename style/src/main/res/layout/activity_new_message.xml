@@ -1,88 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_gravity="center"
     android:layout_height="wrap_content">
-    <RelativeLayout
-        android:padding="10dp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:gravity="center"
-            android:text="New message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_icon"
-            android:layout_below="@+id/tv_title"
-            android:padding="8dp"
-            android:src="@drawable/ic_sms_report"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-        <TextView
-            android:layout_marginStart="5dp"
-            android:id="@+id/tv_author"
-            android:layout_toEndOf="@+id/img_icon"
-            android:layout_below="@+id/tv_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:gravity="center"
-            android:text="Harper"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/tv_title"
-            android:gravity="center"
-            android:text="08:30"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <TextView
-            android:layout_marginStart="5dp"
-            android:layout_toEndOf="@+id/img_icon"
-            android:id="@+id/tv_address"
-            android:layout_below="@+id/tv_author"
-            android:gravity="center"
-            android:text="0968303424"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
+        <RelativeLayout
             android:padding="10dp"
-            android:ellipsize="end"
-            android:maxLines="6"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:id="@+id/tv_body"
-            android:layout_below="@+id/tv_address"
-            android:text=""
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/bt_cancel"
-            android:layout_marginTop="20dp"
-            android:layout_toStartOf="@+id/bt_reply"
-            android:textColor="@color/colorPrimary"
-            android:gravity="center"
-            android:text="Cancel"
-            android:layout_below="@+id/tv_body"
-            android:layout_width="100dp"
-            android:layout_height="40dp" />
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/bt_reply"
-            android:textColor="#fff"
-            android:background="@drawable/bg_save"
-            android:gravity="center"
-            android:text="Reply"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/tv_body"
-            android:layout_width="100dp"
-            android:layout_height="40dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:gravity="center"
+                android:text="New message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_icon"
+                android:layout_below="@+id/tv_title"
+                android:padding="8dp"
+                android:src="@drawable/ic_sms_report"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <TextView
+                android:layout_marginStart="5dp"
+                android:id="@+id/tv_author"
+                android:layout_toEndOf="@+id/img_icon"
+                android:layout_below="@+id/tv_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:gravity="center"
+                android:text="Harper"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/tv_title"
+                android:gravity="center"
+                android:text="08:30"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/img_icon"
+                android:id="@+id/tv_address"
+                android:layout_below="@+id/tv_author"
+                android:gravity="center"
+                android:text="0968303424"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:padding="10dp"
+                android:ellipsize="end"
+                android:maxLines="6"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:id="@+id/tv_body"
+                android:layout_below="@+id/tv_address"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/bt_cancel"
+                android:layout_marginTop="20dp"
+                android:layout_toStartOf="@+id/bt_reply"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center"
+                android:text="Cancel"
+                android:layout_below="@+id/tv_body"
+                android:layout_width="100dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/bt_reply"
+                android:textColor="#fff"
+                android:background="@drawable/bg_save"
+                android:gravity="center"
+                android:text="Reply"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/tv_body"
+                android:layout_width="100dp"
+                android:layout_height="40dp" />
+        </RelativeLayout>
+        <include layout="@layout/ads_footer"/>
+    </LinearLayout>
 
-    </RelativeLayout>
+
 </androidx.cardview.widget.CardView>
