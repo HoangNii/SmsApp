@@ -20,11 +20,16 @@ import android.content.Context;
 import android.database.Cursor;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.android.messaging.R;
 import com.android.messaging.ui.CursorRecyclerAdapter;
 import com.android.messaging.ui.conversationlist.ConversationListItemView.HostInterface;
+import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.helper.Style;
 
 /**
  * Provides an interface to expose Conversation List Cursor data to a UI widget like a ListView.
@@ -34,6 +39,7 @@ public class ConversationListAdapter
 
     private final ConversationListItemView.HostInterface mClivHostInterface;
     private boolean mArchiveMode;
+    private View view;
 
     public ConversationListAdapter(final Context context, final Cursor cursor,
             final ConversationListItemView.HostInterface clivHostInterface,boolean archiveMode) {
@@ -41,7 +47,10 @@ public class ConversationListAdapter
         mClivHostInterface = clivHostInterface;
         setHasStableIds(true);
         mArchiveMode = archiveMode;
+        view = LayoutInflater.from(context).inflate(R.layout.native_ads_list,null);
+        MyAdmobController.initNativeView(view);
     }
+
 
     /**
      * @see com.android.messaging.ui.CursorRecyclerAdapter#bindViewHolder(
@@ -53,6 +62,20 @@ public class ConversationListAdapter
             final Cursor cursor) {
         final ConversationListItemView conversationListItemView = holder.mView;
         conversationListItemView.bind(cursor, mClivHostInterface);
+        if(cursor.getPosition()==0){
+            FrameLayout ad = conversationListItemView.findViewById(R.id.native_ads);
+            try {
+                ad.removeAllViews();
+                ad.addView(view);
+                ((TextView)view.findViewById(R.id.ad_headline)).setTextColor(Style.Background.getHomeTextColor());
+                ((TextView)view.findViewById(R.id.ad_body)).setTextColor(Style.Background.getHomeTextColor());
+            }catch (Exception e){}
+        }else {
+            FrameLayout ad = conversationListItemView.findViewById(R.id.native_ads);
+            try {
+                ad.removeAllViews();
+            }catch (Exception e){}
+        }
     }
 
     @Override

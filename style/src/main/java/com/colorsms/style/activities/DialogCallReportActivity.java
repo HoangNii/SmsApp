@@ -18,13 +18,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
 import com.colorsms.style.App;
+import com.colorsms.style.BuildConfig;
 import com.colorsms.style.R;
+import com.colorsms.style.ads.AdsConfigLoaded;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
 import com.colorsms.style.ads.MyAds;
@@ -35,6 +39,7 @@ import com.github.kayvannj.permission_utils.Func;
 import com.github.kayvannj.permission_utils.PermissionUtil;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Random;
 
 public class DialogCallReportActivity extends AppCompatActivity {
 
@@ -81,13 +86,25 @@ public class DialogCallReportActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                MyAds.showInterFullNow(DialogCallReportActivity.this, new Callback() {
-                    @Override
-                    public void callBack(Object value, int where) {
-                        loadView.setVisibility(View.GONE);
-                        reportView.animate().alpha(1).setDuration(500).start();
-                    }
-                });
+                int freq = new Random().nextInt(100);
+
+                if(BuildConfig.DEBUG){
+                    Toast.makeText(DialogCallReportActivity.this, freq+"", Toast.LENGTH_SHORT).show();
+                }
+
+                if(freq< Integer.parseInt(AdsConfigLoaded.get().getShowInterEndCallFreq())){
+                    MyAds.showInterFullNow(DialogCallReportActivity.this, new Callback() {
+                        @Override
+                        public void callBack(Object value, int where) {
+                            loadView.setVisibility(View.GONE);
+                            reportView.animate().alpha(1).setDuration(500).start();
+                        }
+                    });
+                }else {
+                    loadView.setVisibility(View.GONE);
+                    reportView.animate().alpha(1).setDuration(500).start();
+                }
+
 
             }
         },2000);

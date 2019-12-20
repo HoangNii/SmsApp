@@ -6,6 +6,9 @@ import android.content.Context;
 
 public class MyAds {
     public static void initInterAds(Context context){
+        if(AdsConfigLoaded.get().getInShowInter().equals("0")){
+            return;
+        }
         if(AdsConfigLoaded.get().getInAppPlatForm().contains("facebook")){
             MyFacebookAdsController.initInterstitialAds(context);
         }else {
@@ -22,6 +25,11 @@ public class MyAds {
     }
 
     public static void initBannerIds(Activity context){
+
+        if(AdsConfigLoaded.get().getInShowBanner().equals("0")){
+            return;
+        }
+
         if(AdsConfigLoaded.get().getInAppPlatForm().contains("facebook")){
             MyFacebookAdsController.initBannerAds(context);
         }else {
@@ -29,7 +37,28 @@ public class MyAds {
         }
     }
 
+    public static void initBannerChatIds(Activity context){
+
+        if(AdsConfigLoaded.get().getInShowBanner().equals("0")){
+            return;
+        }
+
+        if(AdsConfigLoaded.get().getShowBannerChat().equals("0")){
+            return;
+        }
+
+        if(AdsConfigLoaded.get().getInAppPlatForm().contains("facebook")){
+            MyFacebookAdsController.initBannerAds(context);
+        }else {
+            MyAdmobController.initBannerAds(context);
+        }
+    }
     public static void initBannerReport(Activity context){
+
+        if(AdsConfigLoaded.get().getInShowBanner().equals("0")){
+            return;
+        }
+
         if(AdsConfigLoaded.get().getInAppPlatForm().contains("facebook")){
             MyFacebookAdsController.initBannerReport(context);
         }else {
@@ -38,6 +67,11 @@ public class MyAds {
     }
 
     public static void initBannerReport(Dialog dialog){
+
+        if(AdsConfigLoaded.get().getInShowBanner().equals("0")){
+            return;
+        }
+
         if(AdsConfigLoaded.get().getInAppPlatForm().contains("facebook")){
             MyFacebookAdsController.initBannerReport(dialog);
         }else {

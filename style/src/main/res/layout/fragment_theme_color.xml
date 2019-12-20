@@ -76,7 +76,7 @@
                     android:id="@+id/bt_custom_color"
                     android:layout_gravity="end"
                     android:textColor="@color/colorPrimary"
-                    android:text="Customs"
+                    android:text="Customize"
                     android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

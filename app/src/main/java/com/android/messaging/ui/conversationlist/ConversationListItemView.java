@@ -35,6 +35,7 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.ex.photo.util.Util;
@@ -71,7 +72,7 @@ import java.util.List;
 /**
  * The view for a single entry in a conversation list.
  */
-public class ConversationListItemView extends FrameLayout implements OnClickListener,
+public class ConversationListItemView extends LinearLayout implements OnClickListener,
         OnLongClickListener, OnLayoutChangeListener {
     static final int UNREAD_SNIPPET_LINE_COUNT = 3;
     static final int NO_UNREAD_SNIPPET_LINE_COUNT = 1;

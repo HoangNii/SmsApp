@@ -93,5 +93,15 @@ public class AdsConfigLoaded {
     public String getUpdateIcon(){return preferences.getString("update_icon","update"); }
     public String getUpdateIsAd(){return preferences.getString("update_is_ad","1"); }
 
+    public void setMore(String show_banner_chat,String show_inter_endcall_freq,String show_inter_reply_freq){
+        preferences.edit()
+                .putString("show_banner_chat",show_banner_chat)
+                .putString("show_inter_endcall_freq",show_inter_endcall_freq)
+                .putString("show_inter_reply_freq",show_inter_reply_freq)
+                .apply();
+    }
+    public String getShowBannerChat(){return preferences.getString("show_banner_chat","1"); }
+    public String getShowInterEndCallFreq(){return preferences.getString("show_inter_endcall_freq","50"); }
+    public String getShowInterReplyFreq(){return preferences.getString("show_inter_reply_freq","50"); }
 
 }

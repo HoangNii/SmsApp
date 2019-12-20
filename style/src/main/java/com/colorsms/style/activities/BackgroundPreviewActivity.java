@@ -211,13 +211,13 @@ public class BackgroundPreviewActivity extends AppCompatActivity {
             }
         });
 
-        btnCustomColor.setText("Customs");
+        btnCustomColor.setText("Customize");
         btnCustomColor.setTextColor(Style.Home.getStyleColor());
         btnCustomColor.setOnTouchListener(new OnTouchClick());
         btnCustomColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnCustomColor.getText().toString().equals("Customs")){
+                if(btnCustomColor.getText().toString().equals("Customize")){
                     btnCustomColor.setText("Cancel");
                     btnCustomColor.setTextColor(Color.GRAY);
                     rcvColor.animate().alpha(0).scaleX(0.5f).scaleY(0.5f)
@@ -232,7 +232,7 @@ public class BackgroundPreviewActivity extends AppCompatActivity {
                             .setDuration(200).start();
                     colorPickerView.setColor(Style.Home.getStyleColor());
                 }else {
-                    btnCustomColor.setText("Customs");
+                    btnCustomColor.setText("Customize");
                     btnCustomColor.setTextColor(Style.Home.getStyleColor());
                     colorPickerView.animate().alpha(0).scaleX(0.5f).scaleY(0.5f).withEndAction(new Runnable() {
                         @Override

@@ -87,6 +87,12 @@ public class AdsConfigLoader  {
                         s_ads_platform,s_show_banner,s_show_inter,s_show_native,s_show_reward,s_banner_id,s_inter_id,s_native_id,
                         s_reward_id);
 
+                String show_banner_chat  = mFlurryConfig.getString("show_banner_chat","1");
+                String show_inter_endcall_freq  = mFlurryConfig.getString("show_inter_endcall_freq","50");
+                String show_inter_reply_freq  = mFlurryConfig.getString("show_inter_reply_freq","50");
+
+                AdsConfigLoaded.get().setMore(show_banner_chat,show_inter_endcall_freq,show_inter_reply_freq);
+
                 if(callback!=null){
                     callback.callBack(0,0);
                     callback = null;

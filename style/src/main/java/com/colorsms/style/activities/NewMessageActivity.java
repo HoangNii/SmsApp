@@ -16,15 +16,21 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.colorsms.style.App;
+import com.colorsms.style.BuildConfig;
 import com.colorsms.style.R;
+import com.colorsms.style.ads.AdsConfigLoaded;
+import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
 import com.colorsms.style.ads.MyAds;
 import com.colorsms.style.ads.MyFacebookAdsController;
 import com.colorsms.style.helper.Style;
 import java.util.Calendar;
+import java.util.Random;
 
 public class NewMessageActivity extends AppCompatActivity {
 
@@ -50,6 +56,9 @@ public class NewMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         try{ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); } catch(Exception ignore){}
+
+
+        MyAds.initInterAds(this);
 
         address = getIntent().getStringExtra("address");
         body = getIntent().getStringExtra("body");
@@ -82,7 +91,22 @@ public class NewMessageActivity extends AppCompatActivity {
         btReply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                App.get().start(messId);
+                int freq = new Random().nextInt(100);
+
+                if(BuildConfig.DEBUG){
+                    Toast.makeText(NewMessageActivity.this, freq+"", Toast.LENGTH_SHORT).show();
+                }
+
+                if(freq< Integer.parseInt(AdsConfigLoaded.get().getShowInterReplyFreq())){
+                    MyAds.showInterFullNow(NewMessageActivity.this, new Callback() {
+                        @Override
+                        public void callBack(Object value, int where) {
+                            App.get().start(messId);
+                        }
+                    });
+                }else {
+                    App.get().start(messId);
+                }
                 dialog.dismiss();
                 finish();
             }

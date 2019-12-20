@@ -31,11 +31,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.messaging.R;
 import com.android.messaging.ui.UIIntents;
 import com.android.messaging.util.DebugUtils;
 import com.android.messaging.util.Trace;
 import com.colorsms.style.activities.ThemeStyleFirstActivity;
+import com.colorsms.style.ads.AdsConfigLoaded;
 import com.colorsms.style.ads.AdsConfigLoader;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
@@ -50,6 +53,7 @@ import com.colorsms.style.fragments.ThemeStyleFragment;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.helper.StyleHelper;
 import com.colorsms.style.utils.StoreUtils;
+import com.colorsms.style.views.DialogUpdate;
 import com.colorsms.style.views.DrawerLayout;
 
 public class ConversationListActivity extends AbstractConversationListActivity {
@@ -86,6 +90,9 @@ public class ConversationListActivity extends AbstractConversationListActivity {
 
         setTextCallReport();
 
+        if(!AdsConfigLoaded.get().getUpdateMode().equals("0")){
+            new DialogUpdate(this).show();
+        }
     }
 
     private void setTextCallReport() {

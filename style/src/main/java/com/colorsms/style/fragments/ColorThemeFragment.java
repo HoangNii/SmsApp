@@ -61,7 +61,7 @@ public class ColorThemeFragment extends BaseFragment{
                 Style.Home.setStyleColor(color);
                 notifyDataSetChanged();
                 updateToolbar();
-                if(btnCustom.getText().toString().equals("Customs")){
+                if(btnCustom.getText().toString().equals("Customize")){
                     btnCustom.setTextColor(Style.Home.getStyleColor());
                 }
                 isUpdate = true;
@@ -88,13 +88,13 @@ public class ColorThemeFragment extends BaseFragment{
         rcvColor.setAdapter(colorPreviewAdapter);
 
 
-        btnCustom.setText("Customs");
+        btnCustom.setText("Customize");
         btnCustom.setTextColor(Style.Home.getStyleColor());
         btnCustom.setOnTouchListener(new OnTouchClick());
         btnCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnCustom.getText().toString().equals("Customs")){
+                if(btnCustom.getText().toString().equals("Customize")){
                     btnCustom.setText("Cancel");
                     btnCustom.setTextColor(Color.GRAY);
                     rcvColor.animate().alpha(0).scaleX(0.5f).scaleY(0.5f)
@@ -109,7 +109,7 @@ public class ColorThemeFragment extends BaseFragment{
                             .setDuration(200).start();
                     colorPickerView.setColor(Style.Home.getStyleColor());
                 }else {
-                    btnCustom.setText("Customs");
+                    btnCustom.setText("Customize");
                     btnCustom.setTextColor(Style.Home.getStyleColor());
                     colorPickerView.animate().alpha(0).scaleX(0.5f).scaleY(0.5f).withEndAction(new Runnable() {
                         @Override

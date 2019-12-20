@@ -7,13 +7,21 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.colorsms.style.R;
+import com.colorsms.style.helper.Style;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.formats.NativeAd;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 
 public class MyAdmobController {
 
@@ -292,6 +300,61 @@ public class MyAdmobController {
             }
         });
     }
+
+    public static void initNativeView(final View view){
+        AdLoader adLoader;
+        final UnifiedNativeAdView adView = view.findViewById(R.id.ad_view);
+        AdLoader.Builder builder = new AdLoader.Builder(view.getContext(),AdsConfig.getNativeId());
+        adLoader = builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+            @Override
+            public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                //            adView.setMediaView(adView.findViewById(R.id.ad_media));
+                adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
+                adView.setBodyView(adView.findViewById(R.id.ad_body));
+                adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+                adView.setIconView(adView.findViewById(R.id.ad_icon));
+                ((TextView) adView.getHeadlineView()).setText(unifiedNativeAd.getHeadline());
+                ((TextView) adView.getHeadlineView()).setTextColor(Style.Background.getHomeTextColor());
+                ((TextView) adView.getBodyView()).setText(unifiedNativeAd.getBody());
+                ((TextView) adView.getBodyView()).setTextColor(Style.Background.getHomeTextColor());
+                ((TextView) adView.getCallToActionView()).setText(unifiedNativeAd.getCallToAction());
+                ((TextView) adView.getCallToActionView()).setTextColor(Style.Home.getStyleColor());
+
+                NativeAd.Image icon = unifiedNativeAd.getIcon();
+
+                if (icon == null) {
+                    adView.getIconView().setVisibility(View.INVISIBLE);
+                } else {
+                    ((ImageView) adView.getIconView()).setImageDrawable(icon.getDrawable());
+                    adView.getIconView().setVisibility(View.VISIBLE);
+                }
+
+                // Assign native ad object to the native view.
+                adView.setNativeAd(unifiedNativeAd);
+            }
+        }).withAdListener(new AdListener(){
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                view.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+                view.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                view.setVisibility(View.VISIBLE);
+            }
+        }).build();
+
+        adLoader.loadAd(getAdRequest());
+    }
+
     private static Handler handler = new Handler();
     private  static Runnable runnable = new Runnable() {
         @Override

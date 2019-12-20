@@ -49,6 +49,7 @@ import com.android.messaging.util.ContentType;
 import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.OsUtil;
 import com.android.messaging.util.UiUtils;
+import com.colorsms.style.ads.MyAds;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.helper.StyleHelper;
 
@@ -137,6 +138,9 @@ public class ConversationActivity extends BugleActionBarActivity
                 UIIntents.get().launchFullScreenVideoViewer(this, Uri.parse(extraToDisplay));
             }
         }
+
+        MyAds.initBannerChatIds(this);
+
     }
 
     @Override

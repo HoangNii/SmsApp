@@ -39,14 +39,14 @@ public class Style {
                     R.drawable.t0chat,Color.WHITE
             ));
             styleModels.add(new StyleModel(
-                    1,"Theme 1",R.drawable.t1_background,Color.parseColor("#F08B9F"),R.drawable.t1_avatar,
+                    1,"Spring Flowers",R.drawable.t1_background,Color.parseColor("#F08B9F"),R.drawable.t1_avatar,
                     Gravity.BOTTOM,new float[]{14,13,12,14},Color.WHITE,
                     Color.parseColor("#E22348"),Color.parseColor("#222222"),
                     R.drawable.t1_bb_inbox,Color.TRANSPARENT,Color.WHITE,
                     R.drawable.t1_bb_send,Color.TRANSPARENT,Color.WHITE,R.drawable.t1chat,Color.BLACK
             ));
             styleModels.add(new StyleModel(
-                    2,"Theme 2",R.drawable.t2_background,Color.parseColor("#D13D5A"),R.drawable.t2_avatar,
+                    2,"Brick Wall",R.drawable.t2_background,Color.parseColor("#D13D5A"),R.drawable.t2_avatar,
                     Gravity.TOP,new float[]{12,11,11,11},Color.WHITE,
                     Color.parseColor("#D13D5A"),Color.WHITE,
                     R.drawable.t2_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -54,7 +54,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    3,"Theme 3",R.drawable.t3_background,Color.parseColor("#CCAD05"),R.drawable.t3_avatar,
+                    3,"Magical Neon",R.drawable.t3_background,Color.parseColor("#CCAD05"),R.drawable.t3_avatar,
                     Gravity.TOP,new float[]{4,4,4,4},Color.WHITE,
                     Color.parseColor("#CCAD05"),Color.WHITE,
                     R.drawable.t3_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -62,7 +62,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    4,"Theme 4",R.drawable.t4_background,Color.parseColor("#E9741A"),R.drawable.t4_avatar,
+                    4,"Summer Time",R.drawable.t4_background,Color.parseColor("#E9741A"),R.drawable.t4_avatar,
                     Gravity.CENTER_VERTICAL,new float[]{8,10,10,8},Color.WHITE,
                     Color.parseColor("#E9741A"),Color.BLACK,
                     R.drawable.t4_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -70,7 +70,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    5,"Theme 5",R.drawable.t5_background,Color.parseColor("#FFD600"),R.drawable.t5_avatar,
+                    5,"Summer Rain",R.drawable.t5_background,Color.parseColor("#FFD600"),R.drawable.t5_avatar,
                     Gravity.CENTER_VERTICAL,new float[]{13,0,13,13},Color.WHITE,
                     Color.parseColor("#FFD600"),Color.WHITE,
                     R.drawable.t5_bb_inbox,Color.TRANSPARENT,Color.BLACK,
@@ -78,7 +78,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    6,"Theme 6",R.drawable.t6_background,Color.parseColor("#A639DD"),R.drawable.t6_avatar,
+                    6,"Magical Neon",R.drawable.t6_background,Color.parseColor("#A639DD"),R.drawable.t6_avatar,
                     Gravity.TOP,new float[]{8,8,7,7},Color.WHITE,
                     Color.parseColor("#A639DD"),Color.WHITE,
                     R.drawable.t6_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -86,7 +86,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    7,"Theme 7",R.drawable.t7_background,Color.parseColor("#A639DD"),R.drawable.t7_avatar,
+                    7,"Wonderful Wave",R.drawable.t7_background,Color.parseColor("#A639DD"),R.drawable.t7_avatar,
                     Gravity.TOP,new float[]{5.5f,5.5f,6,6},Color.WHITE,
                     Color.parseColor("#A639DD"),Color.parseColor("#00258D"),
                     R.drawable.t7_bb_inbox,Color.TRANSPARENT,Color.parseColor("#00258D"),
@@ -94,7 +94,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    8,"Theme 8",R.drawable.t8_background,Color.parseColor("#0091EA"),R.drawable.t8_avatar,
+                    8,"Colorful Life",R.drawable.t8_background,Color.parseColor("#0091EA"),R.drawable.t8_avatar,
                     Gravity.TOP,new float[]{3,3,3,3},Color.WHITE,
                     Color.parseColor("#0091EA"),Color.parseColor("#00258D"),
                     R.drawable.t8_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -102,7 +102,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    9,"Theme 9",R.drawable.t9_background,Color.parseColor("#F0834C"),R.drawable.t9_avatar,
+                    9,"Blink Blink",R.drawable.t9_background,Color.parseColor("#F0834C"),R.drawable.t9_avatar,
                     Gravity.BOTTOM,new float[]{12,10,12,12},Color.parseColor("#F0834C"),
                     Color.parseColor("#F0834C"),Color.BLACK,
                     R.drawable.t9_bb_inbox,Color.TRANSPARENT,Color.BLACK,
@@ -110,7 +110,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    10,"Theme 10",R.drawable.t10_background,Color.parseColor("#FFD600"),R.drawable.t10_avatar,
+                    10,"8 bit game",R.drawable.t10_background,Color.parseColor("#FFD600"),R.drawable.t10_avatar,
                     Gravity.CENTER_VERTICAL,new float[]{9,4,3,4},Color.WHITE,
                     Color.parseColor("#FFD600"),Color.WHITE,
                     R.drawable.t10_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -119,7 +119,7 @@ public class Style {
 
 
             styleModels.add(new StyleModel(
-                    11,"Theme 11",R.drawable.t11_background,Color.parseColor("#AF2222"),R.drawable.t11_avatar,
+                    11,"No Signal",R.drawable.t11_background,Color.parseColor("#AF2222"),R.drawable.t11_avatar,
                     Gravity.BOTTOM,new float[]{5,5,5,5},Color.BLACK,
                     Color.parseColor("#AF2222"),Color.WHITE,
                     R.drawable.t11_bb_inbox,Color.TRANSPARENT,Color.BLACK,
@@ -128,7 +128,7 @@ public class Style {
 
 
             styleModels.add(new StyleModel(
-                    12,"Theme 12",R.drawable.t12_background,Color.parseColor("#F498BD"),R.drawable.t12_avatar,
+                    12,"Annoying Cat",R.drawable.t12_background,Color.parseColor("#F498BD"),R.drawable.t12_avatar,
                     Gravity.CENTER_VERTICAL,new float[]{15,18,15,13},Color.parseColor("#F498BD"),
                     Color.parseColor("#F498BD"),Color.WHITE,
                     R.drawable.t12_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -136,7 +136,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    13,"Theme 13",R.drawable.t13_background,Color.parseColor("#ED1B24"),R.drawable.t13_avatar,
+                    13,"Sweet Valentine",R.drawable.t13_background,Color.parseColor("#ED1B24"),R.drawable.t13_avatar,
                     Gravity.BOTTOM,new float[]{14,14,14,14},Color.parseColor("#ED1B24"),
                     Color.WHITE,Color.WHITE,
                     R.drawable.t13_bb_inbox,Color.TRANSPARENT,Color.BLACK,
@@ -144,7 +144,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    14,"Theme 14",R.drawable.t14_background,Color.parseColor("#ED1B24"),R.drawable.t14_avatar,
+                    14,"Red Love",R.drawable.t14_background,Color.parseColor("#ED1B24"),R.drawable.t14_avatar,
                     Gravity.BOTTOM,new float[]{5,5,5,5},Color.WHITE,
                     Color.WHITE,Color.WHITE,
                     R.drawable.t14_bb_inbox,Color.TRANSPARENT,Color.WHITE,
@@ -152,7 +152,7 @@ public class Style {
             ));
 
             styleModels.add(new StyleModel(
-                    15,"Theme 15",R.drawable.t15_background,Color.parseColor("#26FDFF"),R.drawable.t15_avatar,
+                    15,"Graffiti World",R.drawable.t15_background,Color.parseColor("#26FDFF"),R.drawable.t15_avatar,
                     Gravity.BOTTOM,new float[]{15,21,24,15},Color.WHITE,
                     Color.parseColor("#26FDFF"),Color.WHITE,
                     R.drawable.t15_bb_inbox,Color.TRANSPARENT,Color.WHITE,

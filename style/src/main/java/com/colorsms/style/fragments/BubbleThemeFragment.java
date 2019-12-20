@@ -104,13 +104,13 @@ public class BubbleThemeFragment extends BaseFragment {
         final RecyclerView rcvColor = view.findViewById(R.id.rcv_color);
         rcvColor.setLayoutManager(new GridLayoutManager(activity,4));
 
-        btnCustom.setText("Customs");
+        btnCustom.setText("Customize");
         btnCustom.setTextColor(Style.Home.getStyleColor());
 
         btnCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnCustom.getText().toString().equals("Customs")){
+                if(btnCustom.getText().toString().equals("Customize")){
                     btnCustom.setText("Cancel");
                     btnCustom.setTextColor(Color.GRAY);
 
@@ -130,7 +130,7 @@ public class BubbleThemeFragment extends BaseFragment {
                         colorPickerView.setColor(Style.Bubble.getBubbleShapeSentColor());
                     }
                 }else {
-                    btnCustom.setText("Customs");
+                    btnCustom.setText("Customize");
                     btnCustom.setTextColor(Style.Home.getStyleColor());
 
                     colorPickerView.animate().alpha(0).scaleX(0.5f).scaleY(0.5f).withEndAction(new Runnable() {
@@ -267,13 +267,13 @@ public class BubbleThemeFragment extends BaseFragment {
         final RecyclerView rcvColor = view.findViewById(R.id.rcv_text_color);
         rcvColor.setLayoutManager(new GridLayoutManager(activity,4));
 
-        btnCustom.setText("Customs");
+        btnCustom.setText("Customize");
         btnCustom.setTextColor(Style.Home.getStyleColor());
 
         btnCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnCustom.getText().toString().equals("Customs")){
+                if(btnCustom.getText().toString().equals("Customize")){
                     btnCustom.setText("Cancel");
                     btnCustom.setTextColor(Color.GRAY);
 
@@ -294,7 +294,7 @@ public class BubbleThemeFragment extends BaseFragment {
                         colorPickerView.setColor(Style.Bubble.getBubbleTextSentColor());
                     }
                 }else {
-                    btnCustom.setText("Customs");
+                    btnCustom.setText("Customize");
                     btnCustom.setTextColor(Style.Home.getStyleColor());
 
                     colorPickerView.animate().alpha(0).scaleX(0.5f).scaleY(0.5f).withEndAction(new Runnable() {
