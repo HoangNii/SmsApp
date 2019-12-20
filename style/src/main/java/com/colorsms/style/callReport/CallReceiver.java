@@ -67,6 +67,7 @@ public class CallReceiver extends PhoneCallReceiver {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_NO_USER_ACTION
                 | Intent.FLAG_ACTIVITY_NO_ANIMATION
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK
                 | Intent.FLAG_FROM_BACKGROUND);
         intent.putExtra(STATE,state);
         intent.putExtra(NUMBER,number);

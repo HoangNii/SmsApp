@@ -29,9 +29,11 @@ android {
         implementation 'com.github.kayvannj:PermissionUtils:1.0.9'
         implementation 'me.shaohui:bottomdialog:1.1.9'
         api 'com.vanniktech:emoji-ios:0.6.0'
+        api 'de.hdodenhof:circleimageview:3.0.1'
         implementation 'com.airbnb.android:lottie:2.8.0'
         implementation 'com.flurry.android:analytics:12.0.3@aar'
         implementation 'com.google.android.gms:play-services-ads:18.3.0'
         implementation 'com.facebook.android:audience-network-sdk:5.+'
+
 //        implementation 'com.google.android.material:material:1.0.0'
 }

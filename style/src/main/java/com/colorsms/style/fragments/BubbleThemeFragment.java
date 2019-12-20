@@ -453,6 +453,12 @@ public class BubbleThemeFragment extends BaseFragment {
             public void OnBubbleShapeItemClick(int position) {
                 Style.Bubble.setUseBubbleShapeDefault(true);
                 Style.Bubble.setBubbleShapeDefaultPosition(position);
+                if(Style.Bubble.getBubbleShapeReceivedColor()==Color.TRANSPARENT){
+                    Style.Bubble.setBubbleShapeReceivedColor(Style.Home.getStyleColor());
+                }
+                if(Style.Bubble.getBubbleShapeSentColor()==Color.TRANSPARENT){
+                    Style.Bubble.setBubbleShapeSentColor(Style.Home.getStyleColor());
+                }
                 notifyDataSetChanged();
                 checkAvatarGravity(position);
                 chatPreview.updateStyle();

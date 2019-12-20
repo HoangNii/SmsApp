@@ -17,8 +17,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private int delay = 1000;
     private boolean isRunning;
-    private Handler handler = new Handler();
-    private Runnable runnable;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,32 +30,33 @@ public class SplashActivity extends AppCompatActivity {
             delay = 4000;
         }
 
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                if(isRunning){
-                    MyAds.showInterFull(SplashActivity.this, new Callback() {
-                        @Override
-                        public void callBack(Object value, int where) {
-                            App.get().startMain();
-                            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-                            finish();
-                        }
-                    });
-                }else {
-                    App.get().startMain();
-                    overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-                    finish();
-                }
-            }
-        };
         new AdsConfigLoader(new Callback() {
             @Override
             public void callBack(Object value, int where) {
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(isRunning){
+                            MyAds.showInterFull(SplashActivity.this, new Callback() {
+                                @Override
+                                public void callBack(Object value, int where) {
+                                    App.get().startMain();
+                                    overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                                    finish();
+                                }
+                            });
+                        }else {
+                            App.get().startMain();
+                            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                            finish();
+                        }
+
+                    }
+                },delay);
+
             }
         }).syn();
-        handler.postDelayed(runnable,delay);
 
     }
 

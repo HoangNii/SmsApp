@@ -22,12 +22,18 @@ public class AdsConfigLoader  {
 
             @Override
             public void onFetchNoChange() {
-                callback.callBack(0,0);
+                if(callback!=null){
+                    callback.callBack(0,0);
+                    callback = null;
+                }
             }
 
             @Override
             public void onFetchError(boolean b) {
-                callback.callBack(0,0);
+                if(callback!=null){
+                    callback.callBack(0,0);
+                    callback = null;
+                }
             }
 
             @Override
@@ -81,7 +87,10 @@ public class AdsConfigLoader  {
                         s_ads_platform,s_show_banner,s_show_inter,s_show_native,s_show_reward,s_banner_id,s_inter_id,s_native_id,
                         s_reward_id);
 
-                callback.callBack(0,0);
+                if(callback!=null){
+                    callback.callBack(0,0);
+                    callback = null;
+                }
 
             }
         });

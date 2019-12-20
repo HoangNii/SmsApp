@@ -81,7 +81,7 @@ public class DialogCallReportActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                MyAds.showInterFull(DialogCallReportActivity.this, new Callback() {
+                MyAds.showInterFullNow(DialogCallReportActivity.this, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
                         loadView.setVisibility(View.GONE);

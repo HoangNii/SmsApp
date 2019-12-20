@@ -60,6 +60,7 @@ import com.android.messaging.util.PhoneUtils;
 import com.android.messaging.util.Typefaces;
 import com.android.messaging.util.UiUtils;
 import com.android.messaging.util.UriUtil;
+import com.android.messaging.views.ViewAvatar2;
 import com.bumptech.glide.Glide;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.models.StyleModel;
@@ -137,14 +138,14 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
     private TextView mSubjectTextView;
     private TextView mTimestampTextView;
     private TextView mPendingTextView;
-    private ContactIconView mContactIconView;
+    private ViewAvatar2 mContactIconView;
     private ImageView mContactCheckmarkView;
     private ImageView mNotificationBellView;
     private ImageView mFailedStatusIconView;
     private ImageView mCrossSwipeArchiveLeftImageView;
     private ImageView mCrossSwipeArchiveRightImageView;
     private HostInterface mHostInterface;
-    private ImageView mFrameIcon;
+//    private ImageView mFrameIcon;
     private View mUnRead;
     private ImageView mConversationArrow;
 
@@ -166,7 +167,7 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         mPendingTextView = findViewById(R.id.conversation_pending);
         mConversationArrow = findViewById(R.id.conversation_arrow);
         mContactIconView = findViewById(R.id.conversation_icon);
-        mFrameIcon = findViewById(R.id.conversation_frame_icon);
+//        mFrameIcon = findViewById(R.id.conversation_frame_icon);
         mUnRead = findViewById(R.id.conversation_unread);
         mContactCheckmarkView = findViewById(R.id.conversation_checkmark);
         mNotificationBellView = findViewById(R.id.conversation_notification_bell);
@@ -501,16 +502,16 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
 
 
 
-        if(model.getId()==0){
-            mFrameIcon.setImageResource(0);
-        }else {
-            Glide.with(mFrameIcon).load(model.getAvatarFrameResource()).into(mFrameIcon);
-        }
-        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0],getContext());
-        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1],getContext());
-        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2],getContext());
-        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3],getContext());
-        mContactIconView.setPadding(left,top,right,bottom);
+//        if(model.getId()==0){
+//            mFrameIcon.setImageResource(0);
+//        }else {
+//            Glide.with(mFrameIcon).load(model.getAvatarFrameResource()).into(mFrameIcon);
+//        }
+//        int left = Utils.dpToPixel(model.getAvatarHomeContentPadding()[0],getContext());
+//        int top = Utils.dpToPixel(model.getAvatarHomeContentPadding()[1],getContext());
+//        int right = Utils.dpToPixel(model.getAvatarHomeContentPadding()[2],getContext());
+//        int bottom = Utils.dpToPixel(model.getAvatarHomeContentPadding()[3],getContext());
+//        mContactIconView.setPadding(left,top,right,bottom);
     }
 
     public boolean isSwipeAnimatable() {
