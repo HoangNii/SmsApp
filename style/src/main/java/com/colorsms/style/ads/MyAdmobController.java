@@ -1,6 +1,5 @@
 package com.colorsms.style.ads;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -9,8 +8,6 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.widget.RelativeLayout;
-
-import com.colorsms.style.App;
 import com.colorsms.style.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -112,6 +109,7 @@ public class MyAdmobController {
             requestNewInterstitial();
         }
     }
+
     public static void showAdsFullNow(final Context context, final Callback callback) {
 
         if (mInterstitialAd == null) {

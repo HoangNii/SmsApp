@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.colorsms.style.App;
 import com.colorsms.style.R;
 import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.ads.MyAds;
+import com.colorsms.style.ads.MyFacebookAdsController;
 import com.colorsms.style.helper.Style;
 import java.util.Calendar;
 
@@ -92,7 +94,7 @@ public class NewMessageActivity extends AppCompatActivity {
                 finish();
             }
         });
-        MyAdmobController.initBannerReport(dialog);
+        MyAds.initBannerReport(dialog);
         dialog.show();
     }
 

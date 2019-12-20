@@ -17,6 +17,8 @@ import com.colorsms.style.activities.FixPickImage;
 import com.colorsms.style.adapters.BackgroundAdapter;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.ads.MyAds;
+import com.colorsms.style.ads.MyFacebookAdsController;
 import com.github.kayvannj.permission_utils.Func;
 import com.github.kayvannj.permission_utils.PermissionUtil;
 
@@ -55,7 +57,7 @@ public class BackgroundFragment extends BaseFragment {
                                 }
                             }).ask(12);
                 }else {
-                    MyAdmobController.showAdsFullBeforeDoAction(activity, new Callback() {
+                    MyAds.showInterFull(activity, new Callback() {
                         @Override
                         public void callBack(Object value, int where) {
                             BackgroundPreviewActivity.startPreview(activity,position,null);

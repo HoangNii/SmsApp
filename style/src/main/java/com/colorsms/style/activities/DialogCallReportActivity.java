@@ -27,6 +27,8 @@ import com.colorsms.style.App;
 import com.colorsms.style.R;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.ads.MyAds;
+import com.colorsms.style.ads.MyFacebookAdsController;
 import com.colorsms.style.callReport.CallReceiver;
 import com.colorsms.style.helper.Style;
 import com.github.kayvannj.permission_utils.Func;
@@ -58,15 +60,15 @@ public class DialogCallReportActivity extends AppCompatActivity {
 
         setup();
 
-        MyAdmobController.initBannerReport(this);
+        MyAds.initBannerReport(this);
 
 
     }
 
     private void loadAds(){
 
-        if(!MyAdmobController.isInterLoaded()){
-            MyAdmobController.initInterstitialAds(this);
+        if(!MyAds.isInterLoaded()){
+            MyAds.initInterAds(this);
         }
 
         final View loadView = findViewById(R.id.load_view);
@@ -79,7 +81,7 @@ public class DialogCallReportActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                MyAdmobController.showAdsFullNow(DialogCallReportActivity.this, new Callback() {
+                MyAds.showInterFull(DialogCallReportActivity.this, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
                         loadView.setVisibility(View.GONE);

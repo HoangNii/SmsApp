@@ -61,6 +61,8 @@ import com.android.messaging.util.LogUtil;
 import com.android.messaging.util.UiUtils;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.ads.MyAds;
+import com.colorsms.style.ads.MyFacebookAdsController;
 import com.colorsms.style.helper.Style;
 import com.colorsms.style.helper.StyleHelper;
 import com.google.common.annotations.VisibleForTesting;
@@ -234,7 +236,7 @@ public class ConversationListFragment extends Fragment implements ConversationLi
             mStartNewConversationButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(final View clickView) {
-                    MyAdmobController.showAdsFullBeforeDoAction(getActivity(), new Callback() {
+                    MyAds.showInterFull(getActivity(), new Callback() {
                         @Override
                         public void callBack(Object value, int where) {
                             mHost.onCreateConversationClick();
@@ -376,7 +378,7 @@ public class ConversationListFragment extends Fragment implements ConversationLi
     public void onConversationClicked(final ConversationListItemData conversationListItemData,
                                       final boolean isLongClick, final ConversationListItemView conversationView) {
 
-        MyAdmobController.showAdsFullBeforeDoAction(getActivity(), new Callback() {
+        MyAds.showInterFull(getActivity(), new Callback() {
             @Override
             public void callBack(Object value, int where) {
                 final ConversationListData listData = mListBinding.getData();

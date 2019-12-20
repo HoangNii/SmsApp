@@ -9,6 +9,8 @@ import com.colorsms.style.R;
 import com.colorsms.style.ads.AdsConfigLoader;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.ads.MyAds;
+import com.colorsms.style.ads.MyFacebookAdsController;
 import com.colorsms.style.helper.Style;
 
 public class SplashActivity extends AppCompatActivity {
@@ -24,17 +26,16 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         findViewById(R.id.main).setBackgroundColor(Style.Home.getStyleColor());
 
-        if(!MyAdmobController.isInterLoaded()){
-            MyAdmobController.initInterstitialAds(this);
+        if(!MyAds.isInterLoaded()){
+            MyAds.initInterAds(this);
             delay = 4000;
         }
 
         runnable = new Runnable() {
             @Override
             public void run() {
-                handler.removeCallbacks(runnable);
                 if(isRunning){
-                    MyAdmobController.showAdsFullNow(SplashActivity.this, new Callback() {
+                    MyAds.showInterFull(SplashActivity.this, new Callback() {
                         @Override
                         public void callBack(Object value, int where) {
                             App.get().startMain();
@@ -52,10 +53,10 @@ public class SplashActivity extends AppCompatActivity {
         new AdsConfigLoader(new Callback() {
             @Override
             public void callBack(Object value, int where) {
-                handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable,delay);
+
             }
         }).syn();
+        handler.postDelayed(runnable,delay);
 
     }
 

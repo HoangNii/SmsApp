@@ -39,6 +39,8 @@ import com.colorsms.style.activities.ThemeStyleFirstActivity;
 import com.colorsms.style.ads.AdsConfigLoader;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.ads.MyAds;
+import com.colorsms.style.ads.MyFacebookAdsController;
 import com.colorsms.style.callReport.CallReports;
 import com.colorsms.style.fragments.BackgroundFragment;
 import com.colorsms.style.fragments.BubbleThemeFragment;
@@ -62,8 +64,9 @@ public class ConversationListActivity extends AbstractConversationListActivity {
         try{ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); } catch(Exception ignore){}
         setContentView(R.layout.conversation_list_activity);
 
-        MyAdmobController.initBannerAds(this);
-        MyAdmobController.initInterstitialAds(this);
+//        MyAdmobController.initBannerAds(this);
+        MyAds.initBannerIds(this);
+        MyAds.initInterAds(this);
 
         Trace.endSection();
         invalidateActionBar();
@@ -193,7 +196,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                        MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                             @Override
                             public void callBack(Object value, int where) {
                                 ThemeStyleFragment.startAddToBackStack(ConversationListActivity.this,ThemeStyleFragment.newInstance());
@@ -207,7 +210,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                        MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                             @Override
                             public void callBack(Object value, int where) {
                                 onShowColorSelect();
@@ -220,7 +223,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                        MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                             @Override
                             public void callBack(Object value, int where) {
                                 BubbleThemeFragment.startAddToBackStack(ConversationListActivity.this,BubbleThemeFragment.newInstance());
@@ -233,7 +236,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                        MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                             @Override
                             public void callBack(Object value, int where) {
                                 BackgroundFragment.startAddToBackStack(ConversationListActivity.this,BackgroundFragment.newInstance());
@@ -246,7 +249,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                        MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                             @Override
                             public void callBack(Object value, int where) {
                                 FontFragment.startAddToBackStack(ConversationListActivity.this,FontFragment.newInstance());
@@ -326,7 +329,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
     public boolean onOptionsItemSelected(final MenuItem menuItem) {
         switch(menuItem.getItemId()) {
             case R.id.action_start_new_conversation:
-                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
                         onActionBarStartNewConversation();
@@ -334,7 +337,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 });
                 return true;
             case R.id.action_settings:
-                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
                         onActionBarSettings();
@@ -342,7 +345,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 });
                 return true;
             case R.id.action_debug_options:
-                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
                         onActionBarDebug();
@@ -350,7 +353,7 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 });
                 return true;
             case R.id.action_show_archived:
-                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
                         onActionBarArchived();
@@ -358,10 +361,10 @@ public class ConversationListActivity extends AbstractConversationListActivity {
                 });
                 return true;
             case R.id.action_show_blocked_contacts:
-                MyAdmobController.showAdsFullBeforeDoAction(ConversationListActivity.this, new Callback() {
+                MyAds.showInterFull(ConversationListActivity.this, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
-                        onActionBarArchived();
+                        onActionBarBlockedParticipants();
                     }
                 });
 

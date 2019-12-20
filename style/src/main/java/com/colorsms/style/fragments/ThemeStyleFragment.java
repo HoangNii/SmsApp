@@ -11,6 +11,8 @@ import com.colorsms.style.activities.ThemeStylePreviewActivity;
 import com.colorsms.style.adapters.ThemeStyleAdapter;
 import com.colorsms.style.ads.Callback;
 import com.colorsms.style.ads.MyAdmobController;
+import com.colorsms.style.ads.MyAds;
+import com.colorsms.style.ads.MyFacebookAdsController;
 import com.colorsms.style.helper.Style;
 
 public class ThemeStyleFragment extends BaseFragment {
@@ -38,7 +40,7 @@ public class ThemeStyleFragment extends BaseFragment {
         rcvTheme.setAdapter(adapter = new ThemeStyleAdapter(activity, Style.ColorStyle.getStyleModels()) {
             @Override
             public void OnItemStyleClick(final int position) {
-                MyAdmobController.showAdsFullBeforeDoAction(activity, new Callback() {
+                MyAds.showInterFull(activity, new Callback() {
                     @Override
                     public void callBack(Object value, int where) {
                         ThemeStylePreviewActivity.startPreview(activity,position);
